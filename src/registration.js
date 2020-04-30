@@ -10,14 +10,22 @@ export default class Registration extends React.Component {
     }
 
     handleChange(e) {
-        console.log("e.target.value: ", e.target.value);
-        console.log("e.target.name: ", e.target.name);
+        // console.log("e.target.value: ", e.target.value);
+        // console.log("e.target.name: ", e.target.name);
         this.setState(
             {
                 [e.target.name]: e.target.value
             },
             () => console.log("this.state", this.state)
         );
+
+        axios.post("/registration").then(response => {
+            console.log(response);
+            this.setState({
+                //updates state in React. Cannot just this.state.first = new value
+                //first: response.data.first
+            });
+        });
     }
 
     submit() {

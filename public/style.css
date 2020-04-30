@@ -1,8 +1,14 @@
-body {
-    min-height: 100vh;
-    background-color: blue;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.register {
-    background-color: bisque;
+body {
+    min-height: 100vh;
+    background-color: antiquewhite;
+}
+
+.registration {
+    background-color: aquamarine;
 }
