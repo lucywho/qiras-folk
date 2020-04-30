@@ -12,3 +12,13 @@ body {
 .registration {
     background-color: aquamarine;
 }
+
+.logo {
+    height: 100px;
+    padding: 5px;
+    background-color: white;
+    border-top: rgb(17, 17, 17) 5px solid;
+    border-left: rgb(17, 17, 17) 5px solid;
+    border-right: peru 5px solid;
+    border-bottom: peru 5px solid;
+}

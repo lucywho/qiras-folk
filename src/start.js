@@ -7,7 +7,7 @@ let elem;
 const userIsLoggedIn = location.pathname != "/welcome";
 
 if (userIsLoggedIn) {
-    elem = <h1>logo goes here</h1>;
+    elem = <img className="logo" src="./qirafig.jpg" />;
 } else {
     elem = <Welcome />;
 }
