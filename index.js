@@ -1,26 +1,15 @@
 const express = require("express");
 const app = express();
-const db = require("./db.js");
 const compression = require("compression");
+const db = require("./db.js");
 
 const cookieSession = require("cookie-session");
-const csurf = require("csurf");
+//const csurf = require("csurf");
 
 const { hash, compare } = require("./bc.js");
 
 //_____MIDDLEWARE______
-
 app.use(compression());
-
-app.use(express.static("public"));
-
-app.use(express.json());
-
-app.use(
-    express.urlencoded({
-        extended: false
-    })
-);
 
 app.use(
     cookieSession({
@@ -29,13 +18,23 @@ app.use(
     })
 );
 
-app.use(csurf());
+app.use(express.static("public"));
 
-app.use((req, res, next) => {
-    res.setHeader("X-Frame-Options", "deny");
-    res.locals.csrfToken = req.csrfToken();
-    next();
-});
+app.use(express.json());
+
+// app.use(
+//     express.urlencoded({
+//         extended: false
+//     })
+// );
+
+//app.use(csurf());
+
+// app.use((req, res, next) => {
+//     res.setHeader("X-Frame-Options", "deny");
+//     res.locals.csrfToken = req.csrfToken();
+//     next();
+// });
 
 //_____ROUTES_______
 
@@ -61,19 +60,12 @@ app.get("/welcome", (req, res) => {
 
 app.post("/register", (req, res) => {
     console.log("post register running");
-    //capture inputs
-    const first_name = req.body.first_name;
-    const last_name = req.body.last_name;
+    console.log("req.body", req.body);
+    const first_name = req.body.first;
+    const last_name = req.body.last;
     const email = req.body.email;
     const password = req.body.password;
     let user_id;
-
-    //check all inputs and redo page if not
-    // if (!first_name || !last_name || !email || !password) {
-    //     console.log("register: missing inputs");
-    //     });
-    //     return;
-    // }
 
     // hash the password and add inputs to user table
     hash(password).then(hashpass => {
@@ -83,7 +75,8 @@ app.post("/register", (req, res) => {
                 console.log("registration post worked");
                 user_id = results.rows[0].id;
                 req.session.userId = user_id;
-                res.json(); //check this
+                console.log("req.session.userId", req.session.userId);
+                res.json({ success: true });
             })
             .catch(err => {
                 console.log("err in addUser: ", err);

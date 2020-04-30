@@ -18,32 +18,28 @@ export default class Registration extends React.Component {
             },
             () => console.log("this.state", this.state)
         );
-
-        axios.post("/registration").then(response => {
-            console.log(response);
-            this.setState({
-                //updates state in React. Cannot just this.state.first = new value
-                //first: response.data.first
-            });
-        });
     }
 
     submit() {
         console.log("about to submit: ", this.state);
 
-        axios.post("/register", this.state).then(response => {
-            console.log("response.data: ", response.data);
+        axios
+            .post("/register", this.state)
+            .then(response => {
+                console.log("response.data: ", response.data);
+                //can deconstruct response to {data} and console log data direct
 
-            //can deconstruct response to {data} and console log data direct
-
-            if (response.data.success) {
-                location.replace("/");
-            } else {
-                this.setState({
-                    error: true
-                });
-            }
-        });
+                if (response.data.success) {
+                    location.replace("/");
+                } else {
+                    this.setState({
+                        error: true
+                    });
+                }
+            })
+            .catch(err => {
+                console.log("registration.js error in post register", err);
+            });
     }
 
     render() {
