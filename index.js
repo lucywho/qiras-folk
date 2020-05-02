@@ -84,10 +84,12 @@ app.post("/register", (req, res) => {
             })
             .catch(err => {
                 console.log("err in addUser: ", err);
+                //QUERY: how to catch specific error (i.e email already used) and return relevant error message?
+                res.json({ success: false });
             });
         return;
     });
-});
+}); //end of route
 
 app.get("*", function(req, res) {
     if (!req.session.userId) {
