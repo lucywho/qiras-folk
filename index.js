@@ -4,7 +4,7 @@ const compression = require("compression");
 const db = require("./db.js");
 
 const cookieSession = require("cookie-session");
-//const csurf = require("csurf");
+//const csurf = require("csurf"); //might need later?
 
 const { hash, compare } = require("./bc.js");
 
@@ -22,19 +22,19 @@ app.use(express.static("public"));
 
 app.use(express.json());
 
-// app.use(
-//     express.urlencoded({
-//         extended: false
-//     })
-// );
+app.use(
+    express.urlencoded({
+        extended: false
+    })
+);
 
-//app.use(csurf());
+//app.use(csurf()); //might need later
 
-// app.use((req, res, next) => {
-//     res.setHeader("X-Frame-Options", "deny");
-//     res.locals.csrfToken = req.csrfToken();
-//     next();
-// });
+app.use((req, res, next) => {
+    res.setHeader("X-Frame-Options", "deny");
+    //     res.locals.csrfToken = req.csrfToken();
+    next();
+});
 
 //_____ROUTES_______
 
@@ -51,7 +51,6 @@ if (process.env.NODE_ENV != "production") {
 
 app.get("/welcome", (req, res) => {
     if (req.session.userId) {
-        //note: check userId name once cookie written
         res.redirect("/");
     } else {
         res.sendFile(__dirname + "/index.html");
@@ -67,7 +66,12 @@ app.post("/register", (req, res) => {
     const password = req.body.password;
     let user_id;
 
-    // hash the password and add inputs to user table
+    if (!first_name || !last_name || !email || !password) {
+        console.log("register: missing inputs");
+        res.json({ success: false });
+        return;
+    }
+
     hash(password).then(hashpass => {
         console.log("hashpass worked", hashpass);
         db.addUser(first_name, last_name, email, hashpass)

@@ -46,7 +46,7 @@ export default class Registration extends React.Component {
         return (
             <div className="registration">
                 <h3>This is the Registration Component</h3>
-                {this.state.error && <div>Something went wrong</div>}
+                {this.state.error && <div>I have a bad feeling about this</div>}
                 <input
                     name="first"
                     placeholder="firstname..."

@@ -10,7 +10,8 @@ body {
 }
 
 .registration {
-    background-color: aquamarine;
+    border: peru 5px solid;
+    padding: 5px;
 }
 
 .logo {
