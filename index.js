@@ -135,19 +135,19 @@ app.post("/login", (req, res) => {
     });
 }); //end of login route
 
+app.get("/logout", (req, res) => {
+    console.log("logout");
+    req.session = null;
+    res.redirect("/");
+    return;
+});
+
 app.get("*", function(req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");
     } else {
         res.sendFile(__dirname + "/index.html");
     }
-});
-
-app.get("/logout", (req, res) => {
-    console.log("logout");
-    req.session = null;
-    res.redirect("/");
-    return;
 });
 
 //_________SERVER LISTENING_______
