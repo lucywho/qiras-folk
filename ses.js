@@ -13,10 +13,10 @@ const ses = new aws.SES({
     region: "eu-central-1"
 });
 
-exports.sendEmail = (to, subject, text) => {
+exports.sendEmail = (to, text) => {
     return ses
         .sendEmail({
-            Source: "Qira's folk <lucy@toman.me.uk",
+            Source: "Qira's folk <lucy@toman.me.uk>",
             Destination: {
                 ToAddresses: [to]
             },
@@ -27,7 +27,7 @@ exports.sendEmail = (to, subject, text) => {
                     }
                 },
                 Subject: {
-                    Data: subject
+                    Data: "Reset your password to Qira's Folk"
                 }
             }
         })

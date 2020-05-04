@@ -9,6 +9,7 @@ const csurf = require("csurf");
 const { hash, compare } = require("./bc.js");
 
 const cryptoRandomString = require("crypto-random-string");
+const { sendEmail } = require("./ses");
 
 //_____MIDDLEWARE______
 app.use(compression());
@@ -167,6 +168,7 @@ app.post("/password/reset/step1", (req, res) => {
                 console.log("secret code generated: ", code);
 
                 //email user
+                sendEmail(email, `Your reset code is ${code}`);
 
                 //store code in reset_codes
                 db.saveCode(email, code)
