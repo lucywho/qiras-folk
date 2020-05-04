@@ -8,24 +8,51 @@ body {
     min-height: 100vh;
     background-color: #dabeca;
     color: #223843;
+    padding: 5px;
 }
 
 #startelem {
     border: 2px red solid;
 }
 
-#welcome {
+.welcomediv {
     background-color: #f8ecf4;
+    display: inline-flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.welcometext {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+#splashimg {
+    height: 200px;
+    padding: 10px;
+    background-color: white;
+    border-top: rgba(205, 133, 63, 1) 5px solid;
+    border-left: rgba(205, 133, 63, 1) 5px solid;
+    border-right: rgba(205, 133, 63, 0.5) 5px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
 }
 
 .registration {
     border: #d77a61 5px solid;
-
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     padding: 5px;
+    background-color: #dabeca;
+}
+
+.resetdiv {
+    border: #d77a61 5px solid;
+    background-color: #dabeca;
 }
 
 input {
@@ -40,8 +67,8 @@ input {
 
 button {
     border: #d77a61 5px solid;
-    border-bottom: #d8b4a0 5px solid;
-    border-right: #d8b4a0 5px solid;
+    border-top: #d8b4a0 5px solid;
+    border-left: #d8b4a0 5px solid;
     border-radius: 10px;
     background-color: #f8ecf4;
     padding: 5px;
@@ -51,16 +78,6 @@ button {
 .logo {
     height: 100px;
     padding: 5px;
-    background-color: white;
-    border-top: rgba(205, 133, 63, 1) 5px solid;
-    border-left: rgba(205, 133, 63, 1) 5px solid;
-    border-right: rgba(205, 133, 63, 0.5) 5px solid;
-    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
-}
-
-#splashimg {
-    height: 200px;
-    padding: 10px;
     background-color: white;
     border-top: rgba(205, 133, 63, 1) 5px solid;
     border-left: rgba(205, 133, 63, 1) 5px solid;

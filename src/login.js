@@ -70,6 +70,12 @@ export default class Login extends React.Component {
                         <button>Click here to Register</button>
                     </Link>
                 </div>
+                <div>
+                    <h3>Forgotten password?</h3>
+                    <Link to="/reset">
+                        <button>Click here to reset your password</button>
+                    </Link>
+                </div>
             </div>
         );
     }
