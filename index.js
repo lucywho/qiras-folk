@@ -144,6 +144,7 @@ app.get("*", function(req, res) {
 });
 
 app.get("/logout", (req, res) => {
+    console.log("logout");
     req.session = null;
     res.redirect("/");
     return;

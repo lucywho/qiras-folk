@@ -1,13 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-//import HelloWorld from "./helloworld";
 import Welcome from "./welcome";
 
 let elem;
 const userIsLoggedIn = location.pathname != "/welcome";
 
 if (userIsLoggedIn) {
-    elem = <img className="logo" src="./qirafig.jpg" />;
+    elem = (
+        <div id="startelem">
+            <img className="logo" src="./qirafig.jpg" />
+            <div className="logout">
+                <a href="/logout">
+                    <button> Log Out </button>
+                </a>
+            </div>
+        </div>
+    );
 } else {
     elem = <Welcome />;
 }

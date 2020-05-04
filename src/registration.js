@@ -71,7 +71,9 @@ export default class Registration extends React.Component {
                 </button>
                 <div>
                     <h3>Already a member?</h3>
-                    <Link to="/login">Click here to Log in!</Link>
+                    <Link to="/login">
+                        <button>Click here to Log in!</button>
+                    </Link>
                 </div>
             </div>
         );
