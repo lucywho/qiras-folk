@@ -28,7 +28,6 @@ export default class Login extends React.Component {
             .post("/login", this.state)
             .then(response => {
                 console.log("response.data: ", response.data);
-                //can deconstruct response to {data} and console log data direct
 
                 if (response.data.success) {
                     location.replace("/");
@@ -64,10 +63,10 @@ export default class Login extends React.Component {
                     type="password"
                     placeholder="password..."
                 />
-                <button onClick={() => this.submit()}>Login Now!</button>
+                <button onClick={() => this.login()}>Login Now!</button>
                 <div>
                     <h3>New to Qira's Folk?</h3>
-                    <Link to="/register">Click here to Register</Link>
+                    <Link to="/">Click here to Register</Link>
                 </div>
             </div>
         );

@@ -143,6 +143,12 @@ app.get("*", function(req, res) {
     }
 });
 
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/");
+    return;
+});
+
 //_________SERVER LISTENING_______
 app.listen(8080, function() {
     console.log("social network server running");
