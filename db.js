@@ -13,10 +13,12 @@ module.exports.addUser = (first_name, last_name, email, hashpass) => {
 };
 
 module.exports.updateUser = (hashpass, email) => {
-    return db.query(`UPDATE users (password) VALUES ($1) WHERE email=$2`, [
-        hashpass,
-        email
-    ]);
+    return db.query(
+        `UPDATE users 
+        SET password = $1 
+        WHERE email = $2`,
+        [hashpass, email]
+    );
 };
 
 module.exports.getPassword = logemail => {

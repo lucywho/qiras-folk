@@ -200,36 +200,31 @@ app.post("/password/reset/step2", (req, res) => {
         .then(results => {
             console.log("results checkcode", results.rows[0].code);
             code = results.rows[0].code;
+            if (code !== incode) {
+                console.log("codes don't match");
+                res.json({ success: false });
+                return;
+            } else {
+                console.log("code matches");
 
-            compare(incode, code)
-                .then(matchValue => {
-                    console.log("matchValue checkcode: ", matchValue);
-                    if (!matchValue) {
-                        console.log("error in code matchValue");
-                        res.json({ success: false });
-                        return;
-                    } else {
-                        console.log("code matches");
+                hash(password).then(hashpass => {
+                    console.log("hashpass worked", hashpass);
 
-                        hash(password).then(hashpass => {
-                            console.log("hashpass worked", hashpass);
-
-                            db.updateUser(hashpass, email)
-                                .then(results => {
-                                    console.log("password updated");
-                                    res.json({ success: true });
-                                })
-                                .catch(err => {
-                                    console.log("err in updateUser: ", err);
-                                    res.json({ success: false });
-                                });
+                    db.updateUser(hashpass, email)
+                        .then(results => {
+                            console.log("password updated");
+                            res.json({ success: true });
+                        })
+                        .catch(err => {
+                            console.log("err in updateUser: ", err);
+                            res.json({ success: false });
                         });
-                    }
-                })
-                .catch(err => {
-                    console.log("err in matchValue: ", err);
-                    res.json({ success: false });
-                }); //end of matchvalue
+                });
+            }
+        })
+        .catch(err => {
+            console.log("err in matchValue: ", err);
+            res.json({ success: false });
         })
         .catch(err => {
             console.log("err in checkCode: ", err);
