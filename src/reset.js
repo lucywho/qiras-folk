@@ -11,6 +11,15 @@ export default class ResetPassword extends React.Component {
         };
     }
 
+    handleChange(e) {
+        this.setState(
+            {
+                [e.target.name]: e.target.value
+            },
+            () => console.log("this.state", this.state) //stores email in state
+        );
+    }
+
     reqcode() {
         console.log("about to request code: ", this.state);
         axios
@@ -79,7 +88,7 @@ export default class ResetPassword extends React.Component {
                             type="email"
                             placeholder="email address..."
                         />
-                        <button onClick={() => this.reqcode}>
+                        <button onClick={() => this.reqcode()}>
                             Submit email
                         </button>
                     </div>
@@ -107,12 +116,12 @@ export default class ResetPassword extends React.Component {
                             type="password"
                             placeholder="enter a new password"
                         />
-                        <button onClick={() => this.reset}>
+                        <button onClick={() => this.reset()}>
                             Reset password
                         </button>
                     </div>
                 )}
-                ;
+
                 {this.state.step == 3 && (
                     <div className="reset3">
                         Congratulations! Your password has been successfully
@@ -122,7 +131,6 @@ export default class ResetPassword extends React.Component {
                         </Link>
                     </div>
                 )}
-                ;
             </div>
         );
     }

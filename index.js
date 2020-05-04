@@ -8,6 +8,8 @@ const csurf = require("csurf");
 
 const { hash, compare } = require("./bc.js");
 
+const cryptoRandomString = require("crypto-random-string");
+
 //_____MIDDLEWARE______
 app.use(compression());
 
@@ -134,6 +136,54 @@ app.post("/login", (req, res) => {
         return;
     });
 }); //end of login route
+
+app.post("/password/reset/step1", (req, res) => {
+    console.log("post login running");
+    console.log("req.body", req.body);
+    const logemail = req.body.email;
+    let email;
+    let user_id;
+
+    if (!logemail) {
+        console.log("reset: missing inputs");
+        res.json({ success: false });
+        return;
+    }
+
+    db.getPassword(logemail)
+        .then(results => {
+            user_id = results.rows[0].id;
+
+            if (!user_id) {
+                console.log("no user found");
+                res.json({ success: false });
+            } else {
+                email = results.rows[0].email;
+
+                // generate code
+                const code = cryptoRandomString({
+                    length: 6
+                });
+                console.log("secret code generated: ", code);
+
+                //email user
+
+                //store code in reset_codes
+                db.saveCode(email, code)
+                    .then(results => {
+                        res.json({ success: true, email: email });
+                    })
+                    .catch(err => {
+                        console.log("err in saveCode: ", err);
+                        res.json({ success: false });
+                    });
+            }
+        })
+        .catch(err => {
+            console.log("err in getPassword: ", err);
+            res.json({ success: false });
+        });
+}); //end of post step1
 
 app.get("/logout", (req, res) => {
     console.log("logout");

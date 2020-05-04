@@ -1,5 +1,5 @@
 
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users, reset_codes;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,

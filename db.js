@@ -15,3 +15,18 @@ module.exports.addUser = (first_name, last_name, email, hashpass) => {
 module.exports.getPassword = logemail => {
     return db.query(`SELECT * FROM users where email = $1`, [logemail]);
 };
+
+module.exports.saveCode = (email, code) => {
+    return db.query(`INSERT INTO reset_codes (email, code) VALUES ($1, $2)`, [
+        email,
+        code
+    ]);
+};
+
+module.exports.checkCode = code => {
+    return db.query(
+        `SELECT * FROM reset_codes WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'
+        ORDER BY id DESC
+        LIMIT 1;`
+    );
+};
