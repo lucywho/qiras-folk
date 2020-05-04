@@ -4,7 +4,7 @@ const compression = require("compression");
 const db = require("./db.js");
 
 const cookieSession = require("cookie-session");
-//const csurf = require("csurf"); //might need later?
+const csurf = require("csurf");
 
 const { hash, compare } = require("./bc.js");
 
@@ -28,7 +28,12 @@ app.use(
     })
 );
 
-//app.use(csurf()); //might need later
+app.use(csurf());
+
+app.use(function(req, res, next) {
+    res.cookie("mytoken", req.csrfToken());
+    next();
+});
 
 app.use((req, res, next) => {
     res.setHeader("X-Frame-Options", "deny");

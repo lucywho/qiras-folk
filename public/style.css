@@ -10,16 +10,24 @@ body {
     color: #223843;
 }
 
+#welcome {
+    background-color: #f8ecf4;
+}
+
 .registration {
     border: #d77a61 5px solid;
     /* border-bottom: #d8b4a0 5px solid;
     border-right: #d8b4a0 5px solid; */
+
     display: flex;
     flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
     padding: 5px;
 }
 
 input {
+    opacity: 100%;
     padding: 5px;
     margin: 5px;
     background-color: #effef3;
@@ -32,8 +40,10 @@ button {
     border: #d77a61 5px solid;
     border-bottom: #d8b4a0 5px solid;
     border-right: #d8b4a0 5px solid;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: #f8ecf4;
+    padding: 5px;
+    margin: 5px;
 }
 
 .logo {
