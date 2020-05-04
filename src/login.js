@@ -65,8 +65,10 @@ export default class Login extends React.Component {
                     placeholder="password..."
                 />
                 <button onClick={() => this.submit()}>Login Now!</button>
-
-                <Link to="/register">Click here to Register</Link>
+                <div>
+                    <h3>New to Qira's Folk?</h3>
+                    <Link to="/register">Click here to Register</Link>
+                </div>
             </div>
         );
     }

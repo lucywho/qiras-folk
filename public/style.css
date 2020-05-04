@@ -16,8 +16,6 @@ body {
 
 .registration {
     border: #d77a61 5px solid;
-    /* border-bottom: #d8b4a0 5px solid;
-    border-right: #d8b4a0 5px solid; */
 
     display: flex;
     flex-flow: column wrap;
@@ -49,6 +47,16 @@ button {
 .logo {
     height: 100px;
     padding: 5px;
+    background-color: white;
+    border-top: rgba(205, 133, 63, 1) 5px solid;
+    border-left: rgba(205, 133, 63, 1) 5px solid;
+    border-right: rgba(205, 133, 63, 0.5) 5px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+}
+
+#splashimg {
+    height: 200px;
+    padding: 10px;
     background-color: white;
     border-top: rgba(205, 133, 63, 1) 5px solid;
     border-left: rgba(205, 133, 63, 1) 5px solid;

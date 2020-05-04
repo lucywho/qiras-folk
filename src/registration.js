@@ -46,7 +46,13 @@ export default class Registration extends React.Component {
     render() {
         return (
             <div className="registration" onChange={e => this.handleChange(e)}>
-                <h3>This is the Registration Component</h3>
+                <h3>Welcome to Qira's Folk</h3>
+                <h3>
+                    An incredibly niche social network for fans of the least
+                    successful RPG team ever to throw a double 1 and fall off a
+                    flat floor
+                </h3>
+                <img id="splashimg" src="./qirafig.jpg" />
                 {this.state.error && (
                     <div>
                         I have a bad feeling about this... please check that you

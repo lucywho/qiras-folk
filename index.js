@@ -94,7 +94,46 @@ app.post("/register", (req, res) => {
             });
         return;
     });
-}); //end of route
+}); //end of register route
+
+app.post("/login", (req, res) => {
+    console.log("post login running");
+    console.log("req.body", req.body);
+    const logemail = req.body.email;
+    const logpassword = req.body.password;
+    let user_id;
+
+    if (!logemail || !logpassword) {
+        console.log("login: missing inputs");
+        res.json({ success: false });
+        return;
+    }
+
+    db.getPassword(logemail).then(results => {
+        let hashpass = results.rows[0].password;
+        console.log("get password results", hashpass);
+
+        compare(logpassword, hashpass)
+            .then(matchValue => {
+                console.log("matchValue login: ", matchValue);
+                if (!matchValue) {
+                    console.log("err in matchValue: ", err);
+                    res.json({ success: false });
+                    return;
+                } else {
+                    user_id = results.rows[0].id;
+                    req.session.userId = user_id;
+                    console.log("login req.session.userId", req.session.userId);
+                    res.json({ success: true });
+                }
+            }) //end of matchvalue
+            .catch(err => {
+                console.log("err in getPassword: ", err);
+                res.json({ success: false });
+            });
+        return;
+    });
+}); //end of login route
 
 app.get("*", function(req, res) {
     if (!req.session.userId) {
