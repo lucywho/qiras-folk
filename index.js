@@ -40,7 +40,6 @@ app.use(function(req, res, next) {
 
 app.use((req, res, next) => {
     res.setHeader("X-Frame-Options", "deny");
-    //     res.locals.csrfToken = req.csrfToken();
     next();
 });
 
@@ -139,7 +138,7 @@ app.post("/login", (req, res) => {
 }); //end of login route
 
 app.post("/password/reset/step1", (req, res) => {
-    console.log("post login running");
+    console.log("post reset 1 running");
     console.log("req.body", req.body);
     const logemail = req.body.email;
     let email;
@@ -186,6 +185,57 @@ app.post("/password/reset/step1", (req, res) => {
             res.json({ success: false });
         });
 }); //end of post step1
+
+app.post("/password/reset/step2", (req, res) => {
+    console.log("post reset 2 running");
+    console.log("req.body", req.body);
+
+    const incode = req.body.code;
+    const password = req.body.password;
+    const email = req.body.email;
+    let code;
+    let hashpass;
+
+    db.checkCode()
+        .then(results => {
+            console.log("results checkcode", results.rows[0].code);
+            code = results.rows[0].code;
+
+            compare(incode, code)
+                .then(matchValue => {
+                    console.log("matchValue checkcode: ", matchValue);
+                    if (!matchValue) {
+                        console.log("error in code matchValue");
+                        res.json({ success: false });
+                        return;
+                    } else {
+                        console.log("code matches");
+
+                        hash(password).then(hashpass => {
+                            console.log("hashpass worked", hashpass);
+
+                            db.updateUser(hashpass, email)
+                                .then(results => {
+                                    console.log("password updated");
+                                    res.json({ success: true });
+                                })
+                                .catch(err => {
+                                    console.log("err in updateUser: ", err);
+                                    res.json({ success: false });
+                                });
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.log("err in matchValue: ", err);
+                    res.json({ success: false });
+                }); //end of matchvalue
+        })
+        .catch(err => {
+            console.log("err in checkCode: ", err);
+            res.json({ success: false });
+        });
+}); //end of post step 2
 
 app.get("/logout", (req, res) => {
     console.log("logout");

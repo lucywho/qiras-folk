@@ -12,6 +12,13 @@ module.exports.addUser = (first_name, last_name, email, hashpass) => {
     );
 };
 
+module.exports.updateUser = (hashpass, email) => {
+    return db.query(`UPDATE users (password) VALUES ($1) WHERE email=$2`, [
+        hashpass,
+        email
+    ]);
+};
+
 module.exports.getPassword = logemail => {
     return db.query(`SELECT * FROM users where email = $1`, [logemail]);
 };
@@ -23,9 +30,9 @@ module.exports.saveCode = (email, code) => {
     ]);
 };
 
-module.exports.checkCode = code => {
+module.exports.checkCode = () => {
     return db.query(
-        `SELECT * FROM reset_codes WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'
+        `SELECT code FROM reset_codes WHERE CURRENT_TIMESTAMP - timestamp < INTERVAL '10 minutes'
         ORDER BY id DESC
         LIMIT 1;`
     );
