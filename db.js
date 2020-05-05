@@ -52,7 +52,8 @@ module.exports.saveProfilePic = (user_id, pic_url) => {
     return db.query(
         `UPDATE users
         SET pic_url = $2
-        WHERE id=$1`,
+        WHERE id=$1
+        RETURNING pic_url`,
         [user_id, pic_url]
     );
 };

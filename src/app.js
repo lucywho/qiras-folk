@@ -10,6 +10,8 @@ export default class App extends React.Component {
         this.state = {
             uploaderVisible: false
         };
+
+        this.updateProfilePic = this.updateProfilePic.bind(this);
     }
 
     componentDidMount() {
@@ -39,6 +41,14 @@ export default class App extends React.Component {
         });
     }
 
+    updateProfilePic(arg) {
+        console.log("argument", arg);
+        this.setState({
+            picUrl: arg
+        });
+        console.log("this.picURl", this.state.picUrl);
+    }
+
     methodInApp(arg) {
         console.log("methodInApp runs", arg);
     }
@@ -59,7 +69,10 @@ export default class App extends React.Component {
                     picUrl={this.state.picUrl}
                 />
                 {this.state.uploaderVisible && (
-                    <Uploader methodInApp={this.methodInApp} />
+                    <Uploader
+                        methodInApp={this.methodInApp}
+                        updateProfilePic={this.updateProfilePic}
+                    />
                 )}
             </div>
         );

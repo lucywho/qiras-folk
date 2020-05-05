@@ -19,7 +19,9 @@ export default class Uploader extends React.Component {
         this.setState({
             file: e.target.files[0]
         });
-        console.log("this file", this.state.file);
+
+        //console.log("this state", this.state);
+        //console.log("this file", this.state.file);
     }
 
     uploadPic(e) {
@@ -33,6 +35,7 @@ export default class Uploader extends React.Component {
             .post("/uploadProfilePic", formData)
             .then(response => {
                 console.log("response in upload pic: ", response);
+                this.props.updateProfilePic(response.data.picUrl);
             })
             .catch(err => {
                 console.log("error in upload pic: ", err);
