@@ -11,6 +11,9 @@ const { hash, compare } = require("./bc.js");
 const cryptoRandomString = require("crypto-random-string");
 const { sendEmail } = require("./ses");
 
+const s3 = require("./s3");
+const config = require("./config");
+
 //_____MIDDLEWARE______
 app.use(compression());
 
@@ -42,6 +45,30 @@ app.use((req, res, next) => {
     res.setHeader("X-Frame-Options", "deny");
     next();
 });
+
+//==image upload boilerplate==//
+const multer = require("multer");
+const uidSafe = require("uid-safe");
+const path = require("path");
+
+const diskStorage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, __dirname + "/uploads");
+    },
+    filename: function(req, file, callback) {
+        uidSafe(24).then(function(uid) {
+            callback(null, uid + path.extname(file.originalname));
+        });
+    }
+});
+
+const uploader = multer({
+    storage: diskStorage,
+    limits: {
+        fileSize: 2097152
+    }
+});
+//==end of boilerplate==
 
 //_____ROUTES_______
 
@@ -251,6 +278,27 @@ app.get("/userinfo", (req, res) => {
             res.json({ success: false });
         });
 }); //end of getuserinfo
+
+app.post(
+    "/uploadProfilePic",
+    uploader.single("file"),
+    s3.upload,
+    (req, res) => {
+        console.log("req body", req.body);
+        let user_id = req.session.userId;
+        let pic_url = config.s3Url + req.file.filename;
+
+        db.saveProfilePic(user_id, pic_url)
+            .then(results => {
+                console.log("upload profile pic results:", results.rows[0]);
+                picUrl = results.rows[0].pic_url;
+                res.json({ picUrl: picUrl });
+            })
+            .catch(err => {
+                console.log("error in upload pic", err);
+            });
+    }
+); //end upload pic
 
 app.get("/logout", (req, res) => {
     console.log("logout");

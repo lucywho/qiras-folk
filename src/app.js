@@ -33,7 +33,7 @@ export default class App extends React.Component {
     }
 
     toggleModal() {
-        //console.log("toggle modal running");
+        console.log("toggle modal running");
         this.setState({
             uploaderVisible: !this.state.uploaderVisible
         });
@@ -50,7 +50,7 @@ export default class App extends React.Component {
 
                 <h1>This is the App component</h1>
                 <h3 onClick={() => this.toggleModal()}>
-                    Changing uploaderVisible state with a method
+                    App: toggleModal on click to toggle uploaderVisible state
                 </h3>
 
                 <ProfilePic
