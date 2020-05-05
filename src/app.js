@@ -59,19 +59,16 @@ export default class App extends React.Component {
             <div>
                 <Logo />
 
-                <h1>This is the App component</h1>
-                <h3 onClick={() => this.toggleModal()}>
-                    App: toggleModal on click to toggle uploaderVisible state
-                </h3>
+                <p>App component placeholder</p>
 
                 <ProfilePic
                     first={this.state.first}
                     last={this.state.last}
                     picUrl={this.state.picUrl}
+                    toggleModal={this.toggleModal}
                 />
                 {this.state.uploaderVisible && (
                     <Uploader
-                        //methodInApp={this.methodInApp}
                         updateProfilePic={this.updateProfilePic}
                         toggleModal={this.toggleModal}
                     />

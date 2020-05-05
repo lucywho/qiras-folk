@@ -10,6 +10,7 @@ const userIsLoggedIn = location.pathname != "/welcome";
 if (userIsLoggedIn) {
     elem = (
         <div id="startelem">
+            <p>start elem placeholder, red border</p>
             <App />
 
             <Logout />

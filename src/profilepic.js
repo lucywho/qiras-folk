@@ -9,13 +9,10 @@ export default function ProfilePic({ first, last, picUrl, toggleModal }) {
 
     return (
         <div>
-            <p>This is the ProfilePic component</p>
-            <img
-                onClick={toggleModal}
-                className="profile-pic"
-                src={picUrl}
-                alt={userName}
-            />
+            <div className="pimg-container" onClick={toggleModal}>
+                <img className="profile-pic" src={picUrl} alt={userName} />
+                <p className="small">click to change</p>
+            </div>
         </div>
     );
 }
