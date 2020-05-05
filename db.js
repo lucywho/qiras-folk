@@ -39,3 +39,11 @@ module.exports.checkCode = () => {
         LIMIT 1;`
     );
 };
+
+module.exports.getUserInfo = user_id => {
+    return db.query(
+        `SELECT first_name, last_name, pic_url FROM users
+        WHERE id=$1`,
+        [user_id]
+    );
+};

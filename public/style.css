@@ -40,6 +40,20 @@ body {
     border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
 }
 
+.profile-pic {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    border-top: rgba(205, 133, 63, 1) 2px solid;
+    border-left: rgba(205, 133, 63, 1) 2px solid;
+    border-right: rgba(205, 133, 63, 0.5) 2px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 2px solid;
+    background-color: white;
+    padding: 2px;
+}
+
 .registration {
     border: #d77a61 5px solid;
     display: flex;
@@ -83,4 +97,10 @@ button {
     border-left: rgba(205, 133, 63, 1) 5px solid;
     border-right: rgba(205, 133, 63, 0.5) 5px solid;
     border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+}
+
+.logout {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
 }

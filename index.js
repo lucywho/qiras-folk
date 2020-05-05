@@ -65,8 +65,8 @@ app.get("/welcome", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-    console.log("post register running");
-    console.log("req.body", req.body);
+    //console.log("post register running");
+    //console.log("req.body", req.body);
     const first_name = req.body.first;
     const last_name = req.body.last;
     const email = req.body.email;
@@ -80,10 +80,10 @@ app.post("/register", (req, res) => {
     }
 
     hash(password).then(hashpass => {
-        console.log("hashpass worked", hashpass);
+        //console.log("hashpass worked", hashpass);
         db.addUser(first_name, last_name, email, hashpass)
             .then(results => {
-                console.log("registration post worked");
+                //console.log("registration post worked");
                 user_id = results.rows[0].id;
                 req.session.userId = user_id;
                 console.log("req.session.userId", req.session.userId);
@@ -188,31 +188,30 @@ app.post("/password/reset/step1", (req, res) => {
 
 app.post("/password/reset/step2", (req, res) => {
     console.log("post reset 2 running");
-    console.log("req.body", req.body);
+    //console.log("req.body", req.body);
 
     const incode = req.body.code;
     const password = req.body.password;
     const email = req.body.email;
     let code;
-    let hashpass;
 
     db.checkCode()
         .then(results => {
-            console.log("results checkcode", results.rows[0].code);
+            //console.log("results checkcode", results.rows[0].code);
             code = results.rows[0].code;
             if (code !== incode) {
                 console.log("codes don't match");
                 res.json({ success: false });
                 return;
             } else {
-                console.log("code matches");
+                //console.log("code matches");
 
                 hash(password).then(hashpass => {
-                    console.log("hashpass worked", hashpass);
+                    //console.log("hashpass worked", hashpass);
 
                     db.updateUser(hashpass, email)
                         .then(results => {
-                            console.log("password updated");
+                            //console.log("password updated");
                             res.json({ success: true });
                         })
                         .catch(err => {
@@ -231,6 +230,27 @@ app.post("/password/reset/step2", (req, res) => {
             res.json({ success: false });
         });
 }); //end of post step 2
+
+app.get("/userinfo", (req, res) => {
+    let user_id = req.session.userId;
+
+    db.getUserInfo(user_id)
+        .then(results => {
+            console.log("getuserinfo results", results.rows[0]);
+            first = results.rows[0].first_name;
+            last = results.rows[0].last_name;
+            picUrl = results.rows[0].pic_url;
+            res.json({
+                first: first,
+                last: last,
+                picUrl: picUrl
+            });
+        })
+        .catch(err => {
+            console.log("error in getUserInfo", err);
+            res.json({ success: false });
+        });
+}); //end of getuserinfo
 
 app.get("/logout", (req, res) => {
     console.log("logout");
