@@ -284,8 +284,12 @@ app.post(
     uploader.single("file"),
     s3.upload,
     (req, res) => {
-        console.log("req body", req.body);
+        console.log("upload profpic req file", req.file);
         let user_id = req.session.userId;
+        console.log(
+            "config.s3Url + req.file.filename",
+            config.s3Url + req.file.filename
+        );
         let pic_url = config.s3Url + req.file.filename;
 
         db.saveProfilePic(user_id, pic_url)
