@@ -12,6 +12,7 @@ export default class App extends React.Component {
         };
 
         this.updateProfilePic = this.updateProfilePic.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
     }
 
     componentDidMount() {
@@ -46,7 +47,7 @@ export default class App extends React.Component {
         this.setState({
             picUrl: arg
         });
-        console.log("this.picURl", this.state.picUrl);
+        //console.log("this.picURl", this.state.picUrl);
     }
 
     methodInApp(arg) {
@@ -70,8 +71,9 @@ export default class App extends React.Component {
                 />
                 {this.state.uploaderVisible && (
                     <Uploader
-                        methodInApp={this.methodInApp}
+                        //methodInApp={this.methodInApp}
                         updateProfilePic={this.updateProfilePic}
+                        toggleModal={this.toggleModal}
                     />
                 )}
             </div>
