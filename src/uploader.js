@@ -4,7 +4,9 @@ import axios from "./axios";
 export default class Uploader extends React.Component {
     constructor() {
         super();
-        this.state = {};
+        this.state = {
+            file: null
+        };
     }
 
     componentDidMount() {
@@ -12,10 +14,12 @@ export default class Uploader extends React.Component {
     }
 
     handleChange(e) {
+        console.log("e.target.file", e.target.files[0]);
+
         this.setState({
             file: e.target.files[0]
         });
-        console.log("this file", this.file);
+        console.log("this file", this.state.file);
     }
 
     uploadPic(e) {
@@ -43,19 +47,21 @@ export default class Uploader extends React.Component {
     render() {
         return (
             <div>
-                <p className="modalX" onClick={() => this.closeModal()}>
-                    X
-                </p>
-                <h3>uploader component</h3>
-                <input
-                    onChange={e => this.handleChange(e)}
-                    type="file"
-                    name="file"
-                    accept="jpg/*"
-                />
-                <button onClick={e => this.uploadPic(e)}>
-                    Click here to upload a picture
-                </button>
+                <div className="upload-pic-modal">
+                    <p className="modalX" onClick={() => this.closeModal()}>
+                        X
+                    </p>
+
+                    <input
+                        onChange={e => this.handleChange(e)}
+                        type="file"
+                        name="file"
+                        accept="jpg/*, png/*"
+                    />
+                    <button onClick={e => this.uploadPic(e)}>
+                        Click here to upload a picture
+                    </button>
+                </div>
             </div>
         );
     }

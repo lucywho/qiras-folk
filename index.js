@@ -292,6 +292,11 @@ app.post(
         );
         let pic_url = config.s3Url + req.file.filename;
 
+        if (!pic_url) {
+            console.log("no file sent");
+            return;
+        }
+
         db.saveProfilePic(user_id, pic_url)
             .then(results => {
                 console.log("upload profile pic results:", results.rows[0]);
