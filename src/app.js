@@ -17,11 +17,11 @@ export default class App extends React.Component {
             .get("/userinfo")
             .then(response => {
                 console.log("response.data: ", response.data);
-                this.setState = {
+                this.setState({
                     first: response.data.first,
                     last: response.data.last,
                     picUrl: response.data.picUrl
-                };
+                });
 
                 console.log("APP state", this.state);
 
