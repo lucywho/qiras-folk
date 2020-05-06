@@ -26,7 +26,7 @@ export default class App extends React.Component {
         axios
             .get("/userinfo")
             .then(response => {
-                console.log("response.data: ", response.data);
+                console.log("user info response.data: ", response.data);
                 this.setState({
                     first: response.data.first,
                     last: response.data.last,
@@ -83,7 +83,7 @@ export default class App extends React.Component {
                     last={this.state.last}
                     picUrl={this.state.picUrl}
                     toggleModal={this.toggleModal}
-                    saveUserBio={this.saveUserBio}
+                    updateUserBio={this.updateUserBio}
                     bio={this.state.bio}
                 />
                 {this.state.uploaderVisible && (

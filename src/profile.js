@@ -6,11 +6,11 @@ export default function Profile({
     last,
     picUrl,
     toggleModal,
-    saveUserBio,
+    updateUserBio,
     bio
 }) {
     picUrl = picUrl || "default.jpg";
-    console.log("bio in profile comp", { bio }, { saveUserBio });
+    console.log("bio in profile comp", { bio }, { updateUserBio });
     return (
         <div className="bio-container">
             <div className="bio-pic">
@@ -21,7 +21,7 @@ export default function Profile({
                     {first} {last}
                 </h2>
             </div>
-            <BioEditor bio={{ saveUserBio }} />
+            <BioEditor bio={{ updateUserBio }} />
         </div>
     );
 }
