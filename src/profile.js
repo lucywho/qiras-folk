@@ -10,7 +10,7 @@ export default function Profile({
     bio
 }) {
     picUrl = picUrl || "default.jpg";
-    console.log("bio in profile comp", { bio }, { updateUserBio });
+    console.log("bio in profile comp", bio);
     return (
         <div className="bio-container">
             <div className="bio-pic">

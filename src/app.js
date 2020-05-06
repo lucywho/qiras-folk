@@ -26,7 +26,7 @@ export default class App extends React.Component {
         axios
             .get("/userinfo")
             .then(response => {
-                console.log("user info response.data: ", response.data);
+                console.log("app.js user info response.data: ", response.data);
                 this.setState({
                     first: response.data.first,
                     last: response.data.last,
@@ -34,7 +34,8 @@ export default class App extends React.Component {
                     bio: response.data.bio
                 });
 
-                //console.log("APP state", this.state);
+                console.log("APP state", this.state);
+                console.log("APP bio state", this.state.bio);
 
                 //can deconstruct response to {data} and console log data direct
             })

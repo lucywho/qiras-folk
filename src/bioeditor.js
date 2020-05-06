@@ -37,15 +37,11 @@ export default class BioEditor extends React.Component {
             .then(response => {
                 console.log("saveUserBio response.data:", response.data);
 
-                if (response.data.bio) {
-                    this.setState({
-                        draftBio: response.data.bio
-                    });
+                this.setState({
+                    draftBio: response.data.bio
+                });
 
-                    this.toggleText();
-                } else {
-                    console.log("error returning bio");
-                }
+                this.toggleText();
             })
             .catch(err => {
                 console.log("error in saveUserBio", err);
@@ -83,8 +79,10 @@ export default class BioEditor extends React.Component {
                 {this.state.draftBio !== "" &&
                     this.state.textAreaVisible == false && (
                         <div className="savedbio">
-                            <div>{this.props.bio}</div>
-                            <div>update bio worked</div>
+                            <div className="bio-display">
+                                {this.state.draftBio}
+                            </div>
+
                             <button onClick={() => this.toggleText()}>
                                 Edit your profile
                             </button>
@@ -99,7 +97,7 @@ export default class BioEditor extends React.Component {
                             <textarea
                                 name="bio"
                                 type="text"
-                                defaultValue={this.props.bio}
+                                defaultValue={this.state.draftBio}
                             />
 
                             <button onClick={() => this.saveBio()}>

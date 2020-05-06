@@ -42,7 +42,7 @@ module.exports.checkCode = () => {
 
 module.exports.getUserInfo = user_id => {
     return db.query(
-        `SELECT first_name, last_name, pic_url FROM users
+        `SELECT first_name, last_name, pic_url, bio FROM users
         WHERE id=$1`,
         [user_id]
     );

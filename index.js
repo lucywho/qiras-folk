@@ -267,10 +267,13 @@ app.get("/userinfo", (req, res) => {
             first = results.rows[0].first_name;
             last = results.rows[0].last_name;
             picUrl = results.rows[0].pic_url;
+            bio = results.rows[0].bio;
+
             res.json({
                 first: first,
                 last: last,
-                picUrl: picUrl
+                picUrl: picUrl,
+                bio: bio
             });
         })
         .catch(err => {
