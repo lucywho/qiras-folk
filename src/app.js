@@ -30,7 +30,8 @@ export default class App extends React.Component {
                 this.setState({
                     first: response.data.first,
                     last: response.data.last,
-                    picUrl: response.data.picUrl
+                    picUrl: response.data.picUrl,
+                    bio: response.data.bio
                 });
 
                 //console.log("APP state", this.state);
@@ -56,6 +57,13 @@ export default class App extends React.Component {
         });
     }
 
+    updateUserBio(arg) {
+        console.log("user bio argument", arg);
+        this.setState({
+            bio: arg
+        });
+    }
+
     render() {
         return (
             <div>
@@ -75,6 +83,7 @@ export default class App extends React.Component {
                     last={this.state.last}
                     picUrl={this.state.picUrl}
                     toggleModal={this.toggleModal}
+                    saveUserBio={this.saveUserBio}
                     bio={this.state.bio}
                 />
                 {this.state.uploaderVisible && (

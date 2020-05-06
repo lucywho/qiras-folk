@@ -30,7 +30,7 @@ export default class BioEditor extends React.Component {
     }
 
     saveBio() {
-        console.log("about to save bio: ", this.state);
+        //console.log("about to save bio: ", this.state);
 
         axios
             .post("/saveUserBio", this.state)
@@ -83,9 +83,7 @@ export default class BioEditor extends React.Component {
                 {this.state.draftBio !== "" &&
                     this.state.textAreaVisible == false && (
                         <div className="savedbio">
-                            <div>
-                                <p>{this.props.bio}</p>
-                            </div>
+                            <div>{this.props.bio}</div>
                             <div>update bio worked</div>
                             <button onClick={() => this.toggleText()}>
                                 Edit your profile
