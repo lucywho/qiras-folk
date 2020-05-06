@@ -79,9 +79,7 @@ export default class BioEditor extends React.Component {
                 {this.state.draftBio !== "" &&
                     this.state.textAreaVisible == false && (
                         <div className="savedbio">
-                            <div className="bio-display">
-                                {this.state.draftBio}
-                            </div>
+                            <div className="bio-display">{this.state.bio}</div>
 
                             <button onClick={() => this.toggleText()}>
                                 Edit your profile
@@ -97,7 +95,7 @@ export default class BioEditor extends React.Component {
                             <textarea
                                 name="bio"
                                 type="text"
-                                defaultValue={this.state.draftBio}
+                                defaultValue={this.state.bio}
                             />
 
                             <button onClick={() => this.saveBio()}>
