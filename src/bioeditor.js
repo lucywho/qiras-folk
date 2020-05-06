@@ -52,7 +52,43 @@ export default class BioEditor extends React.Component {
     }
 
     render() {
-        return <div>bioeditor holding text</div>;
+        return (
+            <div className="bioeddiv">
+                {this.state.draftBio == "" && textAreaVisible == false && (
+                    <div className="nobio">
+                        <button onClick={() => this.toggleText()}>
+                            Tell us about yourself
+                        </button>
+                    </div>
+                )}
+                {this.state.draftBio == "" && textAreaVisible == true && (
+                    <div
+                        className="writebio"
+                        onChange={e => this.handleChange(e)}
+                    >
+                        <textarea
+                            name="bio"
+                            type="text"
+                            placeholder="tell us about yourself"
+                            defaultValue={this.props.bio}
+                        />
+
+                        <button onClick={() => this.saveBio()}>
+                            Save your profile
+                        </button>
+                    </div>
+                )}
+                {this.state.draftBio !== "" && textAreaVisible == false && (
+                    <div className="savedbio">
+                        {bio}
+                        <button onClick={() => this.toggleText()}>
+                            Edit your profile
+                        </button>
+                    </div>
+                )}
+                bioeditor holding text
+            </div>
+        );
     }
 }
 
