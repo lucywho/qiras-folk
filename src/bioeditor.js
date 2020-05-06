@@ -29,7 +29,8 @@ export default class BioEditor extends React.Component {
         });
     }
 
-    saveBio() {
+    saveBio(e) {
+        e.preventDefault();
         //console.log("about to save bio: ", this.state);
 
         axios
@@ -69,7 +70,7 @@ export default class BioEditor extends React.Component {
                             placeholder="tell us about yourself..."
                         />
 
-                        <button onClick={() => this.saveBio()}>
+                        <button onClick={e => this.saveBio(e)}>
                             Save your profile
                         </button>
                     </div>
@@ -94,7 +95,7 @@ export default class BioEditor extends React.Component {
                             defaultValue={this.props.bio}
                         />
 
-                        <button onClick={() => this.saveBio()}>
+                        <button onClick={e => this.saveBio(e)}>
                             Save your profile
                         </button>
                     </div>
