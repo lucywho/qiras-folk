@@ -21,7 +21,7 @@ export default function Profile({
                     {first} {last}
                 </h2>
             </div>
-            <BioEditor bio={bio} updateUserBio={updateUserBio} /> />
+            <BioEditor bio={bio} updateUserBio={updateUserBio} />
         </div>
     );
 }

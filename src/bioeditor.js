@@ -3,8 +3,8 @@ import axios from "./axios";
 import { Link } from "react-router-dom";
 
 export default class BioEditor extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             textAreaVisible: false,
             draftBio: ""
@@ -51,69 +51,55 @@ export default class BioEditor extends React.Component {
     render() {
         return (
             <div className="bioeddiv">
-                {this.state.draftBio == "" &&
-                    this.state.textAreaVisible == false && (
-                        <div className="nobio">
-                            <button onClick={() => this.toggleText()}>
-                                Tell us about yourself
-                            </button>
-                        </div>
-                    )}
-                {this.state.draftBio == "" &&
-                    this.state.textAreaVisible == true && (
-                        <div
-                            className="writebio"
-                            onChange={e => this.handleChange(e)}
-                        >
-                            <textarea
-                                name="bio"
-                                type="text"
-                                placeholder="tell us about yourself..."
-                            />
+                {!this.props.bio && this.state.textAreaVisible == false && (
+                    <div className="no-bio">
+                        <button onClick={() => this.toggleText()}>
+                            Tell us about yourself
+                        </button>
+                    </div>
+                )}
+                {!this.props.bio && this.state.textAreaVisible == true && (
+                    <div
+                        className="writebio"
+                        onChange={e => this.handleChange(e)}
+                    >
+                        <textarea
+                            name="bio"
+                            type="text"
+                            placeholder="tell us about yourself..."
+                        />
 
-                            <button onClick={() => this.saveBio()}>
-                                Save your profile
-                            </button>
-                        </div>
-                    )}
-                {this.state.draftBio !== "" &&
-                    this.state.textAreaVisible == false && (
-                        <div className="savedbio">
-                            <div className="bio-display">{this.state.bio}</div>
+                        <button onClick={() => this.saveBio()}>
+                            Save your profile
+                        </button>
+                    </div>
+                )}
+                {this.props.bio && this.state.textAreaVisible == false && (
+                    <div className="savedbio">
+                        <div className="bio-display">{this.props.bio}</div>
 
-                            <button onClick={() => this.toggleText()}>
-                                Edit your profile
-                            </button>
-                        </div>
-                    )}
-                {this.state.draftBio !== "" &&
-                    this.state.textAreaVisible == true && (
-                        <div
-                            className="editbio"
-                            onChange={e => this.handleChange(e)}
-                        >
-                            <textarea
-                                name="bio"
-                                type="text"
-                                defaultValue={this.state.bio}
-                            />
+                        <button onClick={() => this.toggleText()}>
+                            Edit your profile
+                        </button>
+                    </div>
+                )}
+                {this.props.bio && this.state.textAreaVisible == true && (
+                    <div
+                        className="editbio"
+                        onChange={e => this.handleChange(e)}
+                    >
+                        <textarea
+                            name="bio"
+                            type="text"
+                            defaultValue={this.props.bio}
+                        />
 
-                            <button onClick={() => this.saveBio()}>
-                                Save your profile
-                            </button>
-                        </div>
-                    )}
+                        <button onClick={() => this.saveBio()}>
+                            Save your profile
+                        </button>
+                    </div>
+                )}
             </div>
         );
     }
 }
-
-//see reset for conditional rendering
-//capture bio - event handler, put in state (see reset password)
-//axios post
-//db insert
-//new bd column for bio
-//return to state in app
-
-//app.js holds bio in stat
-// passes bio to profile, profile passes bio to bioeditor
