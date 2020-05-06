@@ -314,10 +314,10 @@ app.post("/saveUserBio", async (req, res) => {
     let bio = req.body.bio;
 
     try {
-        await db.saveUserBio(user_id, bio);
+        const results = await db.saveUserBio(user_id, bio);
         console.log("saveUserBio results", results.rows[0]);
-        bio = results.rows[0].bio;
-        res.json({ bio: bio });
+        //bio = results.rows[0].bio;
+        //res.json({ bio: bio });
     } catch (err) {
         console.log("error in saveUserBio", err);
     }

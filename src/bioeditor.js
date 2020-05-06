@@ -39,7 +39,7 @@ export default class BioEditor extends React.Component {
 
                 if (response.data.bio) {
                     this.setState({
-                        bio: response.data.bio
+                        draftBio: response.data.bio
                     });
 
                     this.toggleText();
@@ -56,38 +56,58 @@ export default class BioEditor extends React.Component {
         return (
             <div className="bioeddiv">
                 bioeditor holding text
-                {this.state.draftBio == "" && this.textAreaVisible == false && (
-                    <div className="nobio">
-                        <button onClick={() => this.toggleText()}>
-                            Tell us about yourself
-                        </button>
-                    </div>
-                )}
-                {this.state.draftBio == "" && this.textAreaVisible == true && (
-                    <div
-                        className="writebio"
-                        onChange={e => this.handleChange(e)}
-                    >
-                        <textarea
-                            name="bio"
-                            type="text"
-                            placeholder="tell us about yourself"
-                            defaultValue={this.props.bio}
-                        />
+                {this.state.draftBio == "" &&
+                    this.state.textAreaVisible == false && (
+                        <div className="nobio">
+                            <button onClick={() => this.toggleText()}>
+                                Tell us about yourself
+                            </button>
+                        </div>
+                    )}
+                {this.state.draftBio == "" &&
+                    this.state.textAreaVisible == true && (
+                        <div
+                            className="writebio"
+                            onChange={e => this.handleChange(e)}
+                        >
+                            <textarea
+                                name="bio"
+                                type="text"
+                                placeholder="tell us about yourself..."
+                                //defaultValue={this.props.bio}
+                            />
 
-                        <button onClick={() => this.saveBio()}>
-                            Save your profile
-                        </button>
-                    </div>
-                )}
-                {this.state.draftBio !== "" && this.textAreaVisible == false && (
-                    <div className="savedbio">
-                        {bio}
-                        <button onClick={() => this.toggleText()}>
-                            Edit your profile
-                        </button>
-                    </div>
-                )}
+                            <button onClick={() => this.saveBio()}>
+                                Save your profile
+                            </button>
+                        </div>
+                    )}
+                {this.state.draftBio !== "" &&
+                    this.state.textAreaVisible == false && (
+                        <div className="savedbio">
+                            {bio}
+                            <button onClick={() => this.toggleText()}>
+                                Edit your profile
+                            </button>
+                        </div>
+                    )}
+                {this.state.draftBio !== "" &&
+                    this.state.textAreaVisible == true && (
+                        <div
+                            className="editbio"
+                            onChange={e => this.handleChange(e)}
+                        >
+                            <textarea
+                                name="bio"
+                                type="text"
+                                defaultValue={this.props.bio}
+                            />
+
+                            <button onClick={() => this.saveBio()}>
+                                Save your profile
+                            </button>
+                        </div>
+                    )}
             </div>
         );
     }
