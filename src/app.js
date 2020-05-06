@@ -11,7 +11,7 @@ export default class App extends React.Component {
         super();
         this.state = {
             uploaderVisible: false,
-            bio: false
+            bio: ""
         };
 
         this.updateProfilePic = this.updateProfilePic.bind(this);
@@ -33,7 +33,7 @@ export default class App extends React.Component {
                     picUrl: response.data.picUrl
                 });
 
-                console.log("APP state", this.state);
+                //console.log("APP state", this.state);
 
                 //can deconstruct response to {data} and console log data direct
             })

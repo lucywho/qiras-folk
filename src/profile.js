@@ -1,9 +1,9 @@
 import React from "react";
-//import ProfilePic from "./profilepic";
 import BioEditor from "./bioeditor";
 
 export default function Profile({ first, last, picUrl, toggleModal, bio }) {
     picUrl = picUrl || "default.jpg";
+    //console.log("bio in profile comp", { bio });
     return (
         <div className="bio-container">
             <div className="bio-pic">
@@ -14,7 +14,7 @@ export default function Profile({ first, last, picUrl, toggleModal, bio }) {
                     {first} {last}
                 </h2>
             </div>
-            <BioEditor bio={bio} />
+            <BioEditor bio={{ bio }} />
         </div>
     );
 }

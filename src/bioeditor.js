@@ -55,7 +55,6 @@ export default class BioEditor extends React.Component {
     render() {
         return (
             <div className="bioeddiv">
-                bioeditor holding text
                 {this.state.draftBio == "" &&
                     this.state.textAreaVisible == false && (
                         <div className="nobio">
@@ -74,7 +73,6 @@ export default class BioEditor extends React.Component {
                                 name="bio"
                                 type="text"
                                 placeholder="tell us about yourself..."
-                                //defaultValue={this.props.bio}
                             />
 
                             <button onClick={() => this.saveBio()}>
@@ -85,7 +83,10 @@ export default class BioEditor extends React.Component {
                 {this.state.draftBio !== "" &&
                     this.state.textAreaVisible == false && (
                         <div className="savedbio">
-                            {bio}
+                            <div>
+                                <p>{this.props.bio}</p>
+                            </div>
+                            <div>update bio worked</div>
                             <button onClick={() => this.toggleText()}>
                                 Edit your profile
                             </button>
