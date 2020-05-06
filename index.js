@@ -309,6 +309,20 @@ app.post(
     }
 ); //end upload pic
 
+app.post("/saveUserBio", async (req, res) => {
+    let user_id = req.session.userId;
+    let bio = req.body.bio;
+
+    try {
+        await db.saveUserBio(user_id, bio);
+        console.log("saveUserBio results", results.rows[0]);
+        bio = results.rows[0].bio;
+        res.json({ bio: bio });
+    } catch (err) {
+        console.log("error in saveUserBio", err);
+    }
+}); //end of saveUserBio
+
 app.get("/logout", (req, res) => {
     console.log("logout");
     req.session = null;

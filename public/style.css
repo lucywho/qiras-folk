@@ -68,6 +68,30 @@ body {
     font-size: 12px;
 }
 
+.bio-container {
+    width: 300px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    border: grey 2px solid;
+}
+
+.bio-pic img {
+    max-width: 150px;
+    max-height: 150px;
+    border-top: rgba(205, 133, 63, 1) 5px solid;
+    border-left: rgba(205, 133, 63, 1) 5px solid;
+    border-right: rgba(205, 133, 63, 0.5) 5px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+    background-color: #f8ecf4;
+}
+
+.bio-name {
+    color: inherit;
+    /*placeholder*/
+}
+
 .registration {
     border: #d77a61 5px solid;
     display: flex;

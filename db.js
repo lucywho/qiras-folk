@@ -57,3 +57,13 @@ module.exports.saveProfilePic = (user_id, pic_url) => {
         [user_id, pic_url]
     );
 };
+
+module.exports.saveUserBio = (user_id, bio) => {
+    return db.query(
+        `UPDATE users
+        SET bio = $2
+        WHERE id=$1
+        RETURNING bio`,
+        [user_id, bio]
+    );
+};

@@ -2,13 +2,16 @@ import React from "react";
 import ProfilePic from "./profilepic";
 import Logo from "./logo";
 import Uploader from "./uploader";
-import axios from "axios";
+import axios from "./axios";
+import Profile from "./profile";
+//import BioEditor from "./bioeditor";
 
 export default class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            uploaderVisible: false
+            uploaderVisible: false,
+            bio: false
         };
 
         this.updateProfilePic = this.updateProfilePic.bind(this);
@@ -16,6 +19,10 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
+        //async compdidmount () {
+        //const {data} = await axios.get("/userinfo")
+        //this.setState(data)
+        //}
         axios
             .get("/userinfo")
             .then(response => {
@@ -47,11 +54,6 @@ export default class App extends React.Component {
         this.setState({
             picUrl: arg
         });
-        //console.log("this.picURl", this.state.picUrl);
-    }
-
-    methodInApp(arg) {
-        console.log("methodInApp runs", arg);
     }
 
     render() {
@@ -66,6 +68,14 @@ export default class App extends React.Component {
                     last={this.state.last}
                     picUrl={this.state.picUrl}
                     toggleModal={this.toggleModal}
+                />
+
+                <Profile
+                    first={this.state.first}
+                    last={this.state.last}
+                    picUrl={this.state.picUrl}
+                    toggleModal={this.toggleModal}
+                    bio={this.state.bio}
                 />
                 {this.state.uploaderVisible && (
                     <Uploader
