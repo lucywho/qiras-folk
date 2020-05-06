@@ -9,6 +9,7 @@ export default class BioEditor extends React.Component {
             textAreaVisible: false,
             draftBio: ""
         };
+        console.log("BIOEDITOR state", this.state);
     }
 
     //pick up text input
@@ -54,14 +55,15 @@ export default class BioEditor extends React.Component {
     render() {
         return (
             <div className="bioeddiv">
-                {this.state.draftBio == "" && textAreaVisible == false && (
+                bioeditor holding text
+                {this.state.draftBio == "" && this.textAreaVisible == false && (
                     <div className="nobio">
                         <button onClick={() => this.toggleText()}>
                             Tell us about yourself
                         </button>
                     </div>
                 )}
-                {this.state.draftBio == "" && textAreaVisible == true && (
+                {this.state.draftBio == "" && this.textAreaVisible == true && (
                     <div
                         className="writebio"
                         onChange={e => this.handleChange(e)}
@@ -78,7 +80,7 @@ export default class BioEditor extends React.Component {
                         </button>
                     </div>
                 )}
-                {this.state.draftBio !== "" && textAreaVisible == false && (
+                {this.state.draftBio !== "" && this.textAreaVisible == false && (
                     <div className="savedbio">
                         {bio}
                         <button onClick={() => this.toggleText()}>
@@ -86,7 +88,6 @@ export default class BioEditor extends React.Component {
                         </button>
                     </div>
                 )}
-                bioeditor holding text
             </div>
         );
     }
