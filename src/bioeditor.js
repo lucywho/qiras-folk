@@ -29,8 +29,7 @@ export default class BioEditor extends React.Component {
         });
     }
 
-    saveBio(e) {
-        e.preventDefault();
+    saveBio() {
         //console.log("about to save bio: ", this.state);
 
         axios
@@ -41,7 +40,7 @@ export default class BioEditor extends React.Component {
                 this.setState({
                     draftBio: response.data.bio
                 });
-
+                this.props.updateUserBio(response.data.bio);
                 this.toggleText();
             })
             .catch(err => {
