@@ -67,3 +67,11 @@ module.exports.saveUserBio = (user_id, bio) => {
         [user_id, bio]
     );
 };
+
+module.exports.getOtherUser = otherUserId => {
+    return db.query(
+        `SELECT first_name, last_name, pic_url, bio FROM users
+        WHERE id=$1`,
+        [otherUserId]
+    );
+};

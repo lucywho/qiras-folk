@@ -6,13 +6,13 @@
 
 body {
     min-height: 100vh;
-    background-color: #dabeca;
+    background-color: rgb(218, 190, 202);
     color: #223843;
-    padding: 5px;
 }
 
 #startelem {
-    border: 2px red solid;
+    border: 2px solid #223843;
+    height: 100vh;
 }
 
 .welcomediv {
@@ -41,12 +41,14 @@ body {
     border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
 }
 
+/*profile-pic.js*/
 .pimg-container {
     position: fixed;
     top: 10px;
     right: 10px;
     font-size: 12px;
     display: block;
+    text-align: center;
     min-height: 70px;
     width: 60px;
 }
@@ -68,13 +70,16 @@ body {
     font-size: 12px;
 }
 
-.bio-container {
-    width: 300px;
+/*profile.js*/
+.container {
+    width: 100%;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     justify-content: center;
-    align-items: center;
+    align-items: left;
     border: grey 2px solid;
+    padding: 5px;
+    margin-top: 20px;
 }
 
 .bio-pic img {
@@ -89,8 +94,16 @@ body {
 
 .bio-name {
     color: inherit;
-    /*placeholder*/
 }
+/*bio-editor.js*/
+
+.writebio,
+.editbio textarea {
+    width: 300px;
+    height: 200px;
+}
+
+/*registration.js*/
 
 .registration {
     border: #d77a61 5px solid;
@@ -107,6 +120,7 @@ body {
     background-color: #dabeca;
 }
 
+/*general*/
 input {
     opacity: 100%;
     padding: 5px;
@@ -128,7 +142,7 @@ button {
 }
 
 .logo {
-    height: 100px;
+    height: 60px;
     padding: 5px;
     background-color: white;
     border-top: rgba(205, 133, 63, 1) 5px solid;
@@ -143,6 +157,7 @@ button {
     right: 10px;
 }
 
+/*uploader.js*/
 .upload-pic-modal {
     background-color: #f8ecf4;
     position: relative;

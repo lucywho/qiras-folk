@@ -9,7 +9,16 @@ class OtherProfile extends Component {
     componentDidMount() {
         console.log("this.props.match", this.props.match.params.id);
         const otherUserId = this.props.match.params.id;
-        //axios.get("api/user/" + otherUserId).then(results);
+        console.log("otherUserId", otherUserId);
+        console.log("/api/user/" + otherUserId);
+        axios
+            .get("/api/user/" + otherUserId)
+            .then(response => {
+                console.log("response", response.data);
+            })
+            .catch(err => {
+                console.log("error in api/user get request", err);
+            });
 
         //set otherUserId in state to render bio (but not editor) so grab bio, prof pic
         //check not same user (in server, if session id = otheruserid, reroute with history (see notes))

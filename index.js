@@ -263,7 +263,7 @@ app.get("/userinfo", (req, res) => {
 
     db.getUserInfo(user_id)
         .then(results => {
-            console.log("getuserinfo results", results.rows[0]);
+            //console.log("getuserinfo results", results.rows[0]);
             first = results.rows[0].first_name;
             last = results.rows[0].last_name;
             picUrl = results.rows[0].pic_url;
@@ -318,13 +318,35 @@ app.post("/saveUserBio", async (req, res) => {
 
     try {
         const results = await db.saveUserBio(user_id, bio);
-        console.log("saveUserBio results", results.rows[0]);
+        //console.log("saveUserBio results", results.rows[0]);
         bio = results.rows[0].bio;
         res.json({ bio: bio });
     } catch (err) {
         console.log("error in saveUserBio", err);
     }
 }); //end of saveUserBio
+
+app.get("/api/user/:id"),
+    (req, res) => {
+        console.log("/api/user route hit");
+        let user_id = req.session.userId;
+
+        console.log("req.params", req.params);
+        //let otherUserId = req.params.id;
+
+        // if (user_id === otherUserId) {
+        //     //this.props.history.push("/");
+        // }
+
+        // try {
+        //     const results = await db.getOtherUser(otherUserId);
+        //     console.log("getOtherUser results", results.rows[0]);
+        //     // otherUserId = results.rows[0].id:
+        //     // res.json({otherUserId: otherUserId})
+        // } catch (err) {
+        //     console.log("error in api/user/:id");
+        // }
+    };
 
 app.get("/logout", (req, res) => {
     console.log("logout");
@@ -334,6 +356,7 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("*", function(req, res) {
+    console.log("star route running");
     if (!req.session.userId) {
         res.redirect("/welcome");
     } else {

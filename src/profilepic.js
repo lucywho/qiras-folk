@@ -6,7 +6,6 @@ export default function ProfilePic({ first, last, picUrl, toggleModal }) {
     //console.log("***profpic component - picUrl: ", picUrl);
     picUrl = picUrl || "/default.jpg";
     let userName = first + " " + last;
-    console.log("pic url", picUrl);
 
     return (
         <div>
