@@ -69,7 +69,7 @@ export default class BioEditor extends React.Component {
                             placeholder="tell us about yourself..."
                         />
 
-                        <button onClick={e => this.saveBio(e)}>
+                        <button className="save" onClick={e => this.saveBio(e)}>
                             Save your profile
                         </button>
                     </div>
@@ -94,7 +94,7 @@ export default class BioEditor extends React.Component {
                             defaultValue={this.props.bio}
                         />
 
-                        <button onClick={e => this.saveBio(e)}>
+                        <button className="save" onClick={e => this.saveBio(e)}>
                             Save your profile
                         </button>
                     </div>
