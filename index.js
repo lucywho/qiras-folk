@@ -326,27 +326,41 @@ app.post("/saveUserBio", async (req, res) => {
     }
 }); //end of saveUserBio
 
-app.get("/api/user/:id"),
-    (req, res) => {
-        console.log("/api/user route hit");
-        let user_id = req.session.userId;
+console.log("server calling");
 
-        console.log("req.params", req.params);
-        //let otherUserId = req.params.id;
+app.get("/api/user/:id", async (req, res) => {
+    console.log("/api/user route hit");
+    let user_id = req.session.userId;
+    let otherUserId = req.params.id;
+    console.log("user_id and otherUserId", user_id, otherUserId);
 
-        // if (user_id === otherUserId) {
-        //     //this.props.history.push("/");
-        // }
-
-        // try {
-        //     const results = await db.getOtherUser(otherUserId);
-        //     console.log("getOtherUser results", results.rows[0]);
-        //     // otherUserId = results.rows[0].id:
-        //     // res.json({otherUserId: otherUserId})
-        // } catch (err) {
-        //     console.log("error in api/user/:id");
-        // }
-    };
+    if (user_id == otherUserId) {
+        console.log("same user caught");
+        res.json({ sameUser: true });
+    } else {
+        try {
+            const results = await db.getOtherUser(otherUserId);
+            console.log("getOtherUser results", results.rows[0]);
+            if (!results.rows[0]) {
+                console.log("user doesn't exist");
+                res.json({ noUser: true });
+            } else {
+                const first = results.rows[0].first_name;
+                const last = results.rows[0].last_name;
+                const picUrl = results.rows[0].pic_url;
+                const bio = results.rows[0].bio;
+                res.json({
+                    first: first,
+                    last: last,
+                    picUrl: picUrl,
+                    bio: bio
+                });
+            }
+        } catch (err) {
+            console.log("error in api/user/:id");
+        }
+    }
+}); // end of /user/:id route
 
 app.get("/logout", (req, res) => {
     console.log("logout");
@@ -356,7 +370,6 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("*", function(req, res) {
-    console.log("star route running");
     if (!req.session.userId) {
         res.redirect("/welcome");
     } else {

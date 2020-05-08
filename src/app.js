@@ -4,7 +4,6 @@ import Logo from "./logo";
 import Uploader from "./uploader";
 import axios from "./axios";
 import Profile from "./profile";
-import BioEditor from "./bioeditor";
 import { BrowserRouter, Route } from "react-router-dom";
 import OtherProfile from "./other-profile";
 
@@ -70,10 +69,12 @@ export default class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
-                <div>
+                <div className="app-container">
                     <Logo />
 
-                    <p>App component placeholder</p>
+                    <p>
+                        <em>App component placeholder</em>
+                    </p>
 
                     <ProfilePic
                         first={this.state.first}
@@ -97,7 +98,16 @@ export default class App extends React.Component {
                         )}
                     />
 
-                    <Route exact path="/user/:id" component={OtherProfile} />
+                    <Route
+                        path="/user/:id"
+                        render={props => (
+                            <OtherProfile
+                                key={props.match.url}
+                                match={props.match}
+                                history={props.history}
+                            />
+                        )}
+                    />
 
                     {this.state.uploaderVisible && (
                         <Uploader

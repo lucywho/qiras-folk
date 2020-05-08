@@ -9,7 +9,7 @@ export default function Welcome() {
         <div className="welcomediv">
             <div className="welcometext">
                 <h1>Welcome to Qira's Folk</h1>
-                <img id="splashimg" src="./qirafig.jpg" />
+                <img id="splashimg" src="/qirafig.jpg" />
                 <h3>
                     An incredibly niche social network for fans of the least
                     successful RPG team ever to throw a double 1 and fall off a

@@ -10,24 +10,55 @@ class OtherProfile extends Component {
         console.log("this.props.match", this.props.match.params.id);
         const otherUserId = this.props.match.params.id;
         console.log("otherUserId", otherUserId);
-        console.log("/api/user/" + otherUserId);
+
         axios
             .get("/api/user/" + otherUserId)
             .then(response => {
-                console.log("response", response.data);
+                console.log("api/user/:id response to o-p", response.data);
+
+                this.setState({
+                    sameUser: response.data.sameUser,
+                    first: response.data.first,
+                    last: response.data.last,
+                    bio: response.data.bio,
+                    picUrl: response.data.picUrl,
+                    noUser: response.data.noUser
+                });
+
+                if (this.state.sameUser) {
+                    this.props.history.push("/"); //???
+                }
             })
             .catch(err => {
                 console.log("error in api/user get request", err);
             });
 
-        //set otherUserId in state to render bio (but not editor) so grab bio, prof pic
         //check not same user (in server, if session id = otheruserid, reroute with history (see notes))
         //handle case where user tries to access non-existent profile
     }
     render() {
         return (
-            <div className="other-profile-container">
-                <h3>Other Profile Component</h3>
+            <div className="other-profile" className="container">
+                {this.state.noUser && (
+                    <div>
+                        <div className="bio-pic">
+                            <img src="/default.jpg" />
+                        </div>
+                        <p>The user you selected does not exist</p>
+                    </div>
+                )}
+                <div className="bio-name">
+                    <h2>
+                        {this.state.first} {this.state.last}
+                    </h2>
+                </div>
+                <div className="bio-pic">
+                    <img src={this.state.picUrl} />
+                </div>
+
+                <div className="bio-display">
+                    <p>{this.state.bio}</p>
+                </div>
             </div>
         );
     }
