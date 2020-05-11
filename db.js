@@ -75,3 +75,10 @@ module.exports.getOtherUser = otherUserId => {
         [otherUserId]
     );
 };
+
+module.exports.getRecentUsers = () => {
+    return db.query(
+        `SELECT first_name, last_name, pic_url FROM users
+        ORDER BY id DESC LIMIT 3`
+    );
+};

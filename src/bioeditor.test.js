@@ -7,7 +7,7 @@ jest.mock("./axios");
 
 //works
 test("when no bio in state and textArea is not visible, render div with class 'no-bio'", () => {
-    const { container } = render(<BioEditor bio="" textAreaVisible={false} />);
+    const { container } = render(<BioEditor bio="" />);
 
     expect(
         container.querySelector("div").firstChild.getAttribute("class")
@@ -16,7 +16,7 @@ test("when no bio in state and textArea is not visible, render div with class 'n
 
 //expects "writebio", recieves "no-bio"
 test("when no bio in state & text area visible: render div with class 'writebio'", () => {
-    const { container } = render(<BioEditor bio="" textAreaVisible={true} />);
+    const { container } = render(<BioEditor bio="" />);
 
     expect(
         container.querySelector("div").firstChild.getAttribute("class")
@@ -25,9 +25,7 @@ test("when no bio in state & text area visible: render div with class 'writebio'
 
 //works
 test("when bio in state & text area not visible: render div with class 'savedbio'", () => {
-    const { container } = render(
-        <BioEditor bio="a bio" textAreaVisible={false} />
-    );
+    const { container } = render(<BioEditor bio="a bio" />);
 
     expect(
         container.querySelector("div").firstChild.getAttribute("class")
@@ -36,9 +34,7 @@ test("when bio in state & text area not visible: render div with class 'savedbio
 
 //expects "editbio", receives "savedbio"
 test("when bio in state & text area visible: render div with class 'editbio'", () => {
-    const { container } = render(
-        <BioEditor bio="a bio" textAreaVisible={true} />
-    );
+    const { container } = render(<BioEditor bio="a bio" />);
 
     expect(
         container.querySelector("div").firstChild.getAttribute("class")
@@ -73,5 +69,9 @@ test("clicking 'Save yourprofile' button triggers an axios request.", async () =
         container.getElementsByClassName("bio-display")
     );
 
-    expect(elem.innerHTML).toBe("a bio");
+    expect(
+        container.querySelector("div").firstChild.getAttribute("class")(
+            elem.innerHTML
+        )
+    ).toBe("a bio");
 });

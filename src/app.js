@@ -4,8 +4,9 @@ import Logo from "./logo";
 import Uploader from "./uploader";
 import axios from "./axios";
 import Profile from "./profile";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import OtherProfile from "./other-profile";
+import FindPeople from "./findpeople";
 
 export default class App extends React.Component {
     constructor() {
@@ -70,51 +71,68 @@ export default class App extends React.Component {
         return (
             <BrowserRouter>
                 <div className="app-container">
-                    <Logo />
+                    <div className="nav-bar">
+                        <Logo />
+                        <button onClick={() => location.replace("/users")}>
+                            Search
+                        </button>
 
-                    <p>
-                        <em>App component placeholder</em>
-                    </p>
+                        <button onClick={() => location.replace("/")}>
+                            Profile
+                        </button>
 
-                    <ProfilePic
-                        first={this.state.first}
-                        last={this.state.last}
-                        picUrl={this.state.picUrl}
-                        toggleModal={this.toggleModal}
-                    />
+                        <button onClick={() => location.replace("/logout")}>
+                            Logout
+                        </button>
 
-                    <Route
-                        exact
-                        path="/"
-                        render={() => (
-                            <Profile
-                                first={this.state.first}
-                                last={this.state.last}
-                                picUrl={this.state.picUrl}
-                                toggleModal={this.toggleModal}
-                                updateUserBio={this.updateUserBio}
-                                bio={this.state.bio}
-                            />
-                        )}
-                    />
-
-                    <Route
-                        path="/user/:id"
-                        render={props => (
-                            <OtherProfile
-                                key={props.match.url}
-                                match={props.match}
-                                history={props.history}
-                            />
-                        )}
-                    />
-
-                    {this.state.uploaderVisible && (
-                        <Uploader
-                            updateProfilePic={this.updateProfilePic}
+                        <ProfilePic
+                            first={this.state.first}
+                            last={this.state.last}
+                            picUrl={this.state.picUrl}
                             toggleModal={this.toggleModal}
                         />
-                    )}
+                    </div>
+
+                    <div className="app-contents">
+                        <p>
+                            <em>App content placeholder</em>
+                        </p>
+
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <Profile
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    picUrl={this.state.picUrl}
+                                    toggleModal={this.toggleModal}
+                                    updateUserBio={this.updateUserBio}
+                                    bio={this.state.bio}
+                                />
+                            )}
+                        />
+
+                        <Route
+                            path="/user/:id"
+                            render={props => (
+                                <OtherProfile
+                                    key={props.match.url}
+                                    match={props.match}
+                                    history={props.history}
+                                />
+                            )}
+                        />
+
+                        <Route path="/users" render={() => <FindPeople />} />
+
+                        {this.state.uploaderVisible && (
+                            <Uploader
+                                updateProfilePic={this.updateProfilePic}
+                                toggleModal={this.toggleModal}
+                            />
+                        )}
+                    </div>
                 </div>
             </BrowserRouter>
         );

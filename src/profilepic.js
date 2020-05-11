@@ -11,7 +11,6 @@ export default function ProfilePic({ first, last, picUrl, toggleModal }) {
         <div>
             <div className="pimg-container" onClick={toggleModal}>
                 <img className="profile-pic" src={picUrl} alt={userName} />
-                <p className="small">click to change</p>
             </div>
         </div>
     );

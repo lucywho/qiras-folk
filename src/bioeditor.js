@@ -9,7 +9,7 @@ export default class BioEditor extends React.Component {
             textAreaVisible: false,
             draftBio: ""
         };
-        console.log("BIOEDITOR state", this.state);
+        //console.log("BIOEDITOR state", this.state);
     }
 
     //pick up text input

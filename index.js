@@ -326,8 +326,6 @@ app.post("/saveUserBio", async (req, res) => {
     }
 }); //end of saveUserBio
 
-console.log("server calling");
-
 app.get("/api/user/:id", async (req, res) => {
     console.log("/api/user route hit");
     let user_id = req.session.userId;
@@ -361,6 +359,19 @@ app.get("/api/user/:id", async (req, res) => {
         }
     }
 }); // end of /user/:id route
+
+app.get("/users", async (req, res) => {
+    console.log("/users route hit");
+    try {
+        const results = await db.getRecentUsers();
+        console.log("getRecentUsers results", results.rows);
+        //returns array of objects
+        const names = results.rows;
+        //res.json({ names });
+    } catch (err) {
+        console.log("error in getRecentUsers", err);
+    }
+}); //end of /users route
 
 app.get("/logout", (req, res) => {
     console.log("logout");
