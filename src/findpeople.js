@@ -5,40 +5,40 @@ import ProfilePic from "./profilepic";
 export default function FindPeople() {
     const [first, setFirst] = useState("");
     const [last, setLast] = useState("");
-    const [names, setNames] = useState([]);
+    const [recentusers, setRecentUsers] = useState([]);
 
     useEffect(() => {
         console.log("use effect running in FindPeople");
         let abort;
 
         axios
-            .get(`/users`, this.state)
+            .get(`/recentusers`)
             .then(response => {
                 console.log("get users response.data:", response.data);
-
                 if (!abort) {
-                    setNames(response.data);
+                    setRecentUsers(response.data);
                 }
-
-                //abort = true;
             })
             .catch(err => {
                 console.log("catch error in get users", err);
             });
-    });
+        return () => {
+            abort = true;
+        };
+    }, []);
 
     return (
         <div>
-            <p>return from FindPeople</p>
-            {/* <ul>
-                {names.map(first => (
-                    <li key={id}>
+            <p>HOLDING TEXT: return from FindPeople</p>
+            <ul>
+                {recentusers.map(recentusers => (
+                    <li>
                         {first}
                         {last}
                     </li>
                 ))}
             </ul>
-            <input
+            {/* <input
                 onChange={e => setNames(e.target.value)}
                 type="text"
                 name="search_users"
