@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
+import { Link } from "react-router-dom";
 
 export default function FindPeople() {
     const [first, setFirst] = useState("");
@@ -8,22 +9,22 @@ export default function FindPeople() {
 
     useEffect(() => {
         console.log("use effect running in FindPeople", this.state);
-        //let abort;
+        let abort;
 
-        // axios
-        //     .get(`/users`, this.state)
-        //     .then(response => {
-        //         console.log("get users response.data:", response.data);
+        axios
+            .get(`/users`, this.state)
+            .then(response => {
+                console.log("get users response.data:", response.data);
 
-        //         if (!abort) {
-        //             setNames(response.data);
-        //         }
+                if (!abort) {
+                    setNames(response.data);
+                }
 
-        //         //abort = true;
-        //     })
-        //     .catch(err => {
-        //         console.log("catch error in get users", err);
-        //     });
+                //abort = true;
+            })
+            .catch(err => {
+                console.log("catch error in get users", err);
+            });
     });
 
     return (

@@ -4,7 +4,8 @@ import Logo from "./logo";
 import Uploader from "./uploader";
 import axios from "./axios";
 import Profile from "./profile";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import OtherProfile from "./other-profile";
 import FindPeople from "./findpeople";
 
@@ -73,13 +74,14 @@ export default class App extends React.Component {
                 <div className="app-container">
                     <div className="nav-bar">
                         <Logo />
-                        <button onClick={() => location.replace("/users")}>
-                            Search
-                        </button>
 
-                        <button onClick={() => location.replace("/")}>
-                            Profile
-                        </button>
+                        <Link to="/findpeople">
+                            <button>Search</button>
+                        </Link>
+
+                        <Link to="/profile">
+                            <button>Edit Profile</button>
+                        </Link>
 
                         <button onClick={() => location.replace("/logout")}>
                             Logout
