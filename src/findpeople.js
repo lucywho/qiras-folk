@@ -5,7 +5,7 @@ import ProfilePic from "./profilepic";
 export default function FindPeople() {
     const [recentusers, setRecentUsers] = useState([]);
 
-    const [searchusers, setSearchUsers] = useState("");
+    const [searchusers, setSearchUsers] = useState([]);
 
     console.log("searchusers", searchusers);
 

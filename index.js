@@ -375,13 +375,13 @@ app.get("/recentusers", async (req, res) => {
 
 app.get("/searchusers/:searchusers", async (req, res) => {
     console.log("/searchusers route hit");
-    console.log("req.params", req.params);
-    let search = req.params;
+    console.log("req.params", req.params.searchusers);
+    let search = req.params.searchusers;
     try {
         const results = await db.getSearchUsers(search);
         console.log("getSearchUsers results", results.rows);
-        const names = results.rows;
-        res.json(names);
+        search = results.rows;
+        res.json(search);
     } catch (err) {
         console.log("error in getSearchUsers", err);
     }
