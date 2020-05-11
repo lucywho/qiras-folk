@@ -13,6 +13,7 @@ body {
 #startelem {
     border: 2px solid #223843;
     height: 100vh;
+    overflow: auto;
 }
 
 /*general*/
@@ -91,7 +92,7 @@ button {
 
 .app-contents {
     position: relative;
-    height: auto;
+    height: 100%;
     width: 100%;
     border: red solid 2px;
 }
@@ -141,6 +142,7 @@ button {
     top: 0;
     width: 100%;
     height: auto;
+    max-height: 75px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;

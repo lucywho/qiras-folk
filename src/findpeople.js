@@ -57,19 +57,19 @@ export default function FindPeople() {
     return (
         <div>
             <h1>Find People</h1>
-            <div className="new-users">
-                <h2>Our newest members</h2>
-                <ul>
+            {recentusers && (
+                <div className="new-users">
+                    <h2>Our newest members</h2>
                     {recentusers.map(item => (
-                        <li key={item.id}>
+                        <ul key={item.id}>
                             <img className="profile-pic" src={item.pic_url} />
                             {item.first_name}
                             {""}
                             {item.last_name}
-                        </li>
+                        </ul>
                     ))}
-                </ul>
-            </div>
+                </div>
+            )}
 
             <div className="user-search">
                 <h2>Search for friends</h2>
@@ -92,6 +92,7 @@ export default function FindPeople() {
             <input
                 onChange={e => {
                     setSearchUsers(e.target.value);
+                    setRecentUsers([]);
                 }}
                 type="text"
                 name="search_users"
