@@ -86,13 +86,24 @@ button {
 .app-container {
     height: 100vh;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
 }
 
 .app-contents {
     position: relative;
     height: auto;
     width: 100%;
+    border: red solid 2px;
+}
+
+.new-users {
+    border: blue 2px solid;
+    padding: 5px;
+}
+
+.user-search {
+    border: green 2px solid;
+    padding: 5px;
 }
 
 /*general*/

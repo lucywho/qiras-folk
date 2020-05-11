@@ -7,7 +7,9 @@ export default function FindPeople() {
 
     const [searchusers, setSearchUsers] = useState([]);
 
-    console.log("searchusers", searchusers);
+    const [matchUsers, setMatchUsers] = useState([]);
+
+    //console.log("searchusers", searchusers);
 
     useEffect(() => {
         //console.log("use effect running in FindPeople");
@@ -30,16 +32,17 @@ export default function FindPeople() {
     }, []);
 
     useEffect(() => {
-        //console.log("second use effect running in FindPeople");
+        console.log("second use effect running in FindPeople");
+        console.log("searchusers", searchusers);
         let abort;
 
-        if (searchusers) {
+        if (searchusers.length > 0) {
             axios
                 .get(`/searchusers/${searchusers}`)
                 .then(response => {
                     console.log("search users response.data:", response.data);
                     if (!abort) {
-                        setSearchUsers(response.data);
+                        setMatchUsers(response.data);
                     }
                 })
                 .catch(err => {
@@ -70,16 +73,20 @@ export default function FindPeople() {
 
             <div className="user-search">
                 <h2>Search for friends</h2>
-                {/* <ul>
-                    {searchusers.map(item => (
-                        <li key={item.id}>
-                            <img className="profile-pic" src={item.pic_url} />
-                            {item.first_name}
-                            {""}
-                            {item.last_name}
-                        </li>
-                    ))}
-                </ul> */}
+                <ul>
+                    {matchUsers &&
+                        matchUsers.map(item => (
+                            <li key={item.id}>
+                                <img
+                                    className="profile-pic"
+                                    src={item.pic_url}
+                                />
+                                {item.first_name}
+                                {""}
+                                {item.last_name}
+                            </li>
+                        ))}
+                </ul>
             </div>
 
             <input
