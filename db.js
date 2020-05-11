@@ -89,6 +89,6 @@ module.exports.getSearchUsers = search => {
         WHERE first_name ILIKE $1
         OR last_name ILIKE $1
         LIMIT 6`,
-        ["%" + search + "%"]
+        [search + "%"]
     );
 };
