@@ -35,7 +35,7 @@ export default function FindPeople() {
 
         if (searchusers) {
             axios
-                .get(`/searchusers`, searchusers)
+                .get(`/searchusers/${searchusers}`)
                 .then(response => {
                     console.log("search users response.data:", response.data);
                     if (!abort) {

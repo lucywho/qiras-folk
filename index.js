@@ -373,10 +373,12 @@ app.get("/recentusers", async (req, res) => {
     }
 }); //end of /recentusers route
 
-app.get("/searchusers", async (req, res) => {
+app.get("/searchusers/:searchusers", async (req, res) => {
     console.log("/searchusers route hit");
+    console.log("req.params", req.params);
+    let search = req.params;
     try {
-        const results = await db.getSearchUsers(searchusers);
+        const results = await db.getSearchUsers(search);
         console.log("getSearchUsers results", results.rows);
         const names = results.rows;
         res.json(names);
