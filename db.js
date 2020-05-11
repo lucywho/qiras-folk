@@ -82,3 +82,11 @@ module.exports.getRecentUsers = () => {
         ORDER BY id DESC LIMIT 3`
     );
 };
+
+module.exports.getSearchUsers = searchusers => {
+    return db.query(
+        `SELECT id, first_name, last_name, pic_url FROM users
+        WHERE name ILIKE $1`,
+        ["%" + searchusers + "%"]
+    );
+};

@@ -3,12 +3,14 @@ import axios from "./axios";
 import ProfilePic from "./profilepic";
 
 export default function FindPeople() {
-    const [first, setFirst] = useState("");
-    const [last, setLast] = useState("");
     const [recentusers, setRecentUsers] = useState([]);
 
+    const [searchusers, setSearchUsers] = useState("");
+
+    console.log("searchusers", searchusers);
+
     useEffect(() => {
-        console.log("use effect running in FindPeople");
+        //console.log("use effect running in FindPeople");
         let abort;
 
         axios
@@ -26,6 +28,28 @@ export default function FindPeople() {
             abort = true;
         };
     }, []);
+
+    useEffect(() => {
+        //console.log("second use effect running in FindPeople");
+        let abort;
+
+        if (searchusers) {
+            axios
+                .get(`/searchusers`, searchusers)
+                .then(response => {
+                    console.log("search users response.data:", response.data);
+                    if (!abort) {
+                        setSearchUsers(response.data);
+                    }
+                })
+                .catch(err => {
+                    console.log("catch error in get users", err);
+                });
+            return () => {
+                abort = true;
+            };
+        }
+    }, [searchusers]);
 
     return (
         <div>
@@ -46,11 +70,22 @@ export default function FindPeople() {
 
             <div className="user-search">
                 <h2>Search for friends</h2>
-                <ul></ul>
+                {/* <ul>
+                    {searchusers.map(item => (
+                        <li key={item.id}>
+                            <img className="profile-pic" src={item.pic_url} />
+                            {item.first_name}
+                            {""}
+                            {item.last_name}
+                        </li>
+                    ))}
+                </ul> */}
             </div>
 
             <input
-                onChange={e => setNames(e.target.value)}
+                onChange={e => {
+                    setSearchUsers(e.target.value);
+                }}
                 type="text"
                 name="search_users"
                 placeholder="search for another user"

@@ -361,17 +361,29 @@ app.get("/api/user/:id", async (req, res) => {
 }); // end of /user/:id route
 
 app.get("/recentusers", async (req, res) => {
-    console.log("/users route hit");
+    console.log("/recentusers route hit");
     try {
         const results = await db.getRecentUsers();
-        console.log("getRecentUsers results", results.rows);
+        //console.log("getRecentUsers results", results.rows);
         //returns array of objects
         const names = results.rows;
         res.json(names);
     } catch (err) {
         console.log("error in getRecentUsers", err);
     }
-}); //end of /users route
+}); //end of /recentusers route
+
+app.get("/searchusers", async (req, res) => {
+    console.log("/searchusers route hit");
+    try {
+        const results = await db.getSearchUsers(searchusers);
+        console.log("getSearchUsers results", results.rows);
+        const names = results.rows;
+        res.json(names);
+    } catch (err) {
+        console.log("error in getSearchUsers", err);
+    }
+}); //end of /searchusers route
 
 app.get("/logout", (req, res) => {
     console.log("logout");
