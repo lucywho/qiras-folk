@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import axios from "./axios";
 import ProfilePic from "./profilepic";
 
@@ -29,21 +29,32 @@ export default function FindPeople() {
 
     return (
         <div>
-            <p>HOLDING TEXT: return from FindPeople</p>
-            <ul>
-                {recentusers.map(recentusers => (
-                    <li>
-                        {first}
-                        {last}
-                    </li>
-                ))}
-            </ul>
-            {/* <input
+            <h1>Find People</h1>
+            <div className="new-users">
+                <h2>Our newest members</h2>
+                <ul>
+                    {recentusers.map(item => (
+                        <li key={item.id}>
+                            <img className="profile-pic" src={item.pic_url} />
+                            {item.first_name}
+                            {""}
+                            {item.last_name}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            <div className="user-search">
+                <h2>Search for friends</h2>
+                <ul></ul>
+            </div>
+
+            <input
                 onChange={e => setNames(e.target.value)}
                 type="text"
                 name="search_users"
                 placeholder="search for another user"
-            /> */}
+            />
         </div>
     );
 }

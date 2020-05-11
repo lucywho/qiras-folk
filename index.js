@@ -367,7 +367,7 @@ app.get("/recentusers", async (req, res) => {
         console.log("getRecentUsers results", results.rows);
         //returns array of objects
         const names = results.rows;
-        res.json({ names });
+        res.json(names);
     } catch (err) {
         console.log("error in getRecentUsers", err);
     }
