@@ -79,7 +79,7 @@ export default class App extends React.Component {
                             <button>Search</button>
                         </Link>
 
-                        <Link to="/profile">
+                        <Link to="/">
                             <button>Edit Profile</button>
                         </Link>
 
@@ -126,7 +126,10 @@ export default class App extends React.Component {
                             )}
                         />
 
-                        <Route path="/users" render={() => <FindPeople />} />
+                        <Route
+                            path="/findpeople"
+                            render={() => <FindPeople />}
+                        />
 
                         {this.state.uploaderVisible && (
                             <Uploader
