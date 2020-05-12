@@ -101,6 +101,14 @@ export default function FindPeople() {
                 )}
             </div>
 
+            <div className="no-results">
+                {matchUsers.length == 0 && !recentusers && (
+                    <div>
+                        <h2>No results</h2>
+                    </div>
+                )}
+            </div>
+
             <input
                 onChange={e => {
                     setSearchUsers(e.target.value);
