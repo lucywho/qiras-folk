@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import ProfilePic from "./profilepic";
 
@@ -57,42 +57,52 @@ export default function FindPeople() {
     return (
         <div>
             <h1>Find People</h1>
-            {recentusers && (
-                <div className="new-users">
-                    <h2>Our newest members</h2>
-                    {recentusers.map(item => (
-                        <ul key={item.id}>
-                            <img className="profile-pic" src={item.pic_url} />
-                            {item.first_name}
-                            {""}
-                            {item.last_name}
+            <div className="new-users">
+                {recentusers && (
+                    <div>
+                        <ul>
+                            <h2>Our newest members</h2>
+                            {recentusers.map(item => (
+                                <li key={item.id}>
+                                    <img
+                                        className="profile-pic"
+                                        src={item.pic_url}
+                                    />
+                                    {item.first_name}
+                                    {""}
+                                    {item.last_name}
+                                </li>
+                            ))}
                         </ul>
-                    ))}
-                </div>
-            )}
+                    </div>
+                )}
+            </div>
 
             <div className="user-search">
-                <h2>Search for friends</h2>
-                <ul>
-                    {matchUsers &&
-                        matchUsers.map(item => (
-                            <li key={item.id}>
-                                <img
-                                    className="profile-pic"
-                                    src={item.pic_url}
-                                />
-                                {item.first_name}
-                                {""}
-                                {item.last_name}
-                            </li>
-                        ))}
-                </ul>
+                {matchUsers && (
+                    <div>
+                        <h2>Search results</h2>
+                        <ul>
+                            {matchUsers.map(item => (
+                                <li key={item.id}>
+                                    <img
+                                        className="profile-pic"
+                                        src={item.pic_url}
+                                    />
+                                    {item.first_name}
+                                    {""}
+                                    {item.last_name}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
 
             <input
                 onChange={e => {
                     setSearchUsers(e.target.value);
-                    setRecentUsers([]);
+                    setRecentUsers(null);
                 }}
                 type="text"
                 name="search_users"
