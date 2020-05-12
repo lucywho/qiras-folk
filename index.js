@@ -389,18 +389,18 @@ app.get("/searchusers/:searchusers", async (req, res) => {
 
 app.get("/friendstatus/:otherUserId", async (req, res) => {
     console.log("/friend status route hit");
-    let receiver_id = req.params.otherUserId;
-    let sender_id = req.session.userId;
+    let receiverId = req.params.otherUserId;
+    let senderId = req.session.userId;
     //console.log("receiver and sender", receiver_id, sender_id);
     try {
-        const results = await db.checkFriendship(sender_id, receiver_id);
+        const results = await db.checkFriendship(senderId, receiverId);
         console.log("check friendship results", results.rows);
         if (results.rows.length == 0) {
             res.json({ buttonText: "Send Friend Request" });
         } else if (results.rows.accepted == true) {
             res.json({ buttonText: "Unfriend" });
         } else {
-            if ((receiver_id = req.session.userId)) {
+            if (senderId == req.session.userId) {
                 res.json({ buttonText: "Cancel Friend Request" });
             } else {
                 res.json({ buttonText: "Accept Friend Request" });
@@ -411,23 +411,44 @@ app.get("/friendstatus/:otherUserId", async (req, res) => {
     }
 });
 
-app.post("/updatefriendship/:buttonText", (req, res) => {
+app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
     console.log("/updatefriendship route hit");
-    console.log("update fr params", req.params.buttonText);
+    console.log("update fr params", req.params);
     let buttonText = req.params.buttonText;
+    let receiverId = req.params.otherUserId;
+    let senderId = req.session.userId;
+    console.log("req params", buttonText, receiverId, senderId);
 
     if (buttonText == "Send Friend Request") {
-        //code here to insert user data to table
-        res.json({ buttonText: "Cancel Friend Request" });
+        db.makeFriendRequest(senderId, receiverId)
+            .then(results => {
+                console.log("pending id", results.rows[0]);
+                res.json({ buttonText: "Cancel Friend Request" });
+            })
+            .catch(err => {
+                console.log("error in makeFriendRequest", err);
+            });
     } else if (
         buttonText == "Cancel Friend Request" ||
         buttonText == "Unfriend"
     ) {
-        //code here to delete data from table
-        res.json({ buttonText: "Send Friend Request" });
+        db.cancelFriendship(senderId, receiverId)
+            .then(results => {
+                console.log("cancel results", results.rows);
+                res.json({ buttonText: "Send Friend Request" });
+            })
+            .catch(err => {
+                console.log("error in cancelFriendship", err);
+            });
     } else if (buttonText == "Accept Friend Request") {
-        //code here to insert accepted = true to table
-        res.json({ buttonText: "Unfriend" });
+        db.confirmFriendship(senderId, receiverId)
+            .then(results => {
+                console.log("confirm results", results.rows);
+                res.json({ buttonText: "Unfriend" });
+            })
+            .catch(err => {
+                console.log("error in cancelFriendship", err);
+            });
     }
 });
 

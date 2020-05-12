@@ -52,7 +52,7 @@ export default class Uploader extends React.Component {
                     <p className="modalX" onClick={() => this.closeModal()}>
                         X
                     </p>
-
+                    <h2>Upload a new profile picture</h2>
                     <input
                         onChange={e => this.handleChange(e)}
                         type="file"
