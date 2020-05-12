@@ -94,16 +94,13 @@ button {
     position: relative;
     height: 100%;
     width: 100%;
-    border: red solid 2px;
 }
 
 .new-users {
-    border: blue 2px solid;
     padding: 5px;
 }
 
 .user-search {
-    border: green 2px solid;
     padding: 5px;
 }
 

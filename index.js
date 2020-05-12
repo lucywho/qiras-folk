@@ -144,7 +144,7 @@ app.post("/login", (req, res) => {
 
         compare(logpassword, hashpass)
             .then(matchValue => {
-                console.log("matchValue login: ", matchValue);
+                //console.log("matchValue login: ", matchValue);
                 if (!matchValue) {
                     console.log("err in matchValue: ", err);
                     res.json({ success: false });
@@ -152,7 +152,7 @@ app.post("/login", (req, res) => {
                 } else {
                     user_id = results.rows[0].id;
                     req.session.userId = user_id;
-                    console.log("login req.session.userId", req.session.userId);
+                    //console.log("login req.session.userId", req.session.userId);
                     res.json({ success: true });
                 }
             }) //end of matchvalue
@@ -166,7 +166,7 @@ app.post("/login", (req, res) => {
 
 app.post("/password/reset/step1", (req, res) => {
     console.log("post reset 1 running");
-    console.log("req.body", req.body);
+    //console.log("req.body", req.body);
     const logemail = req.body.email;
     let email;
     let user_id;
@@ -287,12 +287,12 @@ app.post(
     uploader.single("file"),
     s3.upload,
     (req, res) => {
-        console.log("upload profpic req file", req.file);
+        //console.log("upload profpic req file", req.file);
         let user_id = req.session.userId;
-        console.log(
-            "config.s3Url + req.file.filename",
-            config.s3Url + req.file.filename
-        );
+        // console.log(
+        //     "config.s3Url + req.file.filename",
+        //     config.s3Url + req.file.filename
+        // );
         let pic_url = config.s3Url + req.file.filename;
 
         if (!pic_url) {
@@ -330,7 +330,7 @@ app.get("/api/user/:id", async (req, res) => {
     console.log("/api/user route hit");
     let user_id = req.session.userId;
     let otherUserId = req.params.id;
-    console.log("user_id and otherUserId", user_id, otherUserId);
+    //console.log("user_id and otherUserId", user_id, otherUserId);
 
     if (user_id == otherUserId) {
         console.log("same user caught");
@@ -338,7 +338,7 @@ app.get("/api/user/:id", async (req, res) => {
     } else {
         try {
             const results = await db.getOtherUser(otherUserId);
-            console.log("getOtherUser results", results.rows[0]);
+            //console.log("getOtherUser results", results.rows[0]);
             if (!results.rows[0]) {
                 console.log("user doesn't exist");
                 res.json({ noUser: true });
@@ -375,11 +375,11 @@ app.get("/recentusers", async (req, res) => {
 
 app.get("/searchusers/:searchusers", async (req, res) => {
     console.log("/searchusers route hit");
-    console.log("req.params", req.params.searchusers);
+    //console.log("req.params", req.params.searchusers);
     let search = req.params.searchusers;
     try {
         const results = await db.getSearchUsers(search);
-        console.log("getSearchUsers results", results.rows);
+        //console.log("getSearchUsers results", results.rows);
         search = results.rows;
         res.json(search);
     } catch (err) {

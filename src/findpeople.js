@@ -28,6 +28,7 @@ export default function FindPeople() {
             });
         return () => {
             abort = true;
+            setMatchUsers = null;
         };
     }, []);
 
@@ -42,6 +43,7 @@ export default function FindPeople() {
                 .then(response => {
                     console.log("search users response.data:", response.data);
                     if (!abort) {
+                        let picUrl = response.data.pic_url || "./default.jpg";
                         setMatchUsers(response.data);
                     }
                 })
@@ -79,15 +81,15 @@ export default function FindPeople() {
             </div>
 
             <div className="user-search">
-                {matchUsers && (
+                {matchUsers.length > 0 && (
                     <div>
-                        <h2>Search results</h2>
+                        <h2>Search Results</h2>
                         <ul>
                             {matchUsers.map(item => (
                                 <li key={item.id}>
                                     <img
                                         className="profile-pic"
-                                        src={item.pic_url}
+                                        src={item.picUrl}
                                     />
                                     {item.first_name}
                                     {""}
