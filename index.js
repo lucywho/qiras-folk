@@ -387,6 +387,50 @@ app.get("/searchusers/:searchusers", async (req, res) => {
     }
 }); //end of /searchusers route
 
+app.get("/friendstatus/:otherUserId", async (req, res) => {
+    console.log("/friend status route hit");
+    let receiver_id = req.params.otherUserId;
+    let sender_id = req.session.userId;
+    //console.log("receiver and sender", receiver_id, sender_id);
+    try {
+        const results = await db.checkFriendship(sender_id, receiver_id);
+        console.log("check friendship results", results.rows);
+        if (results.rows.length == 0) {
+            res.json({ buttonText: "Send Friend Request" });
+        } else if (results.rows.accepted == true) {
+            res.json({ buttonText: "Unfriend" });
+        } else {
+            if ((receiver_id = req.session.userId)) {
+                res.json({ buttonText: "Cancel Friend Request" });
+            } else {
+                res.json({ buttonText: "Accept Friend Request" });
+            }
+        }
+    } catch (err) {
+        console.log("error in checkFriends", err);
+    }
+});
+
+app.post("/updatefriendship/:buttonText", (req, res) => {
+    console.log("/updatefriendship route hit");
+    console.log("update fr params", req.params.buttonText);
+    let buttonText = req.params.buttonText;
+
+    if (buttonText == "Send Friend Request") {
+        //code here to insert user data to table
+        res.json({ buttonText: "Cancel Friend Request" });
+    } else if (
+        buttonText == "Cancel Friend Request" ||
+        buttonText == "Unfriend"
+    ) {
+        //code here to delete data from table
+        res.json({ buttonText: "Send Friend Request" });
+    } else if (buttonText == "Accept Friend Request") {
+        //code here to insert accepted = true to table
+        res.json({ buttonText: "Unfriend" });
+    }
+});
+
 app.get("/logout", (req, res) => {
     console.log("logout");
     req.session = null;

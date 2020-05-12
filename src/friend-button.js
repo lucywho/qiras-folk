@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 
-export default function FriendshipButton({ otherUserId }) {
+export default function FriendButton({ otherUserId }) {
     console.log("otherUserId", otherUserId);
-    const [buttonText, setButtonText] = useState("Send Friend Request");
+    const [buttonText, setButtonText] = useState("Friend");
     useEffect(() => {
-        // axios.get(`/friendshipstatus/${otherUserId}`).then(response => {
-        //     console.log("response", response);
-        //     //return json from server with buttonText strings: make friends, accept, end, cancel,
-        //     setButtonText(response.data.buttonText);
-        // });
+        //set inital button text
+        axios.get(`/friendstatus/${otherUserId}`).then(response => {
+            console.log("response", response);
+            setButtonText(response.data.buttonText);
+        });
     }, []);
 
     function submit() {
         console.log("clicked on button: text is", buttonText);
+        axios.post(`/updatefriendship/${buttonText}`).then(response => {
+            console.log("post response", response.data);
+            setButtonText(response.data.buttonText);
+        });
     }
+
     return (
         <div>
             <button className="friend-button" onClick={submit}>

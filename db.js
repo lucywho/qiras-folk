@@ -93,7 +93,7 @@ module.exports.getSearchUsers = search => {
     );
 };
 
-module.exports.checkFriendship = () => {
+module.exports.checkFriendship = (sender_id, receiver_id) => {
     return db.query(
         `SELECT * FROM friendships 
         WHERE (receiver_id = $1 AND sender_id = $2)

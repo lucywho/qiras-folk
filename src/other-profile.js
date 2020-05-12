@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import axios from "./axios";
-import FriendshipButton from "./friend-button";
+import FriendButton from "./friend-button";
 
 class OtherProfile extends Component {
     constructor(props) {
@@ -33,9 +33,6 @@ class OtherProfile extends Component {
             .catch(err => {
                 console.log("error in api/user get request", err);
             });
-
-        //check not same user (in server, if session id = otheruserid, reroute with history (see notes))
-        //handle case where user tries to access non-existent profile
     }
     render() {
         return (
@@ -66,7 +63,7 @@ class OtherProfile extends Component {
                 <div className="bio-display">
                     <p>{this.state.bio}</p>
                 </div>
-                <FriendshipButton otherUserId={this.props.match.params.id} />
+                <FriendButton otherUserId={this.props.match.params.id} />
             </div>
         );
     }

@@ -1,5 +1,5 @@
 
-DROP TABLE IF EXISTS users, reset_codes;
+DROP TABLE IF EXISTS users, reset_codes, friendships;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
