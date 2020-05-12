@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
-import ProfilePic from "./profilepic";
 
 export default function FindPeople() {
     const [recentusers, setRecentUsers] = useState([]);
 
-    const [searchusers, setSearchUsers] = useState([]);
+    const [searchusers, setSearchUsers] = useState("");
 
     const [matchUsers, setMatchUsers] = useState([]);
 
@@ -43,16 +42,18 @@ export default function FindPeople() {
                 .then(response => {
                     console.log("search users response.data:", response.data);
                     if (!abort) {
-                        let picUrl = response.data.pic_url || "./default.jpg";
                         setMatchUsers(response.data);
                     }
                 })
                 .catch(err => {
                     console.log("catch error in get users", err);
                 });
+
             return () => {
                 abort = true;
             };
+        } else {
+            setMatchUsers([]);
         }
     }, [searchusers]);
 
@@ -68,7 +69,11 @@ export default function FindPeople() {
                                 <li key={item.id}>
                                     <img
                                         className="profile-pic"
-                                        src={item.pic_url}
+                                        src={
+                                            item.pic_url
+                                                ? item.pic_url
+                                                : "/default.jpg"
+                                        }
                                     />
                                     {item.first_name}
                                     {""}
@@ -89,7 +94,11 @@ export default function FindPeople() {
                                 <li key={item.id}>
                                     <img
                                         className="profile-pic"
-                                        src={item.picUrl}
+                                        src={
+                                            item.pic_url
+                                                ? item.pic_url
+                                                : "/default.jpg"
+                                        }
                                     />
                                     {item.first_name}
                                     {""}
@@ -113,6 +122,7 @@ export default function FindPeople() {
                 onChange={e => {
                     setSearchUsers(e.target.value);
                     setRecentUsers(null);
+                    //if e.target.value is empty, need to set text field value to "".
                 }}
                 type="text"
                 name="search_users"

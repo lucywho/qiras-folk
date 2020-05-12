@@ -54,7 +54,13 @@ class OtherProfile extends Component {
                     </h2>
                 </div>
                 <div className="bio-pic">
-                    <img src={this.state.picUrl} />
+                    <img
+                        src={
+                            this.state.picUrl
+                                ? this.state.picUrl
+                                : "/default.jpg"
+                        }
+                    />
                 </div>
 
                 <div className="bio-display">

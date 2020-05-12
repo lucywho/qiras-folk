@@ -92,3 +92,12 @@ module.exports.getSearchUsers = search => {
         [search + "%"]
     );
 };
+
+module.exports.checkFriendship = () => {
+    return db.query(
+        `SELECT * FROM friendships 
+        WHERE (receiver_id = $1 AND sender_id = $2)
+        OR (receiver_id = $2 AND sender_id = $1)`,
+        [sender_id, receiver_id]
+    );
+};
