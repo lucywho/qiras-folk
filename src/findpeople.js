@@ -75,9 +75,7 @@ export default function FindPeople() {
                                                 : "/default.jpg"
                                         }
                                     />
-                                    {item.first_name}
-                                    {""}
-                                    {item.last_name}
+                                    {item.first_name} {item.last_name}
                                 </li>
                             ))}
                         </ul>
@@ -100,9 +98,7 @@ export default function FindPeople() {
                                                 : "/default.jpg"
                                         }
                                     />
-                                    {item.first_name}
-                                    {""}
-                                    {item.last_name}
+                                    {item.first_name} {item.last_name}
                                 </li>
                             ))}
                         </ul>

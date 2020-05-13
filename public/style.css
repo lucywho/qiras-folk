@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
@@ -25,6 +24,7 @@ body {
     justify-content: center;
     align-items: left;
     margin-top: 20px;
+    padding: 10px;
 }
 
 input {
@@ -46,35 +46,44 @@ button {
     padding: 5px;
 }
 
-.logo {
-    height: 60px;
-    padding: 5px;
-    background-color: white;
-    border-top: rgba(205, 133, 63, 1) 5px solid;
-    border-left: rgba(205, 133, 63, 1) 5px solid;
-    border-right: rgba(205, 133, 63, 0.5) 5px solid;
-    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+ul {
+    list-style: none;
 }
 
 /*welcome.js*/
 .welcomediv {
+    height: 100vh;
     background-color: #f8ecf4;
-    display: inline-flex;
-    flex-flow: column wrap;
+    display: flex;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     padding: 5px;
+    border: red 2px solid;
+}
+
+.welcomebanner {
+    position: relative;
+    top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border: green 2px solid;
 }
 
 .welcometext {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 150px;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: justify;
     padding: 5px;
 }
 
 #splashimg {
-    height: 200px;
+    height: 150px;
     padding: 10px;
     background-color: white;
     border-top: rgba(205, 133, 63, 1) 5px solid;
@@ -97,67 +106,38 @@ button {
 }
 
 .new-users {
-    padding: 5px;
+    padding: 10px;
 }
 
 .user-search {
-    padding: 5px;
-}
-
-/*general*/
-.container {
-    width: 100%;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: left;
-    margin-top: 20px;
     padding: 10px;
-    /* background-color: rgba(124, 252, 0, 0.5); */
 }
 
-input {
-    opacity: 100%;
-    padding: 5px;
-    margin: 5px;
-    background-color: #effef3;
-    border: #d77a61 2px solid;
-    border-bottom: #d8b4a0 2px solid;
-    border-right: #d8b4a0 2px solid;
-}
-
-button {
-    border: #d77a61 5px solid;
-    border-top: #d8b4a0 5px solid;
-    border-left: #d8b4a0 5px solid;
-    border-radius: 10px;
-    background-color: #f8ecf4;
-    padding: 5px;
-    margin: 5px;
-}
 /*nav bar*/
 .nav-bar {
     position: relative;
     top: 0;
     width: 100%;
     height: auto;
-    max-height: 75px;
+    max-height: 80px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 10px;
+    padding: 2px 10px;
     border: rgb(205, 133, 63) 2px solid;
 }
 
 .logo {
     height: 60px;
-    padding: 5px;
+    width: 60px;
+    padding: 2px;
     background-color: white;
-    border-top: rgba(205, 133, 63, 1) 5px solid;
-    border-left: rgba(205, 133, 63, 1) 5px solid;
-    border-right: rgba(205, 133, 63, 0.5) 5px solid;
-    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+    object-fit: cover;
+    border-top: rgba(205, 133, 63, 1) 2px solid;
+    border-left: rgba(205, 133, 63, 1) 2px solid;
+    border-right: rgba(205, 133, 63, 0.5) 2px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 2px solid;
 }
 
 /*profile-pic.js*/
@@ -172,16 +152,13 @@ button {
     width: 60px;
 } */
 .profile-pic {
-    min-height: 50px;
-    max-height: 60px;
-    min-width: 50px;
-    max-width: 60px;
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
     border-top: rgba(205, 133, 63, 1) 2px solid;
     border-left: rgba(205, 133, 63, 1) 2px solid;
     border-right: rgba(205, 133, 63, 0.5) 2px solid;
     border-bottom: rgba(205, 133, 63, 0.5) 2px solid;
-    background-color: white;
-    padding: 2px;
 }
 
 /*profile.js*/
@@ -214,19 +191,18 @@ button {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
+    text-align: center;
     padding: 5px;
     background-color: #dabeca;
+}
+
+.registration button {
+    margin: 3px 0;
 }
 
 .resetdiv {
     border: #d77a61 5px solid;
     background-color: #dabeca;
-}
-
-.logout {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
 }
 
 /*uploader.js*/

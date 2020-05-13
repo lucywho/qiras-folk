@@ -45,7 +45,6 @@ export default class Login extends React.Component {
     render() {
         return (
             <div className="login" onChange={e => this.handleChange(e)}>
-                <h3>This is the Login Component</h3>
                 {this.state.error && (
                     <div>
                         I have a bad feeling about this... please check your

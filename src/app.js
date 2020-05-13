@@ -96,10 +96,6 @@ export default class App extends React.Component {
                     </div>
 
                     <div className="app-contents">
-                        <p>
-                            <em>App content placeholder</em>
-                        </p>
-
                         <Route
                             exact
                             path="/"
