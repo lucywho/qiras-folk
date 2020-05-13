@@ -67,15 +67,18 @@ export default class ResetPassword extends React.Component {
 
     render() {
         return (
-            <div className="resetdiv">
+            <div className="reset">
                 {this.state.step == 1 && (
                     <div
                         className="reset1"
                         onChange={e => this.handleChange(e)}
                     >
-                        <h3>
-                            Please submit the email address you registered with
-                        </h3>
+                        <h3>Please enter your email address</h3>
+                        <p>
+                            We will send an access code to this email address,
+                            <br></br>
+                            which you will need to reset your password
+                        </p>
                         {this.state.error && (
                             <div>
                                 Please check that you have submitted the correct
@@ -88,9 +91,16 @@ export default class ResetPassword extends React.Component {
                             type="email"
                             placeholder="email address..."
                         />
+                        <br></br>
                         <button onClick={() => this.reqcode()}>
                             Submit email
                         </button>
+                        <h3>or</h3>
+                        <Link to="/">
+                            <button>
+                                Click here to register a new account
+                            </button>
+                        </Link>
                     </div>
                 )}
                 {this.state.step == 2 && (
@@ -109,7 +119,7 @@ export default class ResetPassword extends React.Component {
                         <input
                             name="code"
                             type="text"
-                            placeholder="enter your secret code"
+                            placeholder="enter your access code"
                         />
                         <input
                             name="password"

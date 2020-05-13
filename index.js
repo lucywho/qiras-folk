@@ -192,10 +192,13 @@ app.post("/password/reset/step1", (req, res) => {
                 const code = cryptoRandomString({
                     length: 6
                 });
-                console.log("secret code generated: ", code);
+                console.log("access code generated: ", code);
 
                 //email user
-                sendEmail(email, `Your reset code is ${code}`);
+                sendEmail(
+                    email,
+                    `The access code to reset your password is ${code}.`
+                );
 
                 //store code in reset_codes
                 db.saveCode(email, code)

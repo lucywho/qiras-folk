@@ -51,7 +51,7 @@ export default class Login extends React.Component {
                         email and password
                     </div>
                 )}
-
+                <h3>Please enter your email and password</h3>
                 <input
                     name="email"
                     type="email"

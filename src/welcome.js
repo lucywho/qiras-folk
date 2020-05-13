@@ -18,13 +18,15 @@ export default function Welcome() {
                     </h3>
                 </div>
             </div>
-            <HashRouter>
-                <div>
-                    <Route exact path="/" component={Registration} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/reset" component={ResetPassword} />
-                </div>
-            </HashRouter>
+            <div className="welcomecomponent">
+                <HashRouter>
+                    <div>
+                        <Route exact path="/" component={Registration} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/reset" component={ResetPassword} />
+                    </div>
+                </HashRouter>
+            </div>
         </div>
     );
 }
