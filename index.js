@@ -84,6 +84,7 @@ if (process.env.NODE_ENV != "production") {
 }
 
 app.get("/welcome", (req, res) => {
+    console.log("/welcome route hit");
     if (req.session.userId) {
         res.redirect("/");
     } else {
@@ -92,7 +93,7 @@ app.get("/welcome", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-    //console.log("post register running");
+    console.log("post register route hit");
     //console.log("req.body", req.body);
     const first_name = req.body.first;
     const last_name = req.body.last;
@@ -126,8 +127,8 @@ app.post("/register", (req, res) => {
 }); //end of register route
 
 app.post("/login", (req, res) => {
-    console.log("post login running");
-    console.log("req.body", req.body);
+    console.log("post login route hit");
+    //console.log("req.body", req.body);
     const logemail = req.body.email;
     const logpassword = req.body.password;
     let user_id;
@@ -165,7 +166,7 @@ app.post("/login", (req, res) => {
 }); //end of login route
 
 app.post("/password/reset/step1", (req, res) => {
-    console.log("post reset 1 running");
+    console.log("post reset 1 route hit");
     //console.log("req.body", req.body);
     const logemail = req.body.email;
     let email;
@@ -214,7 +215,7 @@ app.post("/password/reset/step1", (req, res) => {
 }); //end of post step1
 
 app.post("/password/reset/step2", (req, res) => {
-    console.log("post reset 2 running");
+    console.log("post reset 2 route hit");
     //console.log("req.body", req.body);
 
     const incode = req.body.code;
@@ -259,6 +260,7 @@ app.post("/password/reset/step2", (req, res) => {
 }); //end of post step 2
 
 app.get("/userinfo", (req, res) => {
+    console.log("get userinfo route hit");
     let user_id = req.session.userId;
 
     db.getUserInfo(user_id)
@@ -327,7 +329,7 @@ app.post("/saveUserBio", async (req, res) => {
 }); //end of saveUserBio
 
 app.get("/api/user/:id", async (req, res) => {
-    console.log("/api/user route hit");
+    console.log("get /api/user route hit");
     let user_id = req.session.userId;
     let otherUserId = req.params.id;
     //console.log("user_id and otherUserId", user_id, otherUserId);
@@ -452,7 +454,6 @@ app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-    console.log("logout");
     req.session = null;
     res.redirect("/");
     return;

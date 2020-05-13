@@ -8,6 +8,7 @@ body {
     min-height: 100vh;
     background-color: rgb(218, 190, 202);
     color: #223843;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #startelem {
@@ -43,7 +44,6 @@ button {
     border-radius: 10px;
     background-color: #f8ecf4;
     padding: 5px;
-    margin: 5px;
 }
 
 .logo {
@@ -113,6 +113,7 @@ button {
     align-items: left;
     margin-top: 20px;
     padding: 10px;
+    /* background-color: rgba(124, 252, 0, 0.5); */
 }
 
 input {

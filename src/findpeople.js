@@ -27,7 +27,7 @@ export default function FindPeople() {
             });
         return () => {
             abort = true;
-            setMatchUsers = null;
+            setMatchUsers(null);
         };
     }, []);
 

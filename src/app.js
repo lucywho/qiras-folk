@@ -80,7 +80,7 @@ export default class App extends React.Component {
                         </Link>
 
                         <Link to="/">
-                            <button>Edit Profile</button>
+                            <button>Your Profile</button>
                         </Link>
 
                         <button onClick={() => location.replace("/logout")}>
