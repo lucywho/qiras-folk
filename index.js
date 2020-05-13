@@ -391,19 +391,19 @@ app.get("/friendstatus/:otherUserId", async (req, res) => {
     console.log("/friend status route hit");
     let receiverId = req.params.otherUserId;
     let senderId = req.session.userId;
-    //console.log("receiver and sender", receiver_id, sender_id);
+    console.log("receiver and sender", receiverId, senderId);
     try {
         const results = await db.checkFriendship(senderId, receiverId);
         console.log("check friendship results", results.rows);
         if (results.rows.length == 0) {
             res.json({ buttonText: "Send Friend Request" });
-        } else if (results.rows.accepted == true) {
+        } else if (results.rows[0].accepted === true) {
             res.json({ buttonText: "Unfriend" });
         } else {
-            if (senderId == req.session.userId) {
-                res.json({ buttonText: "Cancel Friend Request" });
-            } else {
+            if (results.rows.sender_id !== req.session.userId) {
                 res.json({ buttonText: "Accept Friend Request" });
+            } else {
+                res.json({ buttonText: "Cancel Friend Request" });
             }
         }
     } catch (err) {
@@ -413,11 +413,9 @@ app.get("/friendstatus/:otherUserId", async (req, res) => {
 
 app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
     console.log("/updatefriendship route hit");
-    console.log("update fr params", req.params);
     let buttonText = req.params.buttonText;
     let receiverId = req.params.otherUserId;
     let senderId = req.session.userId;
-    console.log("req params", buttonText, receiverId, senderId);
 
     if (buttonText == "Send Friend Request") {
         db.makeFriendRequest(senderId, receiverId)
@@ -441,7 +439,8 @@ app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
                 console.log("error in cancelFriendship", err);
             });
     } else if (buttonText == "Accept Friend Request") {
-        db.confirmFriendship(senderId, receiverId)
+        //senderId is the other user in this case, logged in user is receiver of request
+        db.confirmFriendship(receiverId, senderId)
             .then(results => {
                 console.log("confirm results", results.rows);
                 res.json({ buttonText: "Unfriend" });

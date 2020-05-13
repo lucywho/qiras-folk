@@ -118,11 +118,11 @@ module.exports.cancelFriendship = (senderId, receiverId) => {
     );
 };
 
-module.exports.confirmFriendship = (senderId, receiverId) => {
+module.exports.confirmFriendship = (receiverId, senderId) => {
     return db.query(
         `UPDATE friendships
-        SET accepted = true
-        WHERE (receiver_id = $2 AND sender_id = $1)`,
+        SET accepted = 'true'
+        WHERE (receiver_id = $1 AND sender_id = $2)`,
         [senderId, receiverId]
     );
 };
