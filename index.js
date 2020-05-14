@@ -197,7 +197,7 @@ app.post("/password/reset/step1", (req, res) => {
                 //email user
                 sendEmail(
                     email,
-                    `The access code to reset your password is ${code}.`
+                    `The access code to reset your password is ${code}. This code will expire in 10 minutes.`
                 );
 
                 //store code in reset_codes
@@ -453,6 +453,18 @@ app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
             .catch(err => {
                 console.log("error in cancelFriendship", err);
             });
+    }
+});
+
+app.get("/pendingfriends", async (req, res) => {
+    console.log("/pendingfriends route hit");
+    let userId = req.session.userId;
+    try {
+        const results = await db.getFriends(userId);
+        console.log("results.rows", results.rows);
+        //res.json something back to actions
+    } catch (err) {
+        console.log("error in pendingfriends", err);
     }
 });
 

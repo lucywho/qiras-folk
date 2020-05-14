@@ -8,6 +8,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import OtherProfile from "./other-profile";
 import FindPeople from "./findpeople";
+import Friends from "./friends";
 
 export default class App extends React.Component {
     constructor() {
@@ -75,6 +76,9 @@ export default class App extends React.Component {
                     <div className="nav-bar">
                         <Logo />
 
+                        <Link to="/friends">
+                            <button>Friends</button>
+                        </Link>
                         <Link to="/findpeople">
                             <button>Search</button>
                         </Link>
@@ -126,6 +130,8 @@ export default class App extends React.Component {
                             path="/findpeople"
                             render={() => <FindPeople />}
                         />
+
+                        <Route path="/friends" render={() => <Friends />} />
 
                         {this.state.uploaderVisible && (
                             <Uploader
