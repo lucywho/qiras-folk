@@ -5,29 +5,32 @@ import { receiveFriends, acceptFriendRequest, unfriend } from "./actions";
 
 export default function Friends() {
     const dispatch = useDispatch();
-    // const friends = useSelector(
-    //     state =>
-    //         state.friends &&
-    //         state.friends
-    //             .filter
-    //             //friend => something.something == something
-    //             ()
-    // );
+
+    const friends = useSelector(
+        state =>
+            state.allFriends &&
+            state.allFriends.filter(allfriends => allfriends.accepted == true)
+    );
+
+    console.log("friends", friends);
+
+    const pending = useSelector(
+        state =>
+            state.allFriends &&
+            state.allFriends.filter(allfriends => allfriends.accepted == false)
+    );
 
     useEffect(() => {
         dispatch(receiveFriends());
     }, []);
 
-    //need another dispatch to get pending friends?
-
-    // if (!friends) {
-    //     return null;
-    // }
+    if (!friends && !pending) {
+        return null;
+    }
 
     return (
-        <div className="pending_friends">
-            <h2>HOLDING TEXT: friends component</h2>
-            {/* <div>
+        <div className="all_friends">
+            <div className="accepted_friends">
                 <ul>
                     <h2>Your friends</h2>
                     {friends.map(item => (
@@ -43,10 +46,10 @@ export default function Friends() {
                     ))}
                 </ul>
             </div>
-            <div>
+            <div className="pending_friends">
                 <ul>
                     <h2>Pending friend requests</h2>
-                    {pendingfriends.map(item => (
+                    {pending.map(item => (
                         <li key={item.id}>
                             <img
                                 className="profile-pic"
@@ -58,7 +61,7 @@ export default function Friends() {
                         </li>
                     ))}
                 </ul>
-            </div> */}
+            </div>
         </div>
     );
 } //end

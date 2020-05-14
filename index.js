@@ -462,7 +462,7 @@ app.get("/pendingfriends", async (req, res) => {
     try {
         const results = await db.getFriends(userId);
         console.log("results.rows", results.rows);
-        //res.json something back to actions
+        res.json({ allfriends: results.rows });
     } catch (err) {
         console.log("error in pendingfriends", err);
     }

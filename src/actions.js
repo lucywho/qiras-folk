@@ -1,21 +1,15 @@
 import axios from "./axios";
 
-export function receiveFriends(pendingFriends) {
+export async function receiveFriends() {
     // receiveFriendsWannabes: will make GET request to server to retrieve the list of friends and wannabes
 
-    axios
-        .get(`/pendingfriends`)
-        .then(response => {
-            console.log("get friends response.data:", response.data);
-            return {
-                type: "PENDING_FRIENDS",
-                pendingFriends: response.data.users
-                //check name of data
-            };
-        })
-        .catch(err => {
-            console.log("catch error in receivefriends", err);
-        });
+    const response = await axios.get(`/pendingfriends`);
+    console.log("resp: ", response.data);
+
+    return {
+        type: "PENDING_FRIENDS",
+        allFriends: response.data.allfriends
+    };
 
     // should return an object with type property and a friendsWannabes property whose value is the array of friends and wannabes from the server
 }

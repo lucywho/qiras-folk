@@ -2,9 +2,10 @@ export default function reducer(state = {}, action) {
     if (action.type == "PENDING_FRIENDS") {
         state = {
             ...state,
-            pendingFriends: pendingFriends
+            allFriends: action.allFriends
         };
     }
+    return state;
 }
 
 // RECEIVE_FRIENDS_WANNABES: should clone the global state, and add to it a property called friendsWannabes whose value is the array of friends and wannabes
