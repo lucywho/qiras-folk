@@ -172,22 +172,28 @@ a:hover {
 }
 
 .users-container {
-    border: green 2px solid;
+    display: flex;
+    flex-direction: column;
 }
 
 .new-users {
-    border: red 2px solid;
-    /* display: flex;
-    flex-flow: row;
-    align-content: space-between; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
     padding: 10px;
 }
 
+.results-grid {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
 .names {
-    border: blue 1px solid;
     display: flex;
     align-items: center;
-    width: 200px;
+    width: 250px;
+    margin: 5px;
 }
 
 .names > img {

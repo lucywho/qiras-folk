@@ -60,29 +60,32 @@ export default function FindPeople() {
 
     return (
         <div className="users-container">
-            <h1>Find People</h1>
+            <h1 style={{ marginLeft: 10 + "px" }}>Find People</h1>
             <div className="new-users">
                 {recentusers && (
                     <div>
                         <ul>
                             <h2>Our newest members</h2>
-                            {recentusers.map(item => (
-                                <li key={item.id}>
-                                    <Link to={"/user/" + item.id}>
-                                        <div className="names">
-                                            <img
-                                                className="profile-pic"
-                                                src={
-                                                    item.pic_url
-                                                        ? item.pic_url
-                                                        : "/default.jpg"
-                                                }
-                                            />
-                                            {item.first_name} {item.last_name}
-                                        </div>
-                                    </Link>
-                                </li>
-                            ))}
+                            <div className="results-grid">
+                                {recentusers.map(item => (
+                                    <li key={item.id}>
+                                        <Link to={"/user/" + item.id}>
+                                            <div className="names">
+                                                <img
+                                                    className="profile-pic"
+                                                    src={
+                                                        item.pic_url
+                                                            ? item.pic_url
+                                                            : "/default.jpg"
+                                                    }
+                                                />
+                                                {item.first_name}{" "}
+                                                {item.last_name}
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </div>
                         </ul>
                     </div>
                 )}
@@ -91,25 +94,28 @@ export default function FindPeople() {
             <div className="user-search">
                 {matchUsers.length > 0 && (
                     <div>
-                        <h2>Search Results</h2>
                         <ul>
-                            {matchUsers.map(item => (
-                                <li key={item.id}>
-                                    <Link to={"/user/" + item.id}>
-                                        <div className="names">
-                                            <img
-                                                className="profile-pic"
-                                                src={
-                                                    item.pic_url
-                                                        ? item.pic_url
-                                                        : "/default.jpg"
-                                                }
-                                            />
-                                            {item.first_name} {item.last_name}
-                                        </div>
-                                    </Link>
-                                </li>
-                            ))}
+                            <h2>Search Results</h2>
+                            <div className="results-grid">
+                                {matchUsers.map(item => (
+                                    <li key={item.id}>
+                                        <Link to={"/user/" + item.id}>
+                                            <div className="names">
+                                                <img
+                                                    className="profile-pic"
+                                                    src={
+                                                        item.pic_url
+                                                            ? item.pic_url
+                                                            : "/default.jpg"
+                                                    }
+                                                />
+                                                {item.first_name}{" "}
+                                                {item.last_name}
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </div>
                         </ul>
                     </div>
                 )}
@@ -118,12 +124,49 @@ export default function FindPeople() {
             <div className="no-results">
                 {matchUsers.length == 0 && !recentusers && (
                     <div>
-                        <h2>No results</h2>
+                        <div className="new-users">
+                            <p>test text</p>
+                            {recentusers && (
+                                <div>
+                                    <ul>
+                                        <h2>Our newest members</h2>
+                                        <div className="results-grid">
+                                            {recentusers.map(item => (
+                                                <li key={item.id}>
+                                                    <Link
+                                                        to={"/user/" + item.id}
+                                                    >
+                                                        <div className="names">
+                                                            <img
+                                                                className="profile-pic"
+                                                                src={
+                                                                    item.pic_url
+                                                                        ? item.pic_url
+                                                                        : "/default.jpg"
+                                                                }
+                                                            />
+                                                            {item.first_name}{" "}
+                                                            {item.last_name}
+                                                        </div>
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </div>
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                        <div>
+                            <h2 style={{ marginLeft: 10 + "px" }}>
+                                No results
+                            </h2>
+                        </div>
                     </div>
                 )}
             </div>
 
             <input
+                style={{ marginLeft: 10 + "px" }}
                 onChange={e => {
                     setSearchUsers(e.target.value);
                     setRecentUsers(null);
