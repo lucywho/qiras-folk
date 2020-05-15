@@ -42,6 +42,9 @@ export default function Friends() {
                                 }
                             />
                             {item.first_name} {item.last_name}
+                            <button onClick={() => dispatch(unfriend(item.id))}>
+                                Unfriend
+                            </button>
                         </li>
                     ))}
                 </ul>
@@ -58,6 +61,13 @@ export default function Friends() {
                                 }
                             />
                             {item.first_name} {item.last_name}
+                            <button
+                                onClick={() =>
+                                    dispatch(acceptFriendRequest(item.id))
+                                }
+                            >
+                                Accept Friend Request
+                            </button>
                         </li>
                     ))}
                 </ul>

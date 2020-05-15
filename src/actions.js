@@ -14,20 +14,32 @@ export async function receiveFriends() {
     // should return an object with type property and a friendsWannabes property whose value is the array of friends and wannabes from the server
 }
 
-export function acceptFriendRequest(acceptfriend) {
+export async function acceptFriendRequest(otherUserId) {
+    let buttonText = "Accept Friend Request";
+    console.log("otherUserId", otherUserId);
+    const response = await axios.post(
+        `/updatefriendship/${otherUserId}/${buttonText}`
+    );
+    console.log("aFRresp: ", response.data);
+
     // acceptFriendRequest: will make POST request to the server to accept the friendship. The function should return an object with type property and the id of the user whose friendship was accepted.
 
     return {
-        type: "ACCEPT_FRIEND"
-        //something
+        type: "ACCEPT_FRIEND",
+        newFriendId: response.data.newFriendId
     };
 }
 
-export function unfriend(unfriend) {
+export async function unfriend(otherUserId) {
+    let buttonText = "Unfriend";
+    const response = await axios.post(
+        `/updatefriendship/${otherUserId}/${buttonText}`
+    );
+    console.log("unfriendresp: ", response.data);
     // unfriend: will make POST to the server to end the friendship. It should return an object with type and the id of the user whose friendship was ended.
 
     return {
-        type: "UNFRIEND"
-        //something
+        type: "UNFRIEND",
+        otherUserId
     };
 }

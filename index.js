@@ -447,11 +447,16 @@ app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
         //senderId is the other user in this case, logged in user is receiver of request
         db.confirmFriendship(receiverId, senderId)
             .then(results => {
-                console.log("confirm results", results.rows);
-                res.json({ buttonText: "Unfriend" });
+                console.log("AFR confirm results", results.rows);
+                newFriendId = receiverId;
+
+                res.json({
+                    buttonText: "Unfriend",
+                    newFriendId
+                });
             })
             .catch(err => {
-                console.log("error in cancelFriendship", err);
+                console.log("error in accept friendship", err);
             });
     }
 });
@@ -461,7 +466,7 @@ app.get("/pendingfriends", async (req, res) => {
     let userId = req.session.userId;
     try {
         const results = await db.getFriends(userId);
-        console.log("results.rows", results.rows);
+        //console.log("results.rows", results.rows);
         res.json({ allfriends: results.rows });
     } catch (err) {
         console.log("error in pendingfriends", err);
