@@ -28,56 +28,91 @@ export default function Friends() {
         return null;
     }
     return (
-        <div className="all_friends">
-            <div className="accepted_friends">
+        <div className="all-friends">
+            <div className="accepted-friends">
                 {friends.length > 0 && (
                     <ul>
                         <h2>Your friends</h2>
-                        {friends.map(item => (
-                            <li key={item.id}>
-                                <img
-                                    className="profile-pic"
-                                    src={
-                                        item.pic_url
-                                            ? item.pic_url
-                                            : "/default.jpg"
-                                    }
-                                />
-                                {item.first_name} {item.last_name}
-                                <button
-                                    onClick={() => dispatch(unfriend(item.id))}
-                                >
-                                    Unfriend
-                                </button>
-                            </li>
-                        ))}
+                        <div className="results-grid">
+                            {friends.map(item => (
+                                <li key={item.id}>
+                                    <Link to={"/user/" + item.id}>
+                                        <div className="names">
+                                            <img
+                                                className="profile-pic"
+                                                src={
+                                                    item.pic_url
+                                                        ? item.pic_url
+                                                        : "/default.jpg"
+                                                }
+                                            />
+                                            {item.first_name} {item.last_name}
+                                            <button
+                                                style={{
+                                                    float: "right",
+                                                    marginLeft: 10 + "px"
+                                                }}
+                                                onClick={() =>
+                                                    dispatch(unfriend(item.id))
+                                                }
+                                            >
+                                                ❌
+                                            </button>
+                                        </div>
+                                    </Link>
+                                </li>
+                            ))}
+                        </div>
                     </ul>
                 )}
             </div>
-            <div className="pending_friends">
+            <div className="pending-friends">
                 {pending.length > 0 && (
                     <ul>
                         <h2>Pending friend requests</h2>
-                        {pending.map(item => (
-                            <li key={item.id}>
-                                <img
-                                    className="profile-pic"
-                                    src={
-                                        item.pic_url
-                                            ? item.pic_url
-                                            : "/default.jpg"
-                                    }
-                                />
-                                {item.first_name} {item.last_name}
-                                <button
-                                    onClick={() =>
-                                        dispatch(acceptFriendRequest(item.id))
-                                    }
-                                >
-                                    Accept Friend Request
-                                </button>
-                            </li>
-                        ))}
+                        <div className="results-grid">
+                            {pending.map(item => (
+                                <li key={item.id}>
+                                    <Link to={"/user/" + item.id}>
+                                        <div className="names">
+                                            <img
+                                                className="profile-pic"
+                                                src={
+                                                    item.pic_url
+                                                        ? item.pic_url
+                                                        : "/default.jpg"
+                                                }
+                                            />
+                                            {item.first_name} {item.last_name}
+                                            <div>
+                                                <button
+                                                    style={{ float: "right" }}
+                                                    onClick={() =>
+                                                        dispatch(
+                                                            acceptFriendRequest(
+                                                                item.id
+                                                            )
+                                                        )
+                                                    }
+                                                >
+                                                    ✔️
+                                                </button>
+                                                <button
+                                                    style={{ float: "right" }}
+                                                    onClick={() =>
+                                                        dispatch(
+                                                            unfriend(item.id)
+                                                        )
+                                                    }
+                                                >
+                                                    ❌
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </li>
+                            ))}
+                        </div>
                     </ul>
                 )}
             </div>

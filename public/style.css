@@ -57,7 +57,6 @@ a {
 }
 
 a:hover {
-    /* color: rgba(34, 56, 67, 0.5); */
     color: rgba(34, 56, 67, 0.5);
 }
 
@@ -171,6 +170,7 @@ a:hover {
     width: 100%;
 }
 
+/*find-people*/
 .users-container {
     display: flex;
     flex-direction: column;
@@ -191,9 +191,11 @@ a:hover {
 
 .names {
     display: flex;
+    justify-content: left;
     align-items: center;
-    width: 250px;
-    margin: 5px;
+    width: 245px;
+    margin: 0px 5px 5px 0;
+    padding: 0 5px 0 0;
 }
 
 .names > img {
@@ -202,6 +204,16 @@ a:hover {
 
 .user-search {
     padding: 10px;
+}
+
+/*friends*/
+
+.all-friends {
+    margin: 0 10px;
+}
+
+.accepted-friends {
+    margin: 10px 0;
 }
 
 /*nav bar*/

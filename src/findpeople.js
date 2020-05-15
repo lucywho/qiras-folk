@@ -128,6 +128,7 @@ export default function FindPeople() {
                             <p>test text</p>
                             {recentusers && (
                                 <div>
+                                    <p>test text inside conditional</p>
                                     <ul>
                                         <h2>Our newest members</h2>
                                         <div className="results-grid">
@@ -170,7 +171,6 @@ export default function FindPeople() {
                 onChange={e => {
                     setSearchUsers(e.target.value);
                     setRecentUsers(null);
-                    //if e.target.value is empty, need to set text field value to "".
                 }}
                 type="text"
                 name="search_users"
