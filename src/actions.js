@@ -37,7 +37,7 @@ export async function unfriend(otherUserId) {
     );
     console.log("unfriendresp: ", response.data);
     // unfriend: will make POST to the server to end the friendship. It should return an object with type and the id of the user whose friendship was ended.
-
+    console.log("other user id", otherUserId);
     return {
         type: "UNFRIEND",
         otherUserId

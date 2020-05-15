@@ -10,8 +10,10 @@ export default function reducer(state = {}, action) {
         state = {
             ...state,
             allFriends: state.allFriends.map(item => {
-                if (item.id == newFriendId) {
-                    item.accepted = true;
+                if (item.id == action.newFriendId) {
+                    return { ...item, accepted: true };
+                } else {
+                    return item;
                 }
             })
         };
@@ -19,11 +21,12 @@ export default function reducer(state = {}, action) {
 
     if (action.type == "UNFRIEND") {
         console.log("state", state);
-        // state = {
-        //     ...state,
-        //     allFriends: action.allFriends.filter(allFriends => allFriends.otherUserId !action.otherUserId
-
-        //     )
+        state = {
+            ...state,
+            allFriends: state.allFriends.filter(
+                friend => friend.id != action.otherUserId
+            )
+        };
     }
     return state;
 }
