@@ -378,7 +378,6 @@ app.get("/recentusers", async (req, res) => {
             item => item.id !== req.session.userId
         );
 
-        //const names = results.rows;
         res.json(names);
     } catch (err) {
         console.log("error in getRecentUsers", err);
@@ -392,7 +391,8 @@ app.get("/searchusers/:searchusers", async (req, res) => {
     try {
         const results = await db.getSearchUsers(search);
         //console.log("getSearchUsers results", results.rows);
-        search = results.rows;
+        search = results.rows.filter(item => item.id !== req.session.userId);
+
         res.json(search);
     } catch (err) {
         console.log("error in getSearchUsers", err);
