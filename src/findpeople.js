@@ -59,7 +59,7 @@ export default function FindPeople() {
     }, [searchusers]);
 
     return (
-        <div>
+        <div className="users-container">
             <h1>Find People</h1>
             <div className="new-users">
                 {recentusers && (
@@ -68,15 +68,19 @@ export default function FindPeople() {
                             <h2>Our newest members</h2>
                             {recentusers.map(item => (
                                 <li key={item.id}>
-                                    <img
-                                        className="profile-pic"
-                                        src={
-                                            item.pic_url
-                                                ? item.pic_url
-                                                : "/default.jpg"
-                                        }
-                                    />
-                                    {item.first_name} {item.last_name}
+                                    <Link to={"/user/" + item.id}>
+                                        <div className="names">
+                                            <img
+                                                className="profile-pic"
+                                                src={
+                                                    item.pic_url
+                                                        ? item.pic_url
+                                                        : "/default.jpg"
+                                                }
+                                            />
+                                            {item.first_name} {item.last_name}
+                                        </div>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -91,15 +95,19 @@ export default function FindPeople() {
                         <ul>
                             {matchUsers.map(item => (
                                 <li key={item.id}>
-                                    <img
-                                        className="profile-pic"
-                                        src={
-                                            item.pic_url
-                                                ? item.pic_url
-                                                : "/default.jpg"
-                                        }
-                                    />
-                                    {item.first_name} {item.last_name}
+                                    <Link to={"/user/" + item.id}>
+                                        <div className="names">
+                                            <img
+                                                className="profile-pic"
+                                                src={
+                                                    item.pic_url
+                                                        ? item.pic_url
+                                                        : "/default.jpg"
+                                                }
+                                            />
+                                            {item.first_name} {item.last_name}
+                                        </div>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

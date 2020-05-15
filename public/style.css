@@ -51,6 +51,16 @@ ul {
     list-style: none;
 }
 
+a {
+    text-decoration: none;
+    color: #223843;
+}
+
+a:hover {
+    /* color: rgba(34, 56, 67, 0.5); */
+    color: rgba(34, 56, 67, 0.5);
+}
+
 /*welcome.js*/
 .welcomediv {
     height: 100vh;
@@ -161,8 +171,26 @@ ul {
     width: 100%;
 }
 
+.users-container {
+    border: green 2px solid;
+}
+
 .new-users {
+    border: red 2px solid;
+    display: flex;
+    flex-direction: row;
     padding: 10px;
+}
+
+.names {
+    border: blue 1px solid;
+    display: flex;
+    align-items: center;
+    width: 200px;
+}
+
+.names > img {
+    margin-right: 5px;
 }
 
 .user-search {
