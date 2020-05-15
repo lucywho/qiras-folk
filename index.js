@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server, { origins: "localhost:8080" });
+//space separate additional urls so that app can accept socket requests from where it is posted eg socialnetwork.lucycod.es:* socialnetwork.heroku.app:*
 const compression = require("compression");
 const db = require("./db.js");
 
@@ -371,7 +374,11 @@ app.get("/recentusers", async (req, res) => {
         const results = await db.getRecentUsers();
         //console.log("getRecentUsers results", results.rows);
         //returns array of objects
-        const names = results.rows;
+        const names = results.rows.filter(
+            item => item.id !== req.session.userId
+        );
+
+        //const names = results.rows;
         res.json(names);
     } catch (err) {
         console.log("error in getRecentUsers", err);
@@ -488,6 +495,20 @@ app.get("*", function(req, res) {
 });
 
 //_________SERVER LISTENING_______
-app.listen(8080, function() {
+server.listen(8080, function() {
     console.log("social network server running");
 });
+
+io.on("connection", socket => {
+    console.log(`socket with id ${socket.id} connected`);
+    socket.emit("message", {
+        msg: "greetings"
+    });
+    socket.on("disconnect", () => {
+        console.log(`socket with id ${socket.id} disconnected`);
+    });
+});
+
+// app.listen(8080, function() {
+//     console.log("social network server running");
+// });
