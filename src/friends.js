@@ -36,30 +36,34 @@ export default function Friends() {
                         <div className="results-grid">
                             {friends.map(item => (
                                 <li key={item.id}>
-                                    <Link to={"/user/" + item.id}>
-                                        <div className="names">
-                                            <img
-                                                className="profile-pic"
-                                                src={
-                                                    item.pic_url
-                                                        ? item.pic_url
-                                                        : "/default.jpg"
-                                                }
-                                            />
-                                            {item.first_name} {item.last_name}
+                                    <div className="names">
+                                        <Link to={"/user/" + item.id}>
+                                            <div className="fr-pic-text">
+                                                <img
+                                                    className="profile-pic"
+                                                    src={
+                                                        item.pic_url
+                                                            ? item.pic_url
+                                                            : "/default.jpg"
+                                                    }
+                                                />
+                                                <div className="fr-text">
+                                                    {item.first_name}{" "}
+                                                    {item.last_name}
+                                                </div>
+                                            </div>
+                                        </Link>
+                                        <div className="fr-buttons">
                                             <button
-                                                style={{
-                                                    float: "right",
-                                                    marginLeft: 10 + "px"
-                                                }}
+                                                className="fr-button"
                                                 onClick={() =>
                                                     dispatch(unfriend(item.id))
                                                 }
                                             >
-                                                ❌
+                                                Unfriend
                                             </button>
                                         </div>
-                                    </Link>
+                                    </div>
                                 </li>
                             ))}
                         </div>
@@ -73,43 +77,52 @@ export default function Friends() {
                         <div className="results-grid">
                             {pending.map(item => (
                                 <li key={item.id}>
-                                    <Link to={"/user/" + item.id}>
-                                        <div className="names">
-                                            <img
-                                                className="profile-pic"
-                                                src={
-                                                    item.pic_url
-                                                        ? item.pic_url
-                                                        : "/default.jpg"
-                                                }
-                                            />
-                                            {item.first_name} {item.last_name}
-                                            <div>
-                                                <button
-                                                    style={{ float: "right" }}
-                                                    onClick={() =>
-                                                        dispatch(
-                                                            acceptFriendRequest(
-                                                                item.id
-                                                            )
-                                                        )
+                                    <div className="names">
+                                        <Link to={"/user/" + item.id}>
+                                            <div className="fr-pic-text">
+                                                <img
+                                                    className="profile-pic"
+                                                    src={
+                                                        item.pic_url
+                                                            ? item.pic_url
+                                                            : "/default.jpg"
                                                     }
-                                                >
-                                                    ✔️
-                                                </button>
-                                                <button
-                                                    style={{ float: "right" }}
-                                                    onClick={() =>
-                                                        dispatch(
-                                                            unfriend(item.id)
-                                                        )
-                                                    }
-                                                >
-                                                    ❌
-                                                </button>
+                                                />
+                                                <div className="fr-text">
+                                                    {item.first_name}{" "}
+                                                    {item.last_name}
+                                                </div>
                                             </div>
+                                        </Link>
+
+                                        <div className="fr-buttons">
+                                            <button
+                                                className="fr-button"
+                                                onClick={() =>
+                                                    dispatch(
+                                                        acceptFriendRequest(
+                                                            item.id
+                                                        )
+                                                    )
+                                                }
+                                            >
+                                                Accept
+                                            </button>
+                                            <button
+                                                className="fr-button"
+                                                onClick={() =>
+                                                    dispatch(unfriend(item.id))
+                                                }
+                                            >
+                                                Decline
+                                            </button>
+                                            <Link to={"/user/" + item.id}>
+                                                <button className="fr-button">
+                                                    Visit profile
+                                                </button>
+                                            </Link>
                                         </div>
-                                    </Link>
+                                    </div>
                                 </li>
                             ))}
                         </div>

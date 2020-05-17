@@ -69,20 +69,24 @@ export default function FindPeople() {
                             <div className="results-grid">
                                 {recentusers.map(item => (
                                     <li key={item.id}>
-                                        <Link to={"/user/" + item.id}>
-                                            <div className="names">
-                                                <img
-                                                    className="profile-pic"
-                                                    src={
-                                                        item.pic_url
-                                                            ? item.pic_url
-                                                            : "/default.jpg"
-                                                    }
-                                                />
-                                                {item.first_name}{" "}
-                                                {item.last_name}
-                                            </div>
-                                        </Link>
+                                        <div className="names">
+                                            <Link to={"/user/" + item.id}>
+                                                <div className="fr-pic-text">
+                                                    <img
+                                                        className="profile-pic"
+                                                        src={
+                                                            item.pic_url
+                                                                ? item.pic_url
+                                                                : "/default.jpg"
+                                                        }
+                                                    />
+                                                    <div className="fr-text">
+                                                        {item.first_name}{" "}
+                                                        {item.last_name}
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </div>
                                     </li>
                                 ))}
                             </div>
@@ -99,20 +103,24 @@ export default function FindPeople() {
                             <div className="results-grid">
                                 {matchUsers.map(item => (
                                     <li key={item.id}>
-                                        <Link to={"/user/" + item.id}>
-                                            <div className="names">
-                                                <img
-                                                    className="profile-pic"
-                                                    src={
-                                                        item.pic_url
-                                                            ? item.pic_url
-                                                            : "/default.jpg"
-                                                    }
-                                                />
-                                                {item.first_name}{" "}
-                                                {item.last_name}
-                                            </div>
-                                        </Link>
+                                        <div className="names">
+                                            <Link to={"/user/" + item.id}>
+                                                <div className="fr-pic-text">
+                                                    <img
+                                                        className="profile-pic"
+                                                        src={
+                                                            item.pic_url
+                                                                ? item.pic_url
+                                                                : "/default.jpg"
+                                                        }
+                                                    />
+                                                    <div className="fr-text">
+                                                        {item.first_name}{" "}
+                                                        {item.last_name}
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </div>
                                     </li>
                                 ))}
                             </div>
@@ -124,39 +132,6 @@ export default function FindPeople() {
             <div className="no-results">
                 {matchUsers.length == 0 && !recentusers && (
                     <div>
-                        <div className="new-users">
-                            <p>test text</p>
-                            {recentusers && (
-                                <div>
-                                    <p>test text inside conditional</p>
-                                    <ul>
-                                        <h2>Our newest members</h2>
-                                        <div className="results-grid">
-                                            {recentusers.map(item => (
-                                                <li key={item.id}>
-                                                    <Link
-                                                        to={"/user/" + item.id}
-                                                    >
-                                                        <div className="names">
-                                                            <img
-                                                                className="profile-pic"
-                                                                src={
-                                                                    item.pic_url
-                                                                        ? item.pic_url
-                                                                        : "/default.jpg"
-                                                                }
-                                                            />
-                                                            {item.first_name}{" "}
-                                                            {item.last_name}
-                                                        </div>
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </div>
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
                         <div>
                             <h2 style={{ marginLeft: 10 + "px" }}>
                                 No results
