@@ -20,12 +20,22 @@ const config = require("./config");
 //_____MIDDLEWARE______
 app.use(compression());
 
-app.use(
-    cookieSession({
-        secret: "It'll be fiiiine",
-        maxAge: 1000 * 60 * 60 * 24 * 14
-    })
-);
+// app.use(
+//     cookieSession({
+//         secret: "It'll be fiiiine",
+//         maxAge: 1000 * 60 * 60 * 24 * 14
+//     })
+// );
+//====allows socket to access session info===
+const cookieSessionMiddleware = cookieSession({
+    secret: `It'll be fiiiine.`,
+    maxAge: 1000 * 60 * 60 * 24 * 90
+});
+
+app.use(cookieSessionMiddleware);
+io.use(function(socket, next) {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
 
 app.use(express.static("public"));
 
@@ -499,13 +509,43 @@ server.listen(8080, function() {
     console.log("social network server running");
 });
 
-io.on("connection", socket => {
+//________SOCKET CODE________________
+
+io.on("connection", function(socket) {
     console.log(`socket with id ${socket.id} connected`);
-    socket.emit("message", {
-        msg: "greetings"
-    });
-    socket.on("disconnect", () => {
-        console.log(`socket with id ${socket.id} disconnected`);
+
+    if (!socket.request.session.userId) {
+        return socket.disconnect(true);
+    }
+
+    const userId = socket.request.session.userId;
+
+    //insert code to retreive last ten messages from db
+
+    // db.getLastTen().then(data => {
+    //     console.log(data.rows);
+    //     io.sockets.emit("chatMessages", data.rows);
+    // });
+
+    //db query needs to be a JOIN
+    //users table first_name, last_name, pic_url / chat table user_id and msg_text
+    //most recent msg at bottom - order in query or in server (easier in query)
+    //return info by emitting event to socket.js
+
+    socket.on("newChatMessage", newMsg => {
+        console.log("this message is coming from chat.js component", newMsg);
+
+        console.log("userId of sender", userId);
+
+        // db.addChatMsg(newMsg, userId).then(response => {
+        //     console.log("addChat response", response.rows);
+        // });
+
+        //also need db query to extract info about user (first, last, pic_url)
+
+        //then emit message object
+        io.sockets.emit("addChatMsg", newMsg);
+        //needs all the user info too
     });
 });
 

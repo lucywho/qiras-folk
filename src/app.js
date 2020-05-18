@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import OtherProfile from "./other-profile";
 import FindPeople from "./findpeople";
 import Friends from "./friends";
+import Chat from "./chat";
 
 export default class App extends React.Component {
     constructor() {
@@ -132,6 +133,7 @@ export default class App extends React.Component {
                         />
 
                         <Route path="/friends" render={() => <Friends />} />
+                        <Route path="/chat" render={() => <Chat />} />
 
                         {this.state.uploaderVisible && (
                             <Uploader

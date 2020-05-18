@@ -334,3 +334,32 @@ a:hover {
     padding: 0 3px;
     font-weight: bold;
 }
+
+/*chat*/
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-container textarea {
+    width: 80%;
+    height: 100px;
+}
+.chat {
+    border-top: rgba(205, 133, 63, 1) 5px solid;
+    border-left: rgba(205, 133, 63, 1) 5px solid;
+    border-right: rgba(205, 133, 63, 0.5) 5px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+    background-color: #223843;
+    color: #eff1f3;
+    height: 200px;
+    width: 80%;
+    overflow-y: scroll;
+    margin: 10px 0;
+}
+
+.chat p {
+    margin: 5px 5px;
+}
