@@ -534,14 +534,16 @@ io.on("connection", function(socket) {
         console.log("this message is coming from chat.js component", newMsg);
         console.log("userId of sender", userId);
 
-        db.addChat(newMsg, userId)
-            .then(response => {
-                console.log("addChat response", response.rows);
-            })
-            // .then(db.getUserInfo(userId))
-            // .then(results => {
-            //     console.log("getUsers info", results.rows);
+        db.addChat(userId, newMsg)
+            // .then(response => {
+            //     console.log("addChat response", response.rows);
             // })
+            .then(db.getLatest())
+            .then(results => {
+                console.log("getlatest after add info", results.rows);
+                //let newMsg = results.rows[0];
+                //io.socket.emit("newChatMessage", newMsg);
+            })
             .catch(err => {
                 console.log("error in addChat", err);
             });

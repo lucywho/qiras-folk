@@ -140,7 +140,7 @@ module.exports.getFriends = userId => {
 };
 module.exports.getLastTen = () => {
     return db.query(
-        `SELECT user_id, chat_text, users.first_name, users.last_name, users.pic_url FROM chats LEFT JOIN users ON chats.user_id = users.id ORDER BY chats.id  LIMIT 10;;
+        `SELECT user_id, chat_text, users.first_name, users.last_name, users.pic_url FROM chats LEFT JOIN users ON chats.user_id = users.id ORDER BY chats.id  LIMIT 10;
 `
     );
 };
@@ -150,4 +150,11 @@ module.exports.addChat = (userId, newMsg) => {
         userId,
         newMsg
     ]);
+};
+
+module.exports.getLatest = () => {
+    return db.query(
+        `SELECT user_id, chat_text, users.first_name, users.last_name, users.pic_url FROM chats LEFT JOIN users ON chats.user_id = users.id ORDER BY chats.id DESC LIMIT 1;
+`
+    );
 };
