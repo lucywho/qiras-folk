@@ -1,7 +1,6 @@
 import * as io from "socket.io-client";
 
-import { lastTenChats } from "./actions";
-//note: add name of exprt function for new chats when written
+import { lastTenChats, chatMessage } from "./actions";
 
 export let socket;
 
@@ -13,14 +12,8 @@ export const init = store => {
             store.dispatch(lastTenChats(lastTen))
         );
 
-        socket.on("newChatMessage", newMsg =>
-            store.dispatch(chatMessage(newMsg))
+        socket.on("newChatMessage", newChat =>
+            store.dispatch(chatMessage(newChat))
         );
-
-        socket.on("addChatMsg", msg => {
-            console.log(
-                `new message arrives in the client ready for redux process: ${msg}`
-            );
-        });
     }
 };

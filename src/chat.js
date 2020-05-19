@@ -28,13 +28,6 @@ export default function Chat() {
             <div className="chat-container">
                 <h2>Welcome to Chat</h2>
                 <div className="chat" ref={elemRef}>
-                    <p>bunch of stuff to fill the page</p>
-                    <p>bunch of stuff to fill the page</p>
-                    <p>bunch of stuff to fill the page</p>
-                    <p>bunch of stuff to fill the page</p>
-                    <p>bunch of stuff to fill the page</p>
-
-                    <p>bunch of stuff to fill the page</p>
                     {chatMessage && (
                         <div className="msg-div">
                             {chatMessage.map((item, index) => (

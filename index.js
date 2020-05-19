@@ -535,14 +535,14 @@ io.on("connection", function(socket) {
         console.log("userId of sender", userId);
 
         db.addChat(userId, newMsg)
-            .then(response => {
-                console.log("addChat response", response.rows);
-            })
+            // .then(response => {
+            //     console.log("addChat response", response.rows);
+            // })
             .then(() => db.getLatest())
             .then(results => {
-                console.log("getlatest after add info", results.rows);
-                //let newMsg = results.rows[0];
-                //io.sockets.emit("newChatMessage", newMsg);
+                console.log("getlatest after add info", results.rows[0]);
+                let newChat = results.rows[0];
+                io.sockets.emit("newChatMessage", newChat);
             })
             .catch(err => {
                 console.log("error in addChat", err);

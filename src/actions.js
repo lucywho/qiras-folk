@@ -45,17 +45,17 @@ export async function unfriend(otherUserId) {
 }
 
 export function lastTenChats(lastTenChats) {
-    console.log("lastTenChats in actions", lastTenChats);
+    //console.log("lastTenChats in actions", lastTenChats);
     return {
         type: "LAST_TEN_CHATS",
         lastTenChats
     };
 }
 
-export function chatMessage(newMsg) {
-    console.log("chatMessage in actions", newMsg);
+export function chatMessage(newChat) {
+    console.log("newChat in actions", newChat);
     return {
         type: "NEW_CHAT_MESSAGE",
-        newMsg
+        newChat
     };
 }
