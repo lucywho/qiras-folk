@@ -523,7 +523,7 @@ io.on("connection", function(socket) {
     db.getLastTen()
         .then(data => {
             //console.log("index.js getLastTen data.rows", data.rows);
-            let lastTenChats = data.rows;
+            let lastTenChats = data.rows.reverse();
             io.sockets.emit("lastTenChats", lastTenChats);
         })
         .catch(err => {
@@ -535,14 +535,14 @@ io.on("connection", function(socket) {
         console.log("userId of sender", userId);
 
         db.addChat(userId, newMsg)
-            // .then(response => {
-            //     console.log("addChat response", response.rows);
-            // })
-            .then(db.getLatest())
+            .then(response => {
+                console.log("addChat response", response.rows);
+            })
+            .then(() => db.getLatest())
             .then(results => {
                 console.log("getlatest after add info", results.rows);
                 //let newMsg = results.rows[0];
-                //io.socket.emit("newChatMessage", newMsg);
+                //io.sockets.emit("newChatMessage", newMsg);
             })
             .catch(err => {
                 console.log("error in addChat", err);
@@ -551,7 +551,7 @@ io.on("connection", function(socket) {
         //also need db query to extract info about user (first, last, pic_url)
 
         //then emit message object
-        io.sockets.emit("addChatMsg", newMsg);
+        //io.sockets.emit("addChatMsg", newMsg);
         //needs all the user info too
     });
 });

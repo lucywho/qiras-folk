@@ -18,7 +18,7 @@ export default function FindPeople() {
         axios
             .get(`/recentusers`)
             .then(response => {
-                console.log("get users response.data:", response.data);
+                //console.log("get users response.data:", response.data);
                 if (!abort) {
                     setRecentUsers(response.data);
                 }
@@ -33,15 +33,15 @@ export default function FindPeople() {
     }, []);
 
     useEffect(() => {
-        console.log("second use effect running in FindPeople");
-        console.log("searchusers", searchusers);
+        //console.log("second use effect running in FindPeople");
+        //console.log("searchusers", searchusers);
         let abort;
 
         if (searchusers.length > 0) {
             axios
                 .get(`/searchusers/${searchusers}`)
                 .then(response => {
-                    console.log("search users response.data:", response.data);
+                    //console.log("search users response.data:", response.data);
                     if (!abort) {
                         setMatchUsers(response.data);
                     }
