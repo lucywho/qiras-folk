@@ -30,18 +30,8 @@ export default function Chat() {
             <div className="chat-container">
                 <h2>Welcome to Chat</h2>
                 <div className="chat" ref={elemRef}>
-                    <p>first hard coded chat message</p>
-                    <p>hard coded chat message</p>
-                    <p>hard coded chat message</p>
-                    <p>hard coded chat message</p>
-                    <p>hard coded chat message</p>
-                    <p>hard coded chat message</p>
-                    <p>hard coded chat message</p>
-                    <p>hard coded chat message</p>
-                    <p>hard coded chat message</p>
-                    <p>hard coded chat message</p>
-                    <p>hard coded chat message</p>
-                    <p>last hard coded chat message</p>
+                    <p>holding text</p>
+                    {/* <p className="last-ten">{lastTenChats}</p> */}
                 </div>
                 <textarea placeholder="add message here" onKeyDown={keyCheck} />
             </div>

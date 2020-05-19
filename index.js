@@ -520,24 +520,16 @@ io.on("connection", function(socket) {
 
     const userId = socket.request.session.userId;
 
-    //insert code to retreive last ten messages from db
-
-    // db.getLastTen().then(data => {
-    //     console.log(data.rows);
-    //     io.sockets.emit("chatMessages", data.rows);
-    // });
-
-    //db query needs to be a JOIN
-    //users table first_name, last_name, pic_url / chat table user_id and msg_text
-    //most recent msg at bottom - order in query or in server (easier in query)
-    //return info by emitting event to socket.js
+    db.getLastTen().then(data => {
+        console.log("index.js getLastTen data.rows", data.rows);
+        io.sockets.emit("lastTenChats", data.rows);
+    });
 
     socket.on("newChatMessage", newMsg => {
         console.log("this message is coming from chat.js component", newMsg);
-
         console.log("userId of sender", userId);
 
-        // db.addChatMsg(newMsg, userId).then(response => {
+        // db.addChat(newMsg, userId).then(response => {
         //     console.log("addChat response", response.rows);
         // });
 

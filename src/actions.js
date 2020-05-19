@@ -43,3 +43,11 @@ export async function unfriend(otherUserId) {
         otherUserId
     };
 }
+
+export function lastTenChats(lastTenChats) {
+    console.log("lastTenChats in actions", lastTenChats);
+    return {
+        type: "LAST_TEN_CHATS",
+        lastTenChats
+    };
+}

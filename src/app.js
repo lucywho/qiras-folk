@@ -83,6 +83,9 @@ export default class App extends React.Component {
                         <Link to="/findpeople">
                             <button>Search</button>
                         </Link>
+                        <Link to="/chat">
+                            <button>Chat</button>
+                        </Link>
 
                         <Link to="/">
                             <button>Your Profile</button>

@@ -8,9 +8,9 @@ export const init = store => {
     if (!socket) {
         socket = io.connect();
 
-        // socket.on("chatMessages", lastTenMsgs =>
-        //     store.dispatch(chatMessages(msgs))
-        // );
+        socket.on("recentChats", lastTenChats =>
+            store.dispatch(chatMessages(lastTenChats))
+        );
 
         // socket.on(
         //     'chatMessage',

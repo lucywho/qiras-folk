@@ -138,3 +138,9 @@ module.exports.getFriends = userId => {
         [userId]
     );
 };
+module.exports.getLastTen = () => {
+    return db.query(
+        `SELECT user_id, chat_text, users.first_name, users.last_name, users.pic_url FROM chats LEFT JOIN users ON chats.user_id = users.id ORDER BY chats.id  LIMIT 10;;
+`
+    );
+};
