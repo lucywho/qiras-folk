@@ -7,7 +7,7 @@ body {
     min-height: 100vh;
     background-color: rgb(218, 190, 202);
     color: #223843;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 #startelem {
@@ -38,16 +38,19 @@ input {
 }
 
 button {
-    border: #d77a61 5px solid;
-    border-top: #d8b4a0 5px solid;
-    border-left: #d8b4a0 5px solid;
-    border-radius: 10px;
+    border: #d77a61 1px solid;
+    border-top: #d8b4a0 1px solid;
+    border-left: #d8b4a0 1px solid;
     background-color: #f8ecf4;
     padding: 5px;
 }
 
 button:hover {
     background-color: rgba(216, 180, 160, 0.5);
+}
+
+.nav-bar button {
+    width: 100px;
 }
 
 ul {
@@ -65,6 +68,10 @@ a {
 
 a:hover {
     color: #d77a61;
+}
+
+h2 {
+    margin: 10px 0;
 }
 
 /*welcome.js*/
@@ -93,6 +100,12 @@ a:hover {
     justify-content: space-between;
     text-align: justify;
     padding: 10px;
+}
+
+.qira {
+    color: #d77a61;
+    font-weight: bolder;
+    font-size: 50px;
 }
 
 .welcomecomponent {
@@ -349,7 +362,8 @@ a:hover {
 
 .chat-container textarea {
     width: 80%;
-    height: 100px;
+    height: 80px;
+    padding: 5px;
 }
 .chat {
     border-top: rgba(205, 133, 63, 1) 5px solid;
@@ -358,7 +372,7 @@ a:hover {
     border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
     background-color: #223843;
     color: #eff1f3;
-
+    padding: 5px;
     height: 400px;
     width: 80%;
     overflow-y: scroll;
@@ -380,7 +394,7 @@ a:hover {
     /* border: 1px red solid; */
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .sm-sender {
     display: flex;
