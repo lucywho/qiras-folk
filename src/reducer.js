@@ -33,9 +33,10 @@ export default function reducer(state = {}, action) {
         console.log("LTC state", state);
         state = {
             ...state,
-            lastTenChats: action.lastTenChats
+            chatMessages: action.lastTenChats
         };
         console.log("LTC state 2", state);
+        console.log("LTC chat messages", state.chatMessages);
     }
 
     return state; //keep at end

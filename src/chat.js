@@ -1,14 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { socket } from "./socket";
 import { useSelector } from "react-redux";
-import { lastTenChats } from "./actions";
 
 export default function Chat() {
     const elemRef = useRef();
     const chatMessage = useSelector(state => state && state.chatMessages);
-    const lastTen = useSelector(state => state && state.lastTenChats);
-    console.log("state in chat.js", state);
-    console.log("lastTen in chat.js", lastTen);
+
+    console.log("chatMessage in chat.js", chatMessage);
 
     useEffect(() => {
         // console.log("chat hooks component has mounted");
@@ -19,6 +17,7 @@ export default function Chat() {
         elemRef.current.scrollTop =
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
     }, []);
+
     const keyCheck = e => {
         // console.log("e.target.value", e.target.value);
         // console.log("key pressed:", e.key);
@@ -34,9 +33,9 @@ export default function Chat() {
             <div className="chat-container">
                 <h2>Welcome to Chat</h2>
                 <div className="chat" ref={elemRef}>
-                    {lastTen.length > 0 && (
+                    {chatMessage.length > 0 && (
                         <p>
-                            {lastTen.map(item => (
+                            {chatMessage.map(item => (
                                 <li key={item.id}>
                                     {item.first_name}
                                     {item.last_name}
