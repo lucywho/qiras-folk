@@ -16,7 +16,7 @@ export default function Chat() {
         // console.log("scroll height:", elemRef.current.scrollHeight);
         elemRef.current.scrollTop =
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
-    }, []);
+    }, [chatMessage]);
 
     const keyCheck = e => {
         // console.log("e.target.value", e.target.value);
@@ -33,19 +33,47 @@ export default function Chat() {
             <div className="chat-container">
                 <h2>Welcome to Chat</h2>
                 <div className="chat" ref={elemRef}>
-                    {chatMessage.length > 0 && (
-                        <p>
-                            {chatMessage.map(item => (
-                                <li key={item.id}>
-                                    {item.first_name}
-                                    {item.last_name}
-                                    {item.chat_text}
+                    <p>bunch of stuff to fill the page</p>
+                    <p>bunch of stuff to fill the page</p>
+                    <p>bunch of stuff to fill the page</p>
+                    <p>bunch of stuff to fill the page</p>
+                    <p>bunch of stuff to fill the page</p>
+                    <p>bunch of stuff to fill the page</p>
+                    <p>bunch of stuff to fill the page</p>
+                    <p>bunch of stuff to fill the page</p>
+                    <p>bunch of stuff to fill the page</p>
+                    {chatMessage && (
+                        <div className="msg-div">
+                            {chatMessage.map((item, index) => (
+                                <li key={index}>
+                                    <div className="single-msg">
+                                        <div className="sm-sender">
+                                            <img
+                                                className="chat-pic"
+                                                src={
+                                                    item.pic_url
+                                                        ? item.pic_url
+                                                        : "/default.jpg"
+                                                }
+                                            />
+                                            <div className="sm-name">
+                                                {item.first_name}{" "}
+                                                {item.last_name}
+                                            </div>
+                                        </div>
+                                        <div className="sm-text">
+                                            {item.chat_text}
+                                        </div>
+                                    </div>
                                 </li>
                             ))}
-                        </p>
+                        </div>
                     )}
                 </div>
-                <textarea placeholder="add message here" onKeyDown={keyCheck} />
+                <textarea
+                    placeholder="type your message here and press Enter to send"
+                    onKeyDown={keyCheck}
+                />
             </div>
         </div>
     ); //end of return
