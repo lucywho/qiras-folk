@@ -51,3 +51,11 @@ export function lastTenChats(lastTenChats) {
         lastTenChats
     };
 }
+
+export function chatMessage(newMsg) {
+    console.log("chatMessage in actions", newMsg);
+    return {
+        type: "NEW_CHAT_MESSAGE",
+        newMsg
+    };
+}

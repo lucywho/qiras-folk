@@ -144,3 +144,10 @@ module.exports.getLastTen = () => {
 `
     );
 };
+
+module.exports.addChat = (userId, newMsg) => {
+    return db.query(`INSERT INTO chats (user_id, chat_text) VALUES($1, $2)`, [
+        userId,
+        newMsg
+    ]);
+};

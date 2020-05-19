@@ -13,12 +13,9 @@ export const init = store => {
             store.dispatch(lastTenChats(lastTen))
         );
 
-        // socket.on(
-        //     'chatMessage',
-        //     msg => store.dispatch(
-        //         chatMessage(msg)
-        //     )
-        // );
+        socket.on("newChatMessage", newMsg =>
+            store.dispatch(chatMessage(newMsg))
+        );
 
         socket.on("addChatMsg", msg => {
             console.log(

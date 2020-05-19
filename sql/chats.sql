@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS chats;
 CREATE TABLE chats (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
-    chat_text VARCHAR(300) NOT NULL,
+    chat_text VARCHAR(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -20,4 +20,9 @@ INSERT INTO chats (user_id, chat_text) VALUES (
 INSERT INTO chats (user_id, chat_text) VALUES (
     '16',
     'hard coded message from sql file number three'
+);
+
+INSERT INTO chats (user_id, chat_text) VALUES (
+    '15',
+    'hard coded message from sql file number four'
 );

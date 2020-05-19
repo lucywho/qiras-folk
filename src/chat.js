@@ -9,11 +9,6 @@ export default function Chat() {
     console.log("chatMessage in chat.js", chatMessage);
 
     useEffect(() => {
-        // console.log("chat hooks component has mounted");
-        // console.log("elemRef =", elemRef);
-        // console.log("scroll top:", elemRef.current.scrollTop);
-        // console.log("Client height:", elemRef.current.clientHeight);
-        // console.log("scroll height:", elemRef.current.scrollHeight);
         elemRef.current.scrollTop =
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
     }, [chatMessage]);
@@ -38,9 +33,7 @@ export default function Chat() {
                     <p>bunch of stuff to fill the page</p>
                     <p>bunch of stuff to fill the page</p>
                     <p>bunch of stuff to fill the page</p>
-                    <p>bunch of stuff to fill the page</p>
-                    <p>bunch of stuff to fill the page</p>
-                    <p>bunch of stuff to fill the page</p>
+
                     <p>bunch of stuff to fill the page</p>
                     {chatMessage && (
                         <div className="msg-div">

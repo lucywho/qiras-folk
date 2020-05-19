@@ -522,7 +522,7 @@ io.on("connection", function(socket) {
 
     db.getLastTen()
         .then(data => {
-            console.log("index.js getLastTen data.rows", data.rows);
+            //console.log("index.js getLastTen data.rows", data.rows);
             let lastTenChats = data.rows;
             io.sockets.emit("lastTenChats", lastTenChats);
         })
@@ -534,9 +534,17 @@ io.on("connection", function(socket) {
         console.log("this message is coming from chat.js component", newMsg);
         console.log("userId of sender", userId);
 
-        // db.addChat(newMsg, userId).then(response => {
-        //     console.log("addChat response", response.rows);
-        // });
+        db.addChat(newMsg, userId)
+            .then(response => {
+                console.log("addChat response", response.rows);
+            })
+            // .then(db.getUserInfo(userId))
+            // .then(results => {
+            //     console.log("getUsers info", results.rows);
+            // })
+            .catch(err => {
+                console.log("error in addChat", err);
+            });
 
         //also need db query to extract info about user (first, last, pic_url)
 

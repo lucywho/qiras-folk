@@ -30,13 +30,19 @@ export default function reducer(state = {}, action) {
     }
 
     if (action.type == "LAST_TEN_CHATS") {
-        console.log("LTC state", state);
         state = {
             ...state,
             chatMessages: action.lastTenChats
         };
-        console.log("LTC state 2", state);
-        console.log("LTC chat messages", state.chatMessages);
+    }
+
+    if (action.type == "NEW_CHAT_MESSAGE") {
+        state = {
+            ...state,
+            chatMessages: action.newMsg
+        };
+        console.log("NCM state", state);
+        console.log("NCM chat messages", state.chatMessages);
     }
 
     return state; //keep at end
