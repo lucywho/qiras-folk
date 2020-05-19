@@ -520,10 +520,15 @@ io.on("connection", function(socket) {
 
     const userId = socket.request.session.userId;
 
-    db.getLastTen().then(data => {
-        console.log("index.js getLastTen data.rows", data.rows);
-        io.sockets.emit("lastTenChats", data.rows);
-    });
+    db.getLastTen()
+        .then(data => {
+            console.log("index.js getLastTen data.rows", data.rows);
+            let lastTenChats = data.rows;
+            io.sockets.emit("lastTenChats", lastTenChats);
+        })
+        .catch(err => {
+            console.log("error in getLastTen", err);
+        });
 
     socket.on("newChatMessage", newMsg => {
         console.log("this message is coming from chat.js component", newMsg);
