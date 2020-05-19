@@ -1,10 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import { socket } from "./socket";
 import { useSelector } from "react-redux";
+import { lastTenChats } from "./actions";
 
 export default function Chat() {
     const elemRef = useRef();
     const chatMessage = useSelector(state => state && state.chatMessages);
+    const lastTen = useSelector(state => state && state.lastTenChats);
+    console.log("state in chat.js", state);
+    console.log("lastTen in chat.js", lastTen);
 
     useEffect(() => {
         // console.log("chat hooks component has mounted");
@@ -30,11 +34,20 @@ export default function Chat() {
             <div className="chat-container">
                 <h2>Welcome to Chat</h2>
                 <div className="chat" ref={elemRef}>
-                    <p>holding text</p>
-                    {/* <p className="last-ten">{lastTenChats}</p> */}
+                    {lastTen.length > 0 && (
+                        <p>
+                            {lastTen.map(item => (
+                                <li key={item.id}>
+                                    {item.first_name}
+                                    {item.last_name}
+                                    {item.chat_text}
+                                </li>
+                            ))}
+                        </p>
+                    )}
                 </div>
                 <textarea placeholder="add message here" onKeyDown={keyCheck} />
             </div>
         </div>
-    );
+    ); //end of return
 }

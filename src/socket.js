@@ -1,6 +1,7 @@
 import * as io from "socket.io-client";
 
-//import { chatMessages, chatMessage } from './actions';
+import { lastTenChats } from "./actions";
+//note: add name of exprt function for new chats when written
 
 export let socket;
 
@@ -8,8 +9,8 @@ export const init = store => {
     if (!socket) {
         socket = io.connect();
 
-        socket.on("recentChats", lastTenChats =>
-            store.dispatch(chatMessages(lastTenChats))
+        socket.on("lastTenChats", lastTen =>
+            store.dispatch(lastTenChats(lastTen))
         );
 
         // socket.on(
