@@ -497,11 +497,20 @@ app.post("/deleteaccount", async (req, res) => {
     console.log("user id in delete account", userId);
 
     try {
-        //needs to run first
-        const getPic = await db.getAllPics(userId); //fetches links to all profile pics user has ever saved
+        const getPic = await db.getAllPics(userId);
         let delPics = getPic.rows;
 
         console.log("get all pics results", delPics);
+        let picArray = [];
+
+        let objects = delPics.map(item => {
+            let object = {
+                Key: item.pic_url
+            };
+            picArray.push(object);
+        });
+
+        s3.delete(picArray);
 
         //code to delete profile pictures from AWS. Returns promises for each object.
 

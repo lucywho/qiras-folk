@@ -43,3 +43,30 @@ exports.upload = (req, res, next) => {
             res.sendStatus(500);
         });
 };
+
+exports.delete = (picArray, next) => {
+    if (!picArray) {
+        console.log("no pics");
+        return res.sendStatus(500);
+    }
+
+    const promise = s3
+        .deleteObjects({
+            Bucket: "lucy-msg-socialnet",
+            Delete: {
+                Objects: picArray,
+                Quiet: false
+            }
+        })
+        .promise();
+
+    promise
+        .then(() => {
+            console.log("s3.js deleteObject fired");
+            next();
+        })
+        .catch(err => {
+            console.log("s3.js: error in delete object", err);
+            res.sendStatus(500);
+        });
+};
