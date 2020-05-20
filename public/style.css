@@ -315,10 +315,26 @@ h2 {
 }
 
 /*bio-editor.js*/
+
 .writebio,
+.editbio {
+    display: flex;
+    flex-direction: column;
+}
+.writebio textarea {
+    width: 300px;
+    height: 200px;
+    padding: 5px;
+}
 .editbio textarea {
     width: 300px;
     height: 200px;
+    padding: 5px;
+}
+
+.editbio button {
+    margin-top: 10px;
+    max-width: 150px;
 }
 
 /*uploader.js*/
@@ -411,4 +427,23 @@ h2 {
 .sm-text {
     /* border: 1px blue solid; */
     text-align: left;
+}
+
+/*deleteaccount.js*/
+
+.highlight {
+    color: #a0452c;
+    font-style: italic;
+    margin: 10px 0;
+}
+
+.del-info li {
+    margin: 15px 0;
+}
+
+.delete {
+    max-width: 150px;
+    font-weight: bolder;
+    border: 2px red solid;
+    margin-top: 10px;
 }

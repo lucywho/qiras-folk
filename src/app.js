@@ -92,6 +92,10 @@ export default class App extends React.Component {
                             <button>Your Profile</button>
                         </Link>
 
+                        <Link to="/deleteaccount">
+                            <button>Delete Account</button>
+                        </Link>
+
                         <button onClick={() => location.replace("/logout")}>
                             Logout
                         </button>

@@ -61,7 +61,8 @@ exports.delete = (picArray, next) => {
         .promise();
 
     promise
-        .then(() => {
+        .then(data => {
+            console.log("data in s3.js", data);
             console.log("s3.js deleteObject fired");
             next();
         })

@@ -510,11 +510,11 @@ app.post("/deleteaccount", async (req, res) => {
             picArray.push(object);
         });
 
+        console.log("picArray: ", picArray);
+
         s3.delete(picArray, function(err, data) {
             if (err) {
                 console.log("index.js error in s3 delete: ", err, err.stack);
-            } else {
-                console.log("index.js data from s3 delete:", data);
             }
         });
 
