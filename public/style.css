@@ -314,7 +314,50 @@ h2 {
     margin-bottom: 5px;
 }
 
+.bio {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.bio-left {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    justify-content: space-between;
+}
+
+.bio-right {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding: 10px;
+    justify-content: flex-end;
+    text-align: left;
+}
+
+/*other-profile.js*/
+.bio-display {
+    margin-bottom: 10px;
+}
+
 /*bio-editor.js*/
+.bioeddiv {
+    height: 100%;
+}
+.savedbio {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 80%;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+}
+
+.savedbio button {
+    max-width: 150px;
+    margin-top: 10px;
+}
 
 .writebio,
 .editbio {

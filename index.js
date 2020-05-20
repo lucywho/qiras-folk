@@ -519,18 +519,11 @@ app.post("/deleteaccount", async (req, res) => {
             };
         });
 
-        // s3.delete(picArray, function(err, data) {
-        //     if (err) {
-        //         console.log("index.js error in s3 delete: ", err, err.stack);
-        //     }
-        // });
-
-        //**==**==DO NOT FORGET TO UNCOMMENT CODE ABOVE==**==**
-
-        // const responseA = await db.deleteChat(userId);
-        // const responseB = await db.deleteFriend(userId);
-        // const responseC = await db.deleteProfpics(userId);
-        // const responseD = await db.deleteUser(userId);
+        s3.delete(picArray, function(err, data) {
+            if (err) {
+                console.log("index.js error in s3 delete: ", err, err.stack);
+            }
+        });
 
         Promise.all([
             db.deleteChat(userId),
@@ -540,8 +533,6 @@ app.post("/deleteaccount", async (req, res) => {
         ]).then(() => {
             res.redirect("/logout");
         });
-
-        //could wrap these plus aws promises in promise all to run simultaneously.
     } catch (err) {
         console.log("error in delete account", err);
     }

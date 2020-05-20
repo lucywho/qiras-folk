@@ -36,34 +36,41 @@ class OtherProfile extends Component {
     }
     render() {
         return (
-            <div className="other-profile" className="container">
-                {this.state.noUser && (
-                    <div>
-                        <div className="bio-pic">
-                            <img src="/default.jpg" />
+            <div className="container">
+                <div className="bio">
+                    {this.state.noUser && (
+                        <div>
+                            <div className="bio-pic">
+                                <img src="/default.jpg" />
+                            </div>
+                            <p>The user you selected does not exist</p>
                         </div>
-                        <p>The user you selected does not exist</p>
+                    )}
+                    <div className="bio-left">
+                        <div className="bio-name">
+                            <h2>
+                                {this.state.first} {this.state.last}
+                            </h2>
+                        </div>
+                        <div className="bio-pic">
+                            <img
+                                src={
+                                    this.state.picUrl
+                                        ? this.state.picUrl
+                                        : "/default.jpg"
+                                }
+                            />
+                        </div>
                     </div>
-                )}
-                <div className="bio-name">
-                    <h2>
-                        {this.state.first} {this.state.last}
-                    </h2>
+                    <div className="bio-right">
+                        <div className="bio-display">
+                            <p>{this.state.bio}</p>
+                        </div>
+                        <FriendButton
+                            otherUserId={this.props.match.params.id}
+                        />
+                    </div>
                 </div>
-                <div className="bio-pic">
-                    <img
-                        src={
-                            this.state.picUrl
-                                ? this.state.picUrl
-                                : "/default.jpg"
-                        }
-                    />
-                </div>
-
-                <div className="bio-display">
-                    <p>{this.state.bio}</p>
-                </div>
-                <FriendButton otherUserId={this.props.match.params.id} />
             </div>
         );
     }

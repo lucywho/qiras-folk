@@ -37,9 +37,11 @@ export default function DeleteAccount() {
                 </li>
             </ul>
 
-            <button className="delete" onClick={submit}>
-                Delete Account: Confirm
-            </button>
+            <a href="/logout">
+                <button className="delete" onClick={submit}>
+                    Delete Account: Confirm
+                </button>
+            </a>
         </div> //end of wrapping div
     ); //end of return
 }
