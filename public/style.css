@@ -49,10 +49,6 @@ button:hover {
     background-color: rgba(216, 180, 160, 0.5);
 }
 
-.nav-bar button {
-    width: 100px;
-}
-
 ul {
     list-style: none;
 }
@@ -210,6 +206,10 @@ h2 {
     border-left: rgba(205, 133, 63, 1) 2px solid;
     border-right: rgba(205, 133, 63, 0.5) 2px solid;
     border-bottom: rgba(205, 133, 63, 0.5) 2px solid;
+}
+
+.nav-bar button {
+    width: 110px;
 }
 
 .profile-pic {
