@@ -1,14 +1,7 @@
 import React from "react";
 import BioEditor from "./bioeditor";
 
-export default function Profile({
-    first,
-    last,
-    picUrl,
-    toggleModal,
-    updateUserBio,
-    bio
-}) {
+export default function Profile({ first, last, picUrl, updateUserBio, bio }) {
     picUrl = picUrl || "/default.jpg";
     //console.log("bio in profile comp", bio);
     return (
@@ -23,6 +16,7 @@ export default function Profile({
             </div>
 
             <BioEditor bio={bio} updateUserBio={updateUserBio} />
+            {/* <DeleteAccount /> */}
         </div>
     );
 }

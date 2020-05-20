@@ -58,6 +58,13 @@ module.exports.saveProfilePic = (user_id, pic_url) => {
     );
 };
 
+module.exports.archiveProfilePic = (user_id, pic_url) => {
+    return db.query(
+        `INSERT INTO profilepics (user_id, pic_url) VALUES ($1, $2)`,
+        [user_id, pic_url]
+    );
+};
+
 module.exports.saveUserBio = (user_id, bio) => {
     return db.query(
         `UPDATE users
@@ -156,4 +163,29 @@ module.exports.getLatest = () => {
     return db.query(
         `SELECT user_id, chat_text, users.first_name, users.last_name, users.pic_url FROM chats LEFT JOIN users ON chats.user_id = users.id ORDER BY chats.id DESC LIMIT 1;`
     );
+};
+
+module.exports.getAllPics = userId => {
+    return db.query(`SELECT pic_url FROM profilepics WHERE user_id=$1; `, [
+        userId
+    ]);
+};
+
+module.exports.deleteChat = userId => {
+    return db.query(`DELETE FROM chats WHERE user_id =$1;`, [userId]);
+};
+
+module.exports.deleteFriend = userId => {
+    return db.query(
+        `DELETE FROM friendships WHERE sender_id = $1 OR receiver_id =$1;`,
+        [userId]
+    );
+};
+
+module.exports.deleteProfpics = userId => {
+    return db.query(`DELETE FROM profilepics WHERE user_id =$1;`, [userId]);
+};
+
+module.exports.deleteUser = userId => {
+    return db.query(`DELETE FROM users WHERE user_id =$1;`, [userId]);
 };

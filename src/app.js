@@ -10,6 +10,7 @@ import OtherProfile from "./other-profile";
 import FindPeople from "./findpeople";
 import Friends from "./friends";
 import Chat from "./chat";
+import DeleteAccount from "./deleteaccount";
 
 export default class App extends React.Component {
     constructor() {
@@ -137,6 +138,10 @@ export default class App extends React.Component {
 
                         <Route path="/friends" render={() => <Friends />} />
                         <Route path="/chat" render={() => <Chat />} />
+                        <Route
+                            path="/deleteaccount"
+                            render={() => <DeleteAccount />}
+                        />
 
                         {this.state.uploaderVisible && (
                             <Uploader

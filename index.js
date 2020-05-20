@@ -307,16 +307,17 @@ app.post(
     (req, res) => {
         //console.log("upload profpic req file", req.file);
         let user_id = req.session.userId;
-        // console.log(
-        //     "config.s3Url + req.file.filename",
-        //     config.s3Url + req.file.filename
-        // );
+
         let pic_url = config.s3Url + req.file.filename;
 
         if (!pic_url) {
             console.log("no file sent");
             return;
         }
+
+        db.archiveProfilePic(user_id, pic_url).then(results => {
+            console.log("pic archive worked", results.rows);
+        });
 
         db.saveProfilePic(user_id, pic_url)
             .then(results => {
@@ -487,6 +488,33 @@ app.get("/pendingfriends", async (req, res) => {
         res.json({ allfriends: results.rows });
     } catch (err) {
         console.log("error in pendingfriends", err);
+    }
+});
+
+app.post("/deleteaccount", async (req, res) => {
+    console.log("/deleteaccount route hit");
+    let userId = req.session.userId;
+    console.log("user id in delete account", userId);
+
+    try {
+        //needs to run first
+        const getPic = await db.query.getAllPics(userId); //fetches links to all profile pics user has ever saved
+        let delPics = getPic.rows;
+
+        console.log("get all pics results", delPics.rows);
+
+        //code to delete profile pictures from AWS. Returns promises for each object.
+
+        // const responseA = await db.query.deleteChat(userId);
+        // const responseB = await db.query.deleteFriend(userId);
+        // const responseC = await db.query.deleteProfpics(userId);
+        // const responseD = await db.query.deleteUser(userId);
+
+        //could wrap these plus aws promises in promise all to run simultaneously.
+
+        res.redirect("/");
+    } catch (err) {
+        console.log("error in delete account", err);
     }
 });
 
