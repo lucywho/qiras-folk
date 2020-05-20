@@ -38,8 +38,7 @@ export default function DeleteAccount() {
             </ul>
 
             <button className="delete" onClick={submit}>
-                {" "}
-                Delete Account: Confirm{" "}
+                Delete Account: Confirm
             </button>
         </div> //end of wrapping div
     ); //end of return

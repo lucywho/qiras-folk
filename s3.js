@@ -49,7 +49,7 @@ exports.delete = (picArray, next) => {
         console.log("no pics");
         return res.sendStatus(500);
     }
-
+    //removed from here
     const promise = s3
         .deleteObjects({
             Bucket: "lucy-msg-socialnet",

@@ -512,6 +512,17 @@ app.post("/deleteaccount", async (req, res) => {
 
         console.log("picArray: ", picArray);
 
+        picArray = picArray.map(item => {
+            return {
+                Key: item.Key.replace(
+                    "http://lucy-msg-socialnet.s3.amazonaws.com/",
+                    ""
+                )
+            };
+        });
+
+        console.log("picArray after map,", picArray);
+
         s3.delete(picArray, function(err, data) {
             if (err) {
                 console.log("index.js error in s3 delete: ", err, err.stack);

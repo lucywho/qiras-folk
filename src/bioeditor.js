@@ -63,10 +63,22 @@ export default class BioEditor extends React.Component {
                         onChange={e => this.handleChange(e)}
                     >
                         <textarea
+                            id="bio"
                             name="bio"
                             type="text"
-                            placeholder="tell us about yourself..."
+                            placeholder="tell us about yourself (500 char limit)..."
                         />
+                        {/* <div id="countdown">500 characters</div> */}
+                        {/* <script src="js/character-count.js">
+                                var chars;
+                                chars = document.getElementById('bio');                   
+                            chars.addEventListener('keyup', countCharacters, false);
+
+                            function countCharacters (e) {
+                                var textEntered, countRemaining, counter;
+                                textEntered = document.getElementById('bio').value; 
+                            }
+                        </script> */}
 
                         <button className="save" onClick={e => this.saveBio(e)}>
                             Save your profile
