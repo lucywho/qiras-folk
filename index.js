@@ -498,17 +498,17 @@ app.post("/deleteaccount", async (req, res) => {
 
     try {
         //needs to run first
-        const getPic = await db.query.getAllPics(userId); //fetches links to all profile pics user has ever saved
+        const getPic = await db.getAllPics(userId); //fetches links to all profile pics user has ever saved
         let delPics = getPic.rows;
 
-        console.log("get all pics results", delPics.rows);
+        console.log("get all pics results", delPics);
 
         //code to delete profile pictures from AWS. Returns promises for each object.
 
-        // const responseA = await db.query.deleteChat(userId);
-        // const responseB = await db.query.deleteFriend(userId);
-        // const responseC = await db.query.deleteProfpics(userId);
-        // const responseD = await db.query.deleteUser(userId);
+        // const responseA = await db.deleteChat(userId);
+        // const responseB = await db.deleteFriend(userId);
+        // const responseC = await db.deleteProfpics(userId);
+        // const responseD = await db.deleteUser(userId);
 
         //could wrap these plus aws promises in promise all to run simultaneously.
 
