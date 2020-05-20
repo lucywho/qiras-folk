@@ -525,13 +525,23 @@ app.post("/deleteaccount", async (req, res) => {
         //     }
         // });
 
-        const responseA = await db.deleteChat(userId);
-        const responseB = await db.deleteFriend(userId);
-        const responseC = await db.deleteProfpics(userId);
-        const responseD = await db.deleteUser(userId);
+        //**==**==DO NOT FORGET TO UNCOMMENT CODE ABOVE==**==**
+
+        // const responseA = await db.deleteChat(userId);
+        // const responseB = await db.deleteFriend(userId);
+        // const responseC = await db.deleteProfpics(userId);
+        // const responseD = await db.deleteUser(userId);
+
+        Promise.all([
+            db.deleteChat(userId),
+            db.deleteFriend(userId),
+            db.deleteProfpics(userId),
+            db.deleteUser(userId)
+        ]).then(() => {
+            res.redirect("/logout");
+        });
 
         //could wrap these plus aws promises in promise all to run simultaneously.
-        res.redirect("/logout");
     } catch (err) {
         console.log("error in delete account", err);
     }
