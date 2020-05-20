@@ -187,5 +187,5 @@ module.exports.deleteProfpics = userId => {
 };
 
 module.exports.deleteUser = userId => {
-    return db.query(`DELETE FROM users WHERE user_id =$1;`, [userId]);
+    return db.query(`DELETE FROM users WHERE id =$1;`, [userId]);
 };

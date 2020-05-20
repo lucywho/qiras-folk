@@ -500,7 +500,7 @@ app.post("/deleteaccount", async (req, res) => {
         const getPic = await db.getAllPics(userId);
         let delPics = getPic.rows;
 
-        console.log("get all pics results", delPics);
+        //console.log("get all pics results", delPics);
         let picArray = [];
 
         let objects = delPics.map(item => {
@@ -509,8 +509,6 @@ app.post("/deleteaccount", async (req, res) => {
             };
             picArray.push(object);
         });
-
-        console.log("picArray: ", picArray);
 
         picArray = picArray.map(item => {
             return {
@@ -521,27 +519,23 @@ app.post("/deleteaccount", async (req, res) => {
             };
         });
 
-        console.log("picArray after map,", picArray);
-
         s3.delete(picArray, function(err, data) {
             if (err) {
                 console.log("index.js error in s3 delete: ", err, err.stack);
             }
         });
 
-        //code to delete profile pictures from AWS. Returns promises for each object.
-
-        // const responseA = await db.deleteChat(userId);
-        // const responseB = await db.deleteFriend(userId);
-        // const responseC = await db.deleteProfpics(userId);
-        // const responseD = await db.deleteUser(userId);
+        const responseA = await db.deleteChat(userId);
+        const responseB = await db.deleteFriend(userId);
+        const responseC = await db.deleteProfpics(userId);
+        const responseD = await db.deleteUser(userId);
 
         //could wrap these plus aws promises in promise all to run simultaneously.
-
-        res.redirect("/");
     } catch (err) {
         console.log("error in delete account", err);
     }
+
+    res.redirect("/logout");
 });
 
 app.get("/logout", (req, res) => {
