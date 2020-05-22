@@ -30,7 +30,7 @@ input {
     opacity: 100%;
     padding: 5px;
     margin: 5px;
-
+    font-family: inherit;
     background-color: #effef3;
     border: #d77a61 2px solid;
     border-bottom: #d8b4a0 2px solid;
@@ -38,6 +38,7 @@ input {
 }
 
 button {
+    font-family: inherit;
     border: #d77a61 1px solid;
     border-top: #d8b4a0 1px solid;
     border-left: #d8b4a0 1px solid;
@@ -133,7 +134,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
     margin-bottom: 5px;
     background-color: #dabeca;
 }
@@ -151,7 +152,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
     margin-bottom: 5px;
     background-color: #dabeca;
 }
@@ -168,7 +169,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
     margin-bottom: 5px;
     background-color: #dabeca;
 }
@@ -209,6 +210,7 @@ h2 {
 }
 
 .nav-bar button {
+    height: 50px;
     width: 110px;
 }
 
@@ -395,13 +397,23 @@ h2 {
     right: 10px;
     margin: auto;
     width: 50%;
-    height: 50%;
-    opacity: 90%;
+    height: 200px;
+    opacity: 95%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     overflow: auto;
+    animation-name: modal;
+    animation-duration: 1s;
+}
+@keyframes modal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 95%;
+    }
 }
 
 .modalX {

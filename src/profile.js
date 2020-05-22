@@ -19,7 +19,6 @@ export default function Profile({ first, last, picUrl, updateUserBio, bio }) {
                 </div>
                 <div className="bio-right">
                     <BioEditor bio={bio} updateUserBio={updateUserBio} />
-                    {/* <DeleteAccount /> */}
                 </div>
             </div>
         </div>
