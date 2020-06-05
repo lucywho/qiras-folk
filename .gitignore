@@ -1,3 +1,8 @@
 node_modules
 .DS_Store
 secrets.json
+notes.txt
+helloworld.js
+child.js
+secrets.json
+hooks.js

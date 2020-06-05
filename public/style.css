@@ -1,0 +1,612 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: rgb(218, 190, 202);
+    color: #223843;
+    font-family: "Roboto", sans-serif;
+}
+
+#startelem {
+    height: 100vh;
+    overflow: auto;
+}
+
+/*___general___*/
+.container {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: left;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+input {
+    opacity: 100%;
+    padding: 5px;
+    margin: 5px;
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #effef3;
+    border: #d77a61 2px solid;
+    border-bottom: #d8b4a0 2px solid;
+    border-right: #d8b4a0 2px solid;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    border: #d77a61 1px solid;
+    border-top: #d8b4a0 1px solid;
+    border-left: #d8b4a0 1px solid;
+    background-color: #f8ecf4;
+    border-radius: 30px;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: rgba(216, 180, 160, 0.5);
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #223843;
+}
+
+a:hover {
+    color: #d77a61;
+}
+
+h2 {
+    margin: 10px 0;
+}
+
+/*___welcome.js___*/
+.welcomediv {
+    max-height: 100vh;
+    min-height: 100vh;
+    background-color: #f8ecf4;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.welcomebanner {
+    width: 95%;
+    height: 25vh;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.welcometext {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: justify;
+    padding: 10px;
+}
+
+.qira {
+    color: #d77a61;
+    font-weight: bolder;
+    font-size: 50px;
+}
+
+.welcomecomponent {
+    margin-top: 10px;
+    height: 70vh;
+    width: 95%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#splashimg {
+    height: 20vh;
+    padding: 10px;
+    background-color: white;
+    border-top: rgba(205, 133, 63, 1) 5px solid;
+    border-left: rgba(205, 133, 63, 1) 5px solid;
+    border-right: rgba(205, 133, 63, 0.5) 5px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+    border-radius: 30px;
+}
+
+/*___registration.js___*/
+
+.registration {
+    font-family: inherit;
+    width: 150%;
+    height: 50vh;
+    border: #d77a61 5px solid;
+    border-radius: 30px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #dabeca;
+}
+
+.registration h3 {
+    padding: 5px;
+}
+
+.registration button {
+    margin: 3px 0;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/*___login.js___*/
+
+.login {
+    font-family: inherit;
+    width: 100%;
+    height: 50vh;
+    border: #d77a61 5px solid;
+    border-radius: 30px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #dabeca;
+}
+
+.login h3 {
+    padding: 5px;
+}
+
+.login button {
+    margin: 3px 0;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/*___reset.js___*/
+
+.reset {
+    font-family: inherit;
+    width: 150%;
+    height: 50vh;
+    border: #d77a61 5px solid;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #dabeca;
+}
+
+.reset button {
+    padding: 5px;
+    margin: 10px 0;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/*___app.js___*/
+
+.app-container {
+    height: 100vh;
+}
+
+.app-contents {
+    position: relative;
+    overflow: hidden;
+}
+
+/*___nav bar___*/
+.nav-bar {
+    position: relative;
+    top: 0;
+    height: 20vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: rgba(215, 122, 97, 0.25);
+}
+
+.logo {
+    border-radius: 30px;
+    height: 15vh;
+    padding: 2px;
+    background-color: white;
+    object-fit: cover;
+    border-top: rgba(205, 133, 63, 1) 2px solid;
+    border-left: rgba(205, 133, 63, 1) 2px solid;
+    border-right: rgba(205, 133, 63, 0.5) 2px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 2px solid;
+}
+
+.nav-bar button {
+    font-family: inherit;
+    font-size: inherit;
+    height: 10vh;
+    width: 110px;
+    border-radius: 30px;
+}
+
+.profile-pic {
+    height: 15vh;
+    width: 15vh;
+    object-fit: cover;
+    border-top: rgba(205, 133, 63, 1) 2px solid;
+    border-left: rgba(205, 133, 63, 1) 2px solid;
+    border-right: rgba(205, 133, 63, 0.5) 2px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 2px solid;
+    border-radius: 30px;
+}
+
+/*___findpeople.js___*/
+
+.users-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-users {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.user-search {
+    padding: 10px;
+}
+
+.results-grid {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+/*___friends.js___*/
+
+.all-friends h2 {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.names {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    margin: 0px 10px 10px 0;
+    border-top: 1px rgb(215, 122, 97) solid;
+    border-left: 1px rgb(215, 122, 97) solid;
+    background: linear-gradient(340deg, #dabeca 30%, #f8ecf4);
+    font-weight: bold;
+}
+
+.fr-pic-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.fr-text {
+    margin: 2px 2px 0 0;
+}
+
+.fr-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.fr-button {
+    border: #d77a61 1px solid;
+    border-top: #d8b4a0 1px solid;
+    border-left: #d8b4a0 1px solid;
+    border-radius: 0;
+    background-color: #f8ecf4;
+    width: 80px;
+}
+
+.all-friends {
+    margin: 0 10px;
+}
+
+.accepted-friends {
+    margin: 10px 0;
+}
+
+/*___profile.js___*/
+
+.bio-pic {
+    max-width: 150px;
+    text-align: center;
+}
+.bio-pic img {
+    max-width: 150px;
+    max-height: 150px;
+    border-top: rgba(205, 133, 63, 1) 5px solid;
+    border-left: rgba(205, 133, 63, 1) 5px solid;
+    border-right: rgba(205, 133, 63, 0.5) 5px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+    background-color: #f8ecf4;
+    margin-bottom: 5px;
+    border-radius: 30px;
+}
+
+.bio-pic p {
+    font-style: italic;
+}
+
+.bio-pic p:hover {
+    color: rgba(215, 122, 97, 1);
+}
+
+.bio-name {
+    margin-bottom: 5px;
+}
+
+.bio {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.bio-left {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    justify-content: space-around;
+}
+
+.bio-right {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding: 10px;
+    justify-content: flex-end;
+    text-align: left;
+}
+
+/*___other-profile.js___*/
+.bio-display {
+    margin-bottom: 10px;
+}
+
+/*___bioeditor.js___*/
+
+.bioeddiv {
+    height: 100%;
+}
+.savedbio {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 80%;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+}
+
+.savedbio button {
+    max-width: 150px;
+    margin-top: 10px;
+}
+
+.writebio,
+.editbio {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+.writebio textarea {
+    font-size: inherit;
+    font-family: inherit;
+    height: fit-content;
+    min-height: 100px;
+    width: 80%;
+    padding: 10px;
+    border-top: rgba(205, 133, 63, 1) 2px solid;
+    border-left: rgba(205, 133, 63, 1) 2px solid;
+    border-right: rgba(205, 133, 63, 0.5) 2px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 2px solid;
+    border-radius: 30px;
+}
+
+.writebio button {
+    margin-top: 10px;
+    max-width: 150px;
+}
+.editbio textarea {
+    font-size: inherit;
+    font-family: inherit;
+    height: fit-content;
+    min-height: 90px;
+    width: 80%;
+    padding: 10px;
+    border-top: rgba(205, 133, 63, 1) 2px solid;
+    border-left: rgba(205, 133, 63, 1) 2px solid;
+    border-right: rgba(205, 133, 63, 0.5) 2px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 2px solid;
+    border-radius: 30px;
+}
+
+.editbio button {
+    margin-top: 10px;
+    max-width: 150px;
+}
+
+/*___uploader.js___*/
+
+.upload-pic-modal {
+    background-color: #f8ecf4;
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    margin: auto;
+    width: 50%;
+    height: 250px;
+    opacity: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    overflow: auto;
+    animation-name: modal;
+    animation-duration: 1s;
+}
+@keyframes modal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 95%;
+    }
+}
+
+.modalX {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    border: 1px solid #223843;
+    background-color: #dabeca;
+    padding: 0 3px;
+    font-weight: bold;
+}
+
+/*___chat.js___*/
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 79vh;
+}
+
+.chat-container textarea {
+    width: 80%;
+    height: 15%;
+    margin: 10px 0;
+    padding: 5px;
+    border-top: rgba(205, 133, 63, 1) 5px solid;
+    border-left: rgba(205, 133, 63, 1) 5px solid;
+    border-right: rgba(205, 133, 63, 0.5) 5px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+}
+.chat {
+    border-top: rgba(205, 133, 63, 1) 5px solid;
+    border-left: rgba(205, 133, 63, 1) 5px solid;
+    border-right: rgba(205, 133, 63, 0.5) 5px solid;
+    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+    background-color: #223843;
+    color: #eff1f3;
+    padding: 5px;
+    height: 75%;
+    width: 80%;
+    overflow-y: scroll;
+}
+
+.chat-pic {
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+}
+
+.chat p {
+    margin: 20px 5px;
+}
+
+.single-msg {
+    margin: 5px 5px;
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.sm-sender {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.sm-name {
+    color: #d8b4a0;
+    margin-left: 5px;
+}
+.sm-text {
+    text-align: left;
+}
+
+/*___deleteaccount.js___*/
+
+.del-h2,
+.highlight,
+.delete,
+.del-info li {
+    font-family: inherit;
+
+    margin: 15px 30px;
+}
+
+.highlight {
+    color: #a0452c;
+    font-style: italic;
+}
+
+.delete {
+    max-width: 150px;
+    font-weight: bolder;
+    margin-top: 10px;
+    border-top: darkred 3px solid;
+    border-left: darkred 3px solid;
+    border-right: red 3px solid;
+    border-bottom: red 3px solid;
+}
+
+.delete:hover,
+.delete:focus {
+    border-bottom: darkred 3px solid;
+    border-right: darkred 3px solid;
+    border-left: red 3px solid;
+    border-top: red 3px solid;
+    background-color: #f8ecf4;
+}
