@@ -26,24 +26,15 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-        //async compdidmount () {
-        //const {data} = await axios.get("/userinfo")
-        //this.setState(data)
-        //}
         axios
             .get("/userinfo")
             .then(response => {
-                //console.log("app.js user info response.data: ", response.data);
                 this.setState({
                     first: response.data.first,
                     last: response.data.last,
                     picUrl: response.data.picUrl,
                     bio: response.data.bio
                 });
-
-                // console.log("APP state", this.state);
-
-                //can deconstruct response to {data} and console log data direct
             })
             .catch(err => {
                 console.log("app.js error in get user info", err);

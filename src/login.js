@@ -11,8 +11,6 @@ export default class Login extends React.Component {
     }
 
     handleChange(e) {
-        // console.log("e.target.value: ", e.target.value);
-        // console.log("e.target.name: ", e.target.name);
         this.setState(
             {
                 [e.target.name]: e.target.value
@@ -27,8 +25,6 @@ export default class Login extends React.Component {
         axios
             .post("/login", this.state)
             .then(response => {
-                console.log("response.data: ", response.data);
-
                 if (response.data.success) {
                     location.replace("/");
                 } else {
@@ -64,12 +60,14 @@ export default class Login extends React.Component {
                 />
                 <button onClick={() => this.login()}>Login Now!</button>
                 <div>
+                    <br />
                     <h3>New to Qira's Folk?</h3>
                     <Link to="/">
                         <button>Click here to Register</button>
                     </Link>
                 </div>
                 <div>
+                    <br />
                     <h3>Forgotten password?</h3>
                     <Link to="/reset">
                         <button>Click here to reset your password</button>

@@ -11,8 +11,6 @@ export default class Registration extends React.Component {
     }
 
     handleChange(e) {
-        // console.log("e.target.value: ", e.target.value);
-        // console.log("e.target.name: ", e.target.name);
         this.setState(
             {
                 [e.target.name]: e.target.value
@@ -28,7 +26,6 @@ export default class Registration extends React.Component {
             .post("/register", this.state)
             .then(response => {
                 console.log("response.data: ", response.data);
-                //can deconstruct response to {data} and console log data direct
 
                 if (response.data.success) {
                     location.replace("/");
@@ -70,7 +67,7 @@ export default class Registration extends React.Component {
                     Click to Register!
                 </button>
                 <div>
-                    <p>...</p>
+                    <br />
                     <h3>Already a member?</h3>
                     <Link to="/login">
                         <button>Click here to Log in!</button>

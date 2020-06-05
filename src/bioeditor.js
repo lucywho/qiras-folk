@@ -8,10 +8,8 @@ export default class BioEditor extends React.Component {
             textAreaVisible: false,
             draftBio: ""
         };
-        //console.log("BIOEDITOR state", this.state);
     }
 
-    //pick up text input
     handleChange(e) {
         this.setState(
             {
@@ -29,13 +27,9 @@ export default class BioEditor extends React.Component {
     }
 
     saveBio() {
-        //console.log("about to save bio: ", this.state);
-
         axios
             .post("/saveUserBio", this.state)
             .then(response => {
-                console.log("saveUserBio response.data:", response.data);
-
                 this.setState({
                     draftBio: response.data.bio
                 });
@@ -90,6 +84,7 @@ export default class BioEditor extends React.Component {
                         onChange={e => this.handleChange(e)}
                     >
                         <textarea
+                            id="biotext"
                             name="bio"
                             type="text"
                             defaultValue={this.props.bio}

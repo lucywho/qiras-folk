@@ -9,16 +9,12 @@ export default function FindPeople() {
 
     const [matchUsers, setMatchUsers] = useState([]);
 
-    //console.log("searchusers", searchusers);
-
     useEffect(() => {
-        //console.log("use effect running in FindPeople");
         let abort;
 
         axios
             .get(`/recentusers`)
             .then(response => {
-                //console.log("get users response.data:", response.data);
                 if (!abort) {
                     setRecentUsers(response.data);
                 }
@@ -33,8 +29,6 @@ export default function FindPeople() {
     }, []);
 
     useEffect(() => {
-        //console.log("second use effect running in FindPeople");
-        //console.log("searchusers", searchusers);
         let abort;
 
         if (searchusers.length > 0) {

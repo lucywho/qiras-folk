@@ -16,7 +16,7 @@ export default class ResetPassword extends React.Component {
             {
                 [e.target.name]: e.target.value
             },
-            () => console.log("this.state", this.state) //stores email in state
+            () => console.log("this.state", this.state)
         );
     }
 
@@ -25,8 +25,6 @@ export default class ResetPassword extends React.Component {
         axios
             .post("/password/reset/step1", this.state)
             .then(response => {
-                console.log("response.data: ", response.data);
-
                 if (response.data.success) {
                     this.setState({
                         step: 2
@@ -48,8 +46,6 @@ export default class ResetPassword extends React.Component {
         axios
             .post("/password/reset/step2", this.state)
             .then(response => {
-                console.log("response.data: ", response.data);
-
                 if (response.data.success) {
                     this.setState({
                         step: 3
@@ -74,10 +70,18 @@ export default class ResetPassword extends React.Component {
                         onChange={e => this.handleChange(e)}
                     >
                         <h3>Please enter your email address</h3>
+                        <br />
                         <p>
                             We will send an access code to this email address,
-                            <br></br>
+                            <br />
                             which you will need to reset your password
+                            <br />
+                            <br />
+                            <strong>
+                                Access codes are valid for 10 minutes
+                            </strong>
+                            <br />
+                            <br />
                         </p>
                         {this.state.error && (
                             <div>
@@ -95,7 +99,11 @@ export default class ResetPassword extends React.Component {
                         <button onClick={() => this.reqcode()}>
                             Submit email
                         </button>
-                        <h3>or</h3>
+
+                        <h3>
+                            <br />
+                            Don't have an account yet?
+                        </h3>
                         <Link to="/">
                             <button>
                                 Click here to register a new account

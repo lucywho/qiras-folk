@@ -12,8 +12,6 @@ export default function Friends() {
             state.allFriends.filter(allfriends => allfriends.accepted == true)
     );
 
-    console.log("friends", friends);
-
     const pending = useSelector(
         state =>
             state.allFriends &&
@@ -142,4 +140,4 @@ export default function Friends() {
             </div>
         </div>
     );
-} //end
+}

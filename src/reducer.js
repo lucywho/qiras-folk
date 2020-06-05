@@ -1,5 +1,3 @@
-import { chatMessage } from "./actions";
-
 export default function reducer(state = {}, action) {
     if (action.type == "PENDING_FRIENDS") {
         state = {
@@ -43,8 +41,6 @@ export default function reducer(state = {}, action) {
             ...state,
             chatMessages: [...state.chatMessages, action.newChat]
         };
-        console.log("NCM state", state);
-        console.log("NCM chat messages", state.chatMessages);
     }
 
     return state; //keep at end

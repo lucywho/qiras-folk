@@ -8,15 +8,11 @@ class OtherProfile extends Component {
         this.state = {};
     }
     componentDidMount() {
-        console.log("this.props.match", this.props.match.params.id);
         const otherUserId = this.props.match.params.id;
-        console.log("otherUserId", otherUserId);
 
         axios
             .get("/api/user/" + otherUserId)
             .then(response => {
-                console.log("api/user/:id response to o-p", response.data);
-
                 this.setState({
                     sameUser: response.data.sameUser,
                     first: response.data.first,

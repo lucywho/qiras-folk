@@ -14,8 +14,6 @@ export default class Uploader extends React.Component {
     }
 
     handleChange(e) {
-        console.log("e.target.file", e.target.files[0]);
-
         this.setState({
             file: e.target.files[0]
         });
@@ -31,7 +29,6 @@ export default class Uploader extends React.Component {
         axios
             .post("/uploadProfilePic", formData)
             .then(response => {
-                console.log("response in upload pic: ", response);
                 this.props.updateProfilePic(response.data.picUrl);
                 this.props.toggleModal();
             })
@@ -41,7 +38,6 @@ export default class Uploader extends React.Component {
     }
 
     closeModal() {
-        console.log("modal closing");
         this.props.toggleModal();
     }
 
