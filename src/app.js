@@ -17,6 +17,7 @@ export default class App extends React.Component {
         super();
         this.state = {
             uploaderVisible: false,
+
             bio: ""
         };
 
@@ -69,22 +70,17 @@ export default class App extends React.Component {
                     <div className="nav-bar">
                         <Logo />
 
+                        <Link to="/">
+                            <button>Your profile</button>
+                        </Link>
                         <Link to="/friends">
-                            <button>Friends</button>
+                            <button>Your friends</button>
                         </Link>
                         <Link to="/findpeople">
-                            <button>Search</button>
+                            <button>Find new friends</button>
                         </Link>
                         <Link to="/chat">
                             <button>Chat</button>
-                        </Link>
-
-                        <Link to="/">
-                            <button>Your Profile</button>
-                        </Link>
-
-                        <Link to="/deleteaccount">
-                            <button>Delete Account</button>
                         </Link>
 
                         <button onClick={() => location.replace("/logout")}>
@@ -109,6 +105,7 @@ export default class App extends React.Component {
                                     last={this.state.last}
                                     picUrl={this.state.picUrl}
                                     toggleModal={this.toggleModal}
+                                    toggleReset={this.toggleReset}
                                     updateUserBio={this.updateUserBio}
                                     bio={this.state.bio}
                                 />

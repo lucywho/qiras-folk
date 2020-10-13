@@ -27,8 +27,12 @@ export default function DeleteAccount() {
                     If you decide to return, you will have to re-register as a
                     new user
                 </li>
+                <br></br>
                 <li>
-                    Still want to go? Please click "Delete Account: Confirm"
+                    <h4>
+                        Sure you want to go? Please click "Delete Account:
+                        Confirm"
+                    </h4>
                 </li>
             </ul>
 

@@ -98,7 +98,7 @@ if (process.env.NODE_ENV != "production") {
 
 app.get("/welcome", (req, res) => {
     console.log("/welcome route hit");
-    if (req.session.userId) {
+    if (req.session.userId && !resetPass) {
         res.redirect("/");
     } else {
         res.sendFile(__dirname + "/index.html");
@@ -107,7 +107,7 @@ app.get("/welcome", (req, res) => {
 
 app.post("/register", (req, res) => {
     console.log("post register route hit");
-    //console.log("req.body", req.body);
+
     const first_name = req.body.first;
     const last_name = req.body.last;
     const email = req.body.email;
@@ -121,10 +121,8 @@ app.post("/register", (req, res) => {
     }
 
     hash(password).then(hashpass => {
-        //console.log("hashpass worked", hashpass);
         db.addUser(first_name, last_name, email, hashpass)
             .then(results => {
-                //console.log("registration post worked");
                 user_id = results.rows[0].id;
                 req.session.userId = user_id;
                 console.log("req.session.userId", req.session.userId);
@@ -132,7 +130,7 @@ app.post("/register", (req, res) => {
             })
             .catch(err => {
                 console.log("err in addUser: ", err);
-                //QUERY: how to catch specific error (i.e email already used) and return relevant error message?
+
                 res.json({ success: false });
             });
         return;
@@ -141,7 +139,6 @@ app.post("/register", (req, res) => {
 
 app.post("/login", (req, res) => {
     console.log("post login route hit");
-    //console.log("req.body", req.body);
     const logemail = req.body.email;
     const logpassword = req.body.password;
     let user_id;
@@ -158,7 +155,6 @@ app.post("/login", (req, res) => {
 
         compare(logpassword, hashpass)
             .then(matchValue => {
-                //console.log("matchValue login: ", matchValue);
                 if (!matchValue) {
                     console.log("err in matchValue: ", err);
                     res.json({ success: false });
@@ -166,7 +162,6 @@ app.post("/login", (req, res) => {
                 } else {
                     user_id = results.rows[0].id;
                     req.session.userId = user_id;
-                    //console.log("login req.session.userId", req.session.userId);
                     res.json({ success: true });
                 }
             }) //end of matchvalue
@@ -180,7 +175,6 @@ app.post("/login", (req, res) => {
 
 app.post("/password/reset/step1", (req, res) => {
     console.log("post reset 1 route hit");
-    //console.log("req.body", req.body);
     const logemail = req.body.email;
     let email;
     let user_id;
@@ -232,7 +226,6 @@ app.post("/password/reset/step1", (req, res) => {
 
 app.post("/password/reset/step2", (req, res) => {
     console.log("post reset 2 route hit");
-    //console.log("req.body", req.body);
 
     const incode = req.body.code;
     const password = req.body.password;
@@ -241,21 +234,15 @@ app.post("/password/reset/step2", (req, res) => {
 
     db.checkCode()
         .then(results => {
-            //console.log("results checkcode", results.rows[0].code);
             code = results.rows[0].code;
             if (code !== incode) {
                 console.log("codes don't match");
                 res.json({ success: false });
                 return;
             } else {
-                //console.log("code matches");
-
                 hash(password).then(hashpass => {
-                    //console.log("hashpass worked", hashpass);
-
                     db.updateUser(hashpass, email)
                         .then(results => {
-                            //console.log("password updated");
                             res.json({ success: true });
                         })
                         .catch(err => {
@@ -281,7 +268,6 @@ app.get("/userinfo", (req, res) => {
 
     db.getUserInfo(user_id)
         .then(results => {
-            //console.log("getuserinfo results", results.rows[0]);
             first = results.rows[0].first_name;
             last = results.rows[0].last_name;
             picUrl = results.rows[0].pic_url;
@@ -305,7 +291,6 @@ app.post(
     uploader.single("file"),
     s3.upload,
     (req, res) => {
-        //console.log("upload profpic req file", req.file);
         let user_id = req.session.userId;
 
         let pic_url = config.s3Url + req.file.filename;
@@ -337,7 +322,7 @@ app.post("/saveUserBio", async (req, res) => {
 
     try {
         const results = await db.saveUserBio(user_id, bio);
-        //console.log("saveUserBio results", results.rows[0]);
+
         bio = results.rows[0].bio;
         res.json({ bio: bio });
     } catch (err) {
@@ -349,7 +334,6 @@ app.get("/api/user/:id", async (req, res) => {
     console.log("get /api/user route hit");
     let user_id = req.session.userId;
     let otherUserId = req.params.id;
-    //console.log("user_id and otherUserId", user_id, otherUserId);
 
     if (user_id == otherUserId) {
         console.log("same user caught");
@@ -357,7 +341,7 @@ app.get("/api/user/:id", async (req, res) => {
     } else {
         try {
             const results = await db.getOtherUser(otherUserId);
-            //console.log("getOtherUser results", results.rows[0]);
+
             if (!results.rows[0]) {
                 console.log("user doesn't exist");
                 res.json({ noUser: true });
@@ -383,8 +367,7 @@ app.get("/recentusers", async (req, res) => {
     console.log("/recentusers route hit");
     try {
         const results = await db.getRecentUsers();
-        //console.log("getRecentUsers results", results.rows);
-        //returns array of objects
+
         const names = results.rows.filter(
             item => item.id !== req.session.userId
         );
@@ -397,11 +380,11 @@ app.get("/recentusers", async (req, res) => {
 
 app.get("/searchusers/:searchusers", async (req, res) => {
     console.log("/searchusers route hit");
-    //console.log("req.params", req.params.searchusers);
+
     let search = req.params.searchusers;
     try {
         const results = await db.getSearchUsers(search);
-        //console.log("getSearchUsers results", results.rows);
+
         search = results.rows.filter(item => item.id !== req.session.userId);
 
         res.json(search);
@@ -484,7 +467,7 @@ app.get("/pendingfriends", async (req, res) => {
     let userId = req.session.userId;
     try {
         const results = await db.getFriends(userId);
-        //console.log("results.rows", results.rows);
+
         res.json({ allfriends: results.rows });
     } catch (err) {
         console.log("error in pendingfriends", err);
@@ -500,7 +483,6 @@ app.post("/deleteaccount", async (req, res) => {
         const getPic = await db.getAllPics(userId);
         let delPics = getPic.rows;
 
-        //console.log("get all pics results", delPics);
         let picArray = [];
 
         let objects = delPics.map(item => {
@@ -553,7 +535,7 @@ app.get("*", function(req, res) {
 });
 
 //_________SERVER LISTENING_______
-server.listen(8080, function() {
+server.listen(process.env.PORT || 8080, function() {
     console.log("social network server running");
 });
 
@@ -570,7 +552,6 @@ io.on("connection", function(socket) {
 
     db.getLastTen()
         .then(data => {
-            //console.log("index.js getLastTen data.rows", data.rows);
             let lastTenChats = data.rows.reverse();
             io.sockets.emit("lastTenChats", lastTenChats);
         })
@@ -579,31 +560,15 @@ io.on("connection", function(socket) {
         });
 
     socket.on("newChatMessage", newMsg => {
-        console.log("this message is coming from chat.js component", newMsg);
-        console.log("userId of sender", userId);
-
         db.addChat(userId, newMsg)
-            // .then(response => {
-            //     console.log("addChat response", response.rows);
-            // })
+
             .then(() => db.getLatest())
             .then(results => {
-                console.log("getlatest after add info", results.rows[0]);
                 let newChat = results.rows[0];
                 io.sockets.emit("newChatMessage", newChat);
             })
             .catch(err => {
                 console.log("error in addChat", err);
             });
-
-        //also need db query to extract info about user (first, last, pic_url)
-
-        //then emit message object
-        //io.sockets.emit("addChatMsg", newMsg);
-        //needs all the user info too
     });
 });
-
-// app.listen(8080, function() {
-//     console.log("social network server running");
-// });

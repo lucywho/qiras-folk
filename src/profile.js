@@ -1,5 +1,6 @@
 import React from "react";
 import BioEditor from "./bioeditor";
+import { Link } from "react-router-dom";
 
 export default function Profile({
     first,
@@ -28,6 +29,15 @@ export default function Profile({
                 </div>
                 <div className="bio-right">
                     <BioEditor bio={bio} updateUserBio={updateUserBio} />
+                    <div>
+                        <Link to="/newpass">
+                            <button>Click here to reset your password</button>
+                        </Link>
+                    </div>
+
+                    <Link to="/deleteaccount">
+                        <button>Delete your account</button>
+                    </Link>
                 </div>
             </div>
         </div>
