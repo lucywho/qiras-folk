@@ -25,6 +25,10 @@ module.exports.getPassword = logemail => {
     return db.query(`SELECT * FROM users where email = $1`, [logemail]);
 };
 
+module.exports.checkPassword = user_id => {
+    return db.query(`SELECT * FROM users where id = $1`, [user_id]);
+};
+
 module.exports.saveCode = (email, code) => {
     return db.query(`INSERT INTO reset_codes (email, code) VALUES ($1, $2)`, [
         email,

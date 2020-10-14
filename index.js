@@ -474,6 +474,31 @@ app.get("/pendingfriends", async (req, res) => {
     }
 });
 
+app.post("/password/change/step1", async (req, res) => {
+    console.log("reset password step 1 route hit");
+    const current = req.body.currpass;
+    let user_id = req.session.userId;
+    let hashpass;
+    let currhash;
+
+    try {
+        const results = await db.checkPassword(user_id);
+        currhash = await hash(current);
+        hashpass = results.rows[0].password;
+    } catch (err) {
+        console.log("error in change password 1", err);
+    }
+
+    console.log("line 494", currhash, hashpass);
+
+    if (currhash === hashpass) {
+        res.json({ success: true });
+    } else {
+        console.log("error in checkPassword");
+        res.json({ success: false });
+    }
+});
+
 app.post("/deleteaccount", async (req, res) => {
     console.log("/deleteaccount route hit");
     let userId = req.session.userId;

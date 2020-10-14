@@ -4,28 +4,35 @@ import axios from "./axios";
 export default function NewPass() {
     const [step, setStep] = useState(1);
     const [error, setError] = useState(false);
-    const [email, setEmail] = useState("");
 
-    function checkpass() {
-        //     axios
-        //         .post("/password/reset/step1", step)
-        //         .then(response => {
-        //             if (response.data.success) {
-        //                 setStep(2);
-        //             } else {
-        //                 setError(true);
-        //                 console.log("reset error at step 1");
-        //             }
-        //         })
-        //         .catch(err => {
-        //             console.log("error in request code", err);
-        //         });
+    function checkPass() {
+        let currpass = document.getElementById("currpass").value;
+        console.log(currpass);
+
+        const data = {
+            currpass: currpass
+        };
+
+        axios
+            .post("/password/change/step1", data)
+            .then(response => {
+                if (response.data.success) {
+                    setStep(2);
+                } else {
+                    setError(true);
+                    console.log("reset error at step 1");
+                }
+            })
+            .catch(err => {
+                console.log("error in request code", err);
+            });
     }
 
-    function reset() {
+    function changePass() {
+        console.log("changePass fires");
         //     console.log("about to reset password,", step);
         //     axios
-        //         .post("/password/reset/step2", step)
+        //         .post("/password/change/step2", step)
         //         .then(response => {
         //             if (response.data.success) {
         //                 setStep(3);
@@ -55,13 +62,14 @@ export default function NewPass() {
 
                     <input
                         name="password"
+                        id="currpass"
                         type="password"
                         placeholder="current password"
                     />
                     <br></br>
                     <br></br>
 
-                    <button onClick={() => checkpass()}>Submit</button>
+                    <button onClick={() => checkPass()}>Submit</button>
                 </div>
             )}
             {step == 2 && (
@@ -74,12 +82,14 @@ export default function NewPass() {
                             click Submit.
                         </div>
                     )}
+
                     <input
                         name="newpassword"
+                        id="newpass"
                         type="password"
                         placeholder="new password"
                     />
-                    <button onClick={reset()}>Change password</button>
+                    <button onClick={changePass()}>Change password</button>
                 </div>
             )}
 
