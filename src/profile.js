@@ -29,11 +29,10 @@ export default function Profile({
                 </div>
                 <div className="bio-right">
                     <BioEditor bio={bio} updateUserBio={updateUserBio} />
-                    <div>
-                        <Link to="/newpass">
-                            <button>Click here to reset your password</button>
-                        </Link>
-                    </div>
+
+                    <Link to="/newpass">
+                        <button>Click here to reset your password</button>
+                    </Link>
 
                     <Link to="/deleteaccount">
                         <button>Delete your account</button>

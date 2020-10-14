@@ -11,6 +11,7 @@ import FindPeople from "./findpeople";
 import Friends from "./friends";
 import Chat from "./chat";
 import DeleteAccount from "./deleteaccount";
+import NewPass from "./newpass";
 
 export default class App extends React.Component {
     constructor() {
@@ -130,6 +131,7 @@ export default class App extends React.Component {
 
                         <Route path="/friends" render={() => <Friends />} />
                         <Route path="/chat" render={() => <Chat />} />
+                        <Route path="/newpass" render={() => <NewPass />} />
                         <Route
                             path="/deleteaccount"
                             render={() => <DeleteAccount />}
