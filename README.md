@@ -14,4 +14,5 @@ Uses a postgreSQL database, and AWS for password recovery emails and image stora
 
 Credits:
 logo created at LogoMakr.com and used under (cc) licence
+
 colour scheme inspired by Alvin Chang: https://www.vox.com/culture/2015/12/17/10322514/star-wars-colors and finalised using colormind.io
