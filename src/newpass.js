@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import axios from "./axios";
+import { Link } from "react-router-dom";
 
 export default function NewPass() {
     const [step, setStep] = useState(1);
     const [error, setError] = useState(false);
 
     function checkPass() {
+        console.log("Check pass fires");
         let currpass = document.getElementById("currpass").value;
-        console.log(currpass);
 
-        const data = {
-            currpass: currpass
+        let data = {
+            current: currpass
         };
 
         axios
@@ -30,19 +31,26 @@ export default function NewPass() {
 
     function changePass() {
         console.log("changePass fires");
-        //     console.log("about to reset password,", step);
-        //     axios
-        //         .post("/password/change/step2", step)
-        //         .then(response => {
-        //             if (response.data.success) {
-        //                 setStep(3);
-        //             } else {
-        //                 setError(true);
-        //             }
-        //         })
-        //         .catch(err => {
-        //             console.log("error in request code", error);
-        //         });
+
+        let newpass = document.getElementById("newpass").value;
+        console.log("newpass", newpass);
+
+        let data = {
+            newpass: newpass
+        };
+
+        axios
+            .post("/password/change/step2", data)
+            .then(response => {
+                if (response.data.success) {
+                    setStep(3);
+                } else {
+                    setError(true);
+                }
+            })
+            .catch(err => {
+                console.log("error in step 2", error);
+            });
     }
 
     return (
@@ -79,7 +87,7 @@ export default function NewPass() {
                     {error && (
                         <div>
                             Please enter a new password in the box below and
-                            click Submit.
+                            click the "change password" button.
                         </div>
                     )}
 
@@ -89,14 +97,24 @@ export default function NewPass() {
                         type="password"
                         placeholder="new password"
                     />
-                    <button onClick={changePass()}>Change password</button>
+                    <br></br>
+                    <button onClick={() => changePass()}>
+                        Change password
+                    </button>
                 </div>
             )}
 
             {step == 3 && (
                 <div className="new3">
-                    Congratulations! Your password has been successfully
-                    changed.
+                    <h3>
+                        Congratulations! Your password has been successfully
+                        changed.
+                    </h3>
+
+                    <br></br>
+                    <Link to="/">
+                        <button>Return to your profile page</button>
+                    </Link>
                 </div>
             )}
         </div>

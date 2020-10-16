@@ -29,6 +29,15 @@ module.exports.checkPassword = user_id => {
     return db.query(`SELECT * FROM users where id = $1`, [user_id]);
 };
 
+module.exports.changePassword = (hashpass, user_id) => {
+    return db.query(
+        `UPDATE users 
+        SET password = $1 
+        WHERE id = $2`,
+        [hashpass, user_id]
+    );
+};
+
 module.exports.saveCode = (email, code) => {
     return db.query(`INSERT INTO reset_codes (email, code) VALUES ($1, $2)`, [
         email,

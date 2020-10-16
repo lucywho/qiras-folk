@@ -35,7 +35,6 @@ export default function FindPeople() {
             axios
                 .get(`/searchusers/${searchusers}`)
                 .then(response => {
-                    //console.log("search users response.data:", response.data);
                     if (!abort) {
                         setMatchUsers(response.data);
                     }

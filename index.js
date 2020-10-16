@@ -474,30 +474,63 @@ app.get("/pendingfriends", async (req, res) => {
     }
 });
 
-app.post("/password/change/step1", async (req, res) => {
-    console.log("reset password step 1 route hit");
-    const current = req.body.currpass;
+app.post("/password/change/step1", (req, res) => {
+    console.log("change password step 1 route hit");
+    const current = req.body.current;
     let user_id = req.session.userId;
-    let hashpass;
-    let currhash;
 
-    try {
-        const results = await db.checkPassword(user_id);
-        currhash = await hash(current);
-        hashpass = results.rows[0].password;
-    } catch (err) {
-        console.log("error in change password 1", err);
-    }
-
-    console.log("line 494", currhash, hashpass);
-
-    if (currhash === hashpass) {
-        res.json({ success: true });
-    } else {
-        console.log("error in checkPassword");
+    if (!current) {
+        console.log("change password: missing input");
         res.json({ success: false });
+        return;
     }
-});
+
+    db.checkPassword(user_id).then(results => {
+        let hashpass = results.rows[0].password;
+
+        compare(current, hashpass)
+            .then(matchValue => {
+                if (!matchValue) {
+                    console.log("err in check pass matchValue");
+                    res.json({ success: false });
+                    return;
+                } else {
+                    user_id = results.rows[0].id;
+                    req.session.userId = user_id;
+                    res.json({ success: true });
+                }
+            })
+            .catch(err => {
+                console.log("err in check pass compare: ", err);
+                res.json({ success: false });
+            });
+        return;
+    });
+}); //end of change password step one
+
+app.post("/password/change/step2", (req, res) => {
+    console.log("change password step 2 hit");
+    const newpass = req.body.newpass;
+    let user_id = req.session.userId;
+
+    if (!newpass) {
+        console.log("change password: missing input");
+        res.json({ success: false });
+        return;
+    }
+
+    hash(newpass).then(hashpass => {
+        db.changePassword(hashpass, user_id)
+            .then(results => {
+                res.json({ success: true });
+                console.log("hashpass", hashpass);
+            })
+            .catch(err => {
+                console.log("err in changepass 2: ", err);
+                res.json({ success: false });
+            });
+    });
+}); // end of change password step two
 
 app.post("/deleteaccount", async (req, res) => {
     console.log("/deleteaccount route hit");
