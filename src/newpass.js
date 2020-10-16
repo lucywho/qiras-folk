@@ -54,7 +54,7 @@ export default function NewPass() {
     }
 
     return (
-        <div className="new">
+        <div className="loggingin new">
             {step == 1 && (
                 <div className="new1">
                     <h3>Please enter your current password</h3>

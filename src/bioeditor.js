@@ -73,7 +73,10 @@ export default class BioEditor extends React.Component {
                     <div className="savedbio">
                         <div className="bio-display">{this.props.bio}</div>
 
-                        <button onClick={() => this.toggleText()}>
+                        <button
+                            className="save"
+                            onClick={() => this.toggleText()}
+                        >
                             Edit your profile
                         </button>
                     </div>

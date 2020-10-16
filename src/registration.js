@@ -42,7 +42,7 @@ export default class Registration extends React.Component {
 
     render() {
         return (
-            <div className="registration" onChange={e => this.handleChange(e)}>
+            <div className="loggingin" onChange={e => this.handleChange(e)}>
                 <h3>Register Now!</h3>
 
                 {this.state.error && (

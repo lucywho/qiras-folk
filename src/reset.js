@@ -63,7 +63,7 @@ export default class ResetPassword extends React.Component {
 
     render() {
         return (
-            <div className="reset">
+            <div className="loggingin">
                 {this.state.step == 1 && (
                     <div
                         className="reset1"
