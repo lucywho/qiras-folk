@@ -129,7 +129,7 @@ h2 {
 
 #splashimg {
     height: 20vh;
-    padding: 10px;
+    /* padding: 10px; */
     background-color: white;
     border-top: rgba(205, 133, 63, 1) 5px solid;
     border-left: rgba(205, 133, 63, 1) 5px solid;

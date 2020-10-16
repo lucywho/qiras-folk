@@ -8,7 +8,7 @@ export default function Welcome() {
     return (
         <div className="welcomediv">
             <div className="welcomebanner">
-                <img id="splashimg" src="/qirafig.jpg" />
+                <img id="splashimg" src="/QFlogo.png" />
                 <div className="welcometext">
                     <h1>Welcome to</h1>
                     <h1 className="qira">
