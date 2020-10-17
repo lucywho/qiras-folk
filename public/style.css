@@ -5,6 +5,7 @@
 
 body {
     height: 100vh;
+    width: 100%;
     background-color: #f8f7f7;
     color: #120f12;
     font-family: "Roboto", sans-serif;
@@ -17,19 +18,11 @@ input:focus::placeholder {
 
 #startelem {
     height: 100vh;
+    width: 100%;
     overflow: auto;
 }
 
 /*___general___*/
-.container {
-    width: 100%;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: left;
-    margin-top: 20px;
-    padding: 10px;
-}
 
 input {
     opacity: 100%;
@@ -187,6 +180,7 @@ h2 {
 .app-contents {
     position: relative;
     overflow: hidden;
+    height: 80vh;
 }
 
 /*___nav bar___*/
@@ -307,22 +301,72 @@ h2 {
 
 /*___profile.js___*/
 
+.profile-container {
+    width: 100%;
+    height: 100%;
+}
+
+.bio {
+    display: flex;
+    width: 99%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+    border: orangered 2px solid;
+}
+
+.bio-left,
+.bio-right {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 96%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bio-left {
+    background-color: #ac866b;
+    border-radius: 10px;
+    width: 25%;
+}
+
+.bio-right {
+    border: red 2px solid;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+
+    /* justify-content: flex-end;
+    align-items: center;
+    text-align: left; */
+}
+
+.bio-name {
+    color: #120f12;
+    font-family: "Audiowide", cursive;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
 .bio-pic {
-    max-width: 150px;
     text-align: center;
+    height: 75%;
 }
 
 .bio-pic img {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border: #658fbd 5px solid;
+    background-color: #f8f7f7;
     margin-bottom: 5px;
-    border-radius: 30px;
+    border-radius: 10px;
 }
 
 .bio-pic p {
-    color: #ac866b;
+    color: #f8f7f7;
     font-style: italic;
 }
 
@@ -331,66 +375,49 @@ h2 {
     font-weight: bold;
 }
 
-.bio-name {
-    color: #ac866b;
-    margin-bottom: 5px;
-}
-
-.bio {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.bio-left {
+.profbuttons {
+    height: 25%;
     display: flex;
     flex-direction: column;
-    width: 25%;
     justify-content: space-around;
-}
-
-.bio-right {
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    padding: 10px;
-    justify-content: flex-end;
-    text-align: left;
+    align-items: center;
 }
 
 /*___other-profile.js___*/
-.bio-display {
+/* .bio-display {
     margin-bottom: 10px;
-}
+    min-width: 90%;
+    min-height: 800px;
+} */
 
 /*___bioeditor.js___*/
 
 .bioeddiv {
     height: 100%;
+    width: 99%;
+    margin-left: 10px;
 }
-.bio-display {
+
+.bio-display,
+.writebio,
+.editbio {
+    width: 95%;
+    height: fit-content;
+    min-height: 200px;
     background-color: #ac866b;
     border-radius: 10px;
-    font-size: 1.25rem;
     display: flex;
     flex-direction: column;
-    min-height: 100%;
-    width: 80%;
     margin-bottom: 10px;
-    /* justify-content: flex-end; */
+    justify-content: flex-start;
     padding: 20px;
 }
+
 .savedbio {
     border-radius: 10px;
     font-size: 1.25rem;
 }
 
-.writebio,
-.editbio {
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-}
 textarea {
     background-color: #120f12;
     border: #658fbd 2px solid;

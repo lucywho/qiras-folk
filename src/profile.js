@@ -13,7 +13,7 @@ export default function Profile({
     picUrl = picUrl || "/default.jpg";
 
     return (
-        <div className="container">
+        <div className="profile-container">
             <div className="bio">
                 <div className="bio-left">
                     <div className="bio-name">
@@ -26,17 +26,19 @@ export default function Profile({
 
                         <p>click to change</p>
                     </div>
+                    <br></br>
+                    <div className="profbuttons">
+                        <Link to="/newpass">
+                            <button>reset your password</button>
+                        </Link>
+
+                        <Link to="/deleteaccount">
+                            <button>delete your account</button>
+                        </Link>
+                    </div>
                 </div>
                 <div className="bio-right">
                     <BioEditor bio={bio} updateUserBio={updateUserBio} />
-
-                    <Link to="/newpass">
-                        <button>Click here to reset your password</button>
-                    </Link>
-
-                    <Link to="/deleteaccount">
-                        <button>Delete your account</button>
-                    </Link>
                 </div>
             </div>
         </div>
