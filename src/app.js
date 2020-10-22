@@ -44,21 +44,18 @@ export default class App extends React.Component {
     }
 
     toggleModal() {
-        console.log("toggle modal running");
         this.setState({
             uploaderVisible: !this.state.uploaderVisible
         });
     }
 
     updateProfilePic(arg) {
-        console.log("argument", arg);
         this.setState({
             picUrl: arg
         });
     }
 
     updateUserBio(arg) {
-        console.log("user bio argument", arg);
         this.setState({
             bio: arg
         });

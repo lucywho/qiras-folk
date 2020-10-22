@@ -9,10 +9,6 @@ export default class Uploader extends React.Component {
         };
     }
 
-    componentDidMount() {
-        console.log("uploader mounted");
-    }
-
     handleChange(e) {
         this.setState({
             file: e.target.files[0]
@@ -56,7 +52,7 @@ export default class Uploader extends React.Component {
                         accept="jpg/*, png/*"
                     />
                     <button onClick={e => this.uploadPic(e)}>
-                        Click here to upload a picture
+                        change profile picture
                     </button>
                 </div>
             </div>

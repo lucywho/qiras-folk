@@ -77,7 +77,7 @@ export default class BioEditor extends React.Component {
                             className="save"
                             onClick={() => this.toggleText()}
                         >
-                            Edit your profile
+                            edit your profile
                         </button>
                     </div>
                 )}

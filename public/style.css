@@ -313,7 +313,6 @@ h2 {
     flex-direction: row;
     justify-content: space-between;
     padding: 5px;
-    border: orangered 2px solid;
 }
 
 .bio-left,
@@ -333,14 +332,9 @@ h2 {
 }
 
 .bio-right {
-    border: red 2px solid;
     display: flex;
     flex-direction: column;
     width: 75%;
-
-    /* justify-content: flex-end;
-    align-items: center;
-    text-align: left; */
 }
 
 .bio-name {
@@ -371,7 +365,7 @@ h2 {
 }
 
 .bio-pic p:hover {
-    color: #658fbd;
+    color: #120f12;
     font-weight: bold;
 }
 
@@ -413,7 +407,7 @@ h2 {
     padding: 20px;
 }
 
-.savedbio {
+.bio-display {
     border-radius: 10px;
     font-size: 1.25rem;
 }
@@ -426,16 +420,12 @@ textarea {
     font-size: 1.25rem;
     font-family: inherit;
     height: fit-content;
-    min-height: 100px;
+    min-height: 200px;
     padding: 20px;
-    width: 80%;
+    width: 95%;
 }
 
-.writebio button {
-    margin-top: 10px;
-    max-width: 150px;
-}
-
+.writebio button,
 .editbio button {
     margin-top: 10px;
     max-width: 150px;
@@ -444,75 +434,86 @@ textarea {
 /*___uploader.js___*/
 
 .upload-pic-modal {
-    background-color: #f8ecf4;
+    align-items: center;
+    animation-duration: 2s;
+    animation-name: modal;
+    background-color: #a39ec8;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    justify-content: space-around;
+    margin: auto;
+    overflow: auto;
     padding: 10px;
     position: absolute;
+
     top: 10px;
     bottom: 10px;
     left: 10px;
     right: 10px;
-    margin: auto;
+
     width: 50%;
-    height: 250px;
-    opacity: 95%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    overflow: auto;
-    animation-name: modal;
-    animation-duration: 1s;
 }
+
+.upload-pic-modal h2 {
+    font-family: "Audiowide", cursive;
+}
+
 @keyframes modal {
     from {
         opacity: 0;
     }
     to {
-        opacity: 95%;
+        opacity: 100%;
     }
 }
 
 .modalX {
+    background-color: #a39ec8;
+    border: 2px solid #658fbd;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px 10px;
     position: absolute;
     top: 10px;
     right: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    border: 1px solid #223843;
-    background-color: #dabeca;
-    padding: 0 3px;
-    font-weight: bold;
+}
+
+.modalX:hover {
+    background-color: #658fbd;
 }
 
 /*___chat.js___*/
 .chat-container {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 79vh;
+    justify-content: center;
 }
 
 .chat {
-    border: 5px solid grey;
-    background-color: #223843;
-    color: #eff1f3;
-    padding: 5px;
-
+    border: 5px solid #658fbd;
+    background-color: #120f12;
+    border-radius: 10px;
+    color: #ac866b;
     height: 80%;
-    width: 82%;
     overflow-y: scroll;
     overflow-y: hidden;
     overflow-wrap: break-word;
+    padding: 5px;
+    width: 95%;
 }
 
 .chat-container textarea {
+    border: #658fbd 5px solid;
+    background-color: #ac866b;
+    color: #120f12;
     margin: 10px 0 0 0;
     min-height: fit-content;
-    border-top: rgba(205, 133, 63, 1) 5px solid;
-    border-left: rgba(205, 133, 63, 1) 5px solid;
-    border-right: rgba(205, 133, 63, 0.5) 5px solid;
-    border-bottom: rgba(205, 133, 63, 0.5) 5px solid;
+    width: 75%;
 }
 
 .chat-pic {
@@ -526,21 +527,20 @@ textarea {
 }
 
 .single-msg {
-    margin: 5px 5px;
-
     display: flex;
     flex-direction: column;
+    margin: 5px 5px;
     margin-bottom: 10px;
 }
 .sm-sender {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    align-items: center;
     margin-bottom: 2px;
 }
 
 .sm-name {
-    color: #d8b4a0;
+    color: #658fbd;
     margin-left: 5px;
 }
 .sm-text {
@@ -554,7 +554,6 @@ textarea {
 .delete,
 .del-info li {
     font-family: inherit;
-
     margin: 15px 30px;
 }
 
@@ -567,17 +566,11 @@ textarea {
     max-width: 150px;
     font-weight: bolder;
     margin-top: 10px;
-    border-top: darkred 3px solid;
-    border-left: darkred 3px solid;
-    border-right: red 3px solid;
-    border-bottom: red 3px solid;
+    border: #ac866b 3px solid;
 }
 
 .delete:hover,
 .delete:focus {
-    border-bottom: darkred 3px solid;
-    border-right: darkred 3px solid;
-    border-left: red 3px solid;
-    border-top: red 3px solid;
-    background-color: #f8ecf4;
+    border: #120f12 3px solid;
+    background-color: #ac866b;
 }
