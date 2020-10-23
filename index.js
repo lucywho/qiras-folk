@@ -402,14 +402,14 @@ app.get("/friendstatus/:otherUserId", async (req, res) => {
         const results = await db.checkFriendship(senderId, receiverId);
         console.log("check friendship results", results.rows);
         if (results.rows.length == 0) {
-            res.json({ buttonText: "Send Friend Request" });
+            res.json({ buttonText: "send friend request" });
         } else if (results.rows[0].accepted === true) {
-            res.json({ buttonText: "Unfriend" });
+            res.json({ buttonText: "unfriend" });
         } else {
             if (results.rows.sender_id !== req.session.userId) {
-                res.json({ buttonText: "Accept Friend Request" });
+                res.json({ buttonText: "accept friend request" });
             } else {
-                res.json({ buttonText: "Cancel Friend Request" });
+                res.json({ buttonText: "cancel friend request" });
             }
         }
     } catch (err) {
@@ -423,28 +423,28 @@ app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
     let receiverId = req.params.otherUserId;
     let senderId = req.session.userId;
 
-    if (buttonText == "Send Friend Request") {
+    if (buttonText == "send friend request") {
         db.makeFriendRequest(senderId, receiverId)
             .then(results => {
                 console.log("pending id", results.rows[0]);
-                res.json({ buttonText: "Cancel Friend Request" });
+                res.json({ buttonText: "cancel friend request" });
             })
             .catch(err => {
                 console.log("error in makeFriendRequest", err);
             });
     } else if (
-        buttonText == "Cancel Friend Request" ||
-        buttonText == "Unfriend"
+        buttonText == "cancel friend request" ||
+        buttonText == "unfriend"
     ) {
         db.cancelFriendship(senderId, receiverId)
             .then(results => {
                 console.log("cancel results", results.rows);
-                res.json({ buttonText: "Send Friend Request" });
+                res.json({ buttonText: "send friend request" });
             })
             .catch(err => {
                 console.log("error in cancelFriendship", err);
             });
-    } else if (buttonText == "Accept Friend Request") {
+    } else if (buttonText == "accept friend request") {
         //senderId is the other user in this case, logged in user is receiver of request
         db.confirmFriendship(receiverId, senderId)
             .then(results => {
@@ -452,7 +452,7 @@ app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
                 newFriendId = receiverId;
 
                 res.json({
-                    buttonText: "Unfriend",
+                    buttonText: "unfriend",
                     newFriendId
                 });
             })

@@ -10,7 +10,7 @@ export async function receiveFriends() {
 }
 
 export async function acceptFriendRequest(otherUserId) {
-    let buttonText = "Accept Friend Request";
+    let buttonText = "accept friend request";
 
     const response = await axios.post(
         `/updatefriendship/${otherUserId}/${buttonText}`
@@ -23,7 +23,7 @@ export async function acceptFriendRequest(otherUserId) {
 }
 
 export async function unfriend(otherUserId) {
-    let buttonText = "Unfriend";
+    let buttonText = "unfriend";
     const response = await axios.post(
         `/updatefriendship/${otherUserId}/${buttonText}`
     );

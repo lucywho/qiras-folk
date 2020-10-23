@@ -58,7 +58,7 @@ export default function Friends() {
                                                     dispatch(unfriend(item.id))
                                                 }
                                             >
-                                                Unfriend
+                                                unfriend
                                             </button>
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@ export default function Friends() {
                                                     )
                                                 }
                                             >
-                                                Accept
+                                                accept
                                             </button>
                                             <button
                                                 className="fr-button"
@@ -112,11 +112,11 @@ export default function Friends() {
                                                     dispatch(unfriend(item.id))
                                                 }
                                             >
-                                                Decline
+                                                decline
                                             </button>
                                             <Link to={"/user/" + item.id}>
                                                 <button className="fr-button">
-                                                    Visit profile
+                                                    visit profile
                                                 </button>
                                             </Link>
                                         </div>
@@ -130,10 +130,10 @@ export default function Friends() {
             <div className="no_friends">
                 {friends.length == 0 && pending.length == 0 && (
                     <div>
-                        <h2>You don't have any friends yet</h2>
+                        <h2>You haven't made any connections yet</h2>
                         <p>
-                            Click on "Search" at the top of the page to start
-                            finding new friends!
+                            Click on "Find new friends" at the top of the page
+                            to start making friends!
                         </p>
                     </div>
                 )}

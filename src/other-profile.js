@@ -39,7 +39,7 @@ class OtherProfile extends Component {
                             <div className="bio-pic">
                                 <img src="/default.jpg" />
                             </div>
-                            <p>The user you selected does not exist</p>
+                            <p>Sorry, we can't find a user with that name</p>
                         </div>
                     )}
                     <div className="bio-left">
@@ -57,14 +57,16 @@ class OtherProfile extends Component {
                                 }
                             />
                         </div>
+                        <div className="profbuttons">
+                            <FriendButton
+                                otherUserId={this.props.match.params.id}
+                            />
+                        </div>
                     </div>
                     <div className="bio-right">
                         <div className="bio-display">
                             <p>{this.state.bio}</p>
                         </div>
-                        <FriendButton
-                            otherUserId={this.props.match.params.id}
-                        />
                     </div>
                 </div>
             </div>

@@ -19,9 +19,8 @@ export default function Chat() {
         }
     };
     return (
-        <div>
+        <>
             <div className="chat-container">
-                <h2>Welcome to the chatroom!</h2>
                 <div className="chat" ref={elemRef}>
                     {chatMessage && (
                         <div className="msg-div">
@@ -52,10 +51,11 @@ export default function Chat() {
                     )}
                 </div>
                 <textarea
+                    id="chat-text"
                     placeholder="type your message here and press Enter to send"
                     onKeyDown={keyCheck}
                 />
             </div>
-        </div>
+        </>
     );
 }

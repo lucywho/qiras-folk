@@ -57,8 +57,8 @@ export default function FindPeople() {
             <div className="new-users">
                 {recentusers && (
                     <div>
+                        <h2>Our newest members</h2>
                         <ul>
-                            <h2>Our newest members</h2>
                             <div className="results-grid">
                                 {recentusers.map(item => (
                                     <li key={item.id}>

@@ -78,7 +78,7 @@ export default class App extends React.Component {
                             <button>Find new friends</button>
                         </Link>
                         <Link to="/chat">
-                            <button>Chat</button>
+                            <button>Chat room</button>
                         </Link>
 
                         <button onClick={() => location.replace("/logout")}>

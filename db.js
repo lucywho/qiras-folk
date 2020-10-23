@@ -99,7 +99,7 @@ module.exports.getOtherUser = otherUserId => {
 module.exports.getRecentUsers = () => {
     return db.query(
         `SELECT id, first_name, last_name, pic_url FROM users
-        ORDER BY id DESC LIMIT 4`
+        ORDER BY id DESC LIMIT 12`
     );
 };
 
@@ -108,7 +108,7 @@ module.exports.getSearchUsers = search => {
         `SELECT id, first_name, last_name, pic_url FROM users
         WHERE first_name ILIKE $1
         OR last_name ILIKE $1
-        LIMIT 12`,
+        LIMIT 8`,
         [search + "%"]
     );
 };
