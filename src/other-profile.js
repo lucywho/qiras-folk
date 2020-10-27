@@ -30,6 +30,7 @@ class OtherProfile extends Component {
                 console.log("error in api/user get request", err);
             });
     }
+
     render() {
         return (
             <div className="container">
@@ -55,7 +56,11 @@ class OtherProfile extends Component {
                                         ? this.state.picUrl
                                         : "/default.jpg"
                                 }
-                            />
+                                ref={picUrl => (this.picUrl = picUrl)}
+                                onError={() =>
+                                    (this.picUrl.src = "/default.jpg")
+                                }
+                            ></img>
                         </div>
                         <div className="profbuttons">
                             <FriendButton

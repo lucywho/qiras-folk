@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
-const io = require("socket.io")(server, { origins: "localhost:8080" });
-//space separate additional urls so that app can accept socket requests from where it is posted eg socialnetwork.lucycod.es:* socialnetwork.heroku.app:*
+const io = require("socket.io")(server, {
+    origins: "localhost:8080 qiras-folk.herokuapp.com:*"
+});
+//space separate additional urls so that app can accept socket requests from where it is posted
 const compression = require("compression");
 const db = require("./db.js");
 
@@ -97,7 +99,6 @@ if (process.env.NODE_ENV != "production") {
 }
 
 app.get("/welcome", (req, res) => {
-    console.log("/welcome route hit");
     if (req.session.userId && !resetPass) {
         res.redirect("/");
     } else {
@@ -106,8 +107,6 @@ app.get("/welcome", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-    console.log("post register route hit");
-
     const first_name = req.body.first;
     const last_name = req.body.last;
     const email = req.body.email;
@@ -115,7 +114,6 @@ app.post("/register", (req, res) => {
     let user_id;
 
     if (!first_name || !last_name || !email || !password) {
-        console.log("register: missing inputs");
         res.json({ success: false });
         return;
     }
@@ -125,12 +123,10 @@ app.post("/register", (req, res) => {
             .then(results => {
                 user_id = results.rows[0].id;
                 req.session.userId = user_id;
-                console.log("req.session.userId", req.session.userId);
                 res.json({ success: true });
             })
             .catch(err => {
                 console.log("err in addUser: ", err);
-
                 res.json({ success: false });
             });
         return;
@@ -138,20 +134,17 @@ app.post("/register", (req, res) => {
 }); //end of register route
 
 app.post("/login", (req, res) => {
-    console.log("post login route hit");
     const logemail = req.body.email;
     const logpassword = req.body.password;
     let user_id;
 
     if (!logemail || !logpassword) {
-        console.log("login: missing inputs");
         res.json({ success: false });
         return;
     }
 
     db.getPassword(logemail).then(results => {
         let hashpass = results.rows[0].password;
-        console.log("get password results", hashpass);
 
         compare(logpassword, hashpass)
             .then(matchValue => {
@@ -174,13 +167,11 @@ app.post("/login", (req, res) => {
 }); //end of login route
 
 app.post("/password/reset/step1", (req, res) => {
-    console.log("post reset 1 route hit");
     const logemail = req.body.email;
     let email;
     let user_id;
 
     if (!logemail) {
-        console.log("reset: missing inputs");
         res.json({ success: false });
         return;
     }
@@ -190,7 +181,6 @@ app.post("/password/reset/step1", (req, res) => {
             user_id = results.rows[0].id;
 
             if (!user_id) {
-                console.log("no user found");
                 res.json({ success: false });
             } else {
                 email = results.rows[0].email;
@@ -199,7 +189,6 @@ app.post("/password/reset/step1", (req, res) => {
                 const code = cryptoRandomString({
                     length: 6
                 });
-                console.log("access code generated: ", code);
 
                 //email user
                 sendEmail(
@@ -225,8 +214,6 @@ app.post("/password/reset/step1", (req, res) => {
 }); //end of post step1
 
 app.post("/password/reset/step2", (req, res) => {
-    console.log("post reset 2 route hit");
-
     const incode = req.body.code;
     const password = req.body.password;
     const email = req.body.email;
@@ -236,7 +223,6 @@ app.post("/password/reset/step2", (req, res) => {
         .then(results => {
             code = results.rows[0].code;
             if (code !== incode) {
-                console.log("codes don't match");
                 res.json({ success: false });
                 return;
             } else {
@@ -263,7 +249,6 @@ app.post("/password/reset/step2", (req, res) => {
 }); //end of post step 2
 
 app.get("/userinfo", (req, res) => {
-    console.log("get userinfo route hit");
     let user_id = req.session.userId;
 
     db.getUserInfo(user_id)
@@ -296,17 +281,15 @@ app.post(
         let pic_url = config.s3Url + req.file.filename;
 
         if (!pic_url) {
-            console.log("no file sent");
             return;
         }
 
         db.archiveProfilePic(user_id, pic_url).then(results => {
-            console.log("pic archive worked", results.rows);
+            console.log("pic archive worked");
         });
 
         db.saveProfilePic(user_id, pic_url)
             .then(results => {
-                console.log("upload profile pic results:", results.rows[0]);
                 picUrl = results.rows[0].pic_url;
                 res.json({ picUrl: picUrl });
             })
@@ -331,19 +314,16 @@ app.post("/saveUserBio", async (req, res) => {
 }); //end of saveUserBio
 
 app.get("/api/user/:id", async (req, res) => {
-    console.log("get /api/user route hit");
     let user_id = req.session.userId;
     let otherUserId = req.params.id;
 
     if (user_id == otherUserId) {
-        console.log("same user caught");
         res.json({ sameUser: true });
     } else {
         try {
             const results = await db.getOtherUser(otherUserId);
 
             if (!results.rows[0]) {
-                console.log("user doesn't exist");
                 res.json({ noUser: true });
             } else {
                 const first = results.rows[0].first_name;
@@ -358,13 +338,12 @@ app.get("/api/user/:id", async (req, res) => {
                 });
             }
         } catch (err) {
-            console.log("error in api/user/:id");
+            console.log("error in api/user/:id", err);
         }
     }
 }); // end of /user/:id route
 
 app.get("/recentusers", async (req, res) => {
-    console.log("/recentusers route hit");
     try {
         const results = await db.getRecentUsers();
 
@@ -379,8 +358,6 @@ app.get("/recentusers", async (req, res) => {
 }); //end of /recentusers route
 
 app.get("/searchusers/:searchusers", async (req, res) => {
-    console.log("/searchusers route hit");
-
     let search = req.params.searchusers;
     try {
         const results = await db.getSearchUsers(search);
@@ -394,13 +371,12 @@ app.get("/searchusers/:searchusers", async (req, res) => {
 }); //end of /searchusers route
 
 app.get("/friendstatus/:otherUserId", async (req, res) => {
-    console.log("/friend status route hit");
     let receiverId = req.params.otherUserId;
     let senderId = req.session.userId;
-    console.log("receiver and sender", receiverId, senderId);
+
     try {
         const results = await db.checkFriendship(senderId, receiverId);
-        console.log("check friendship results", results.rows);
+
         if (results.rows.length == 0) {
             res.json({ buttonText: "send friend request" });
         } else if (results.rows[0].accepted === true) {
@@ -418,7 +394,6 @@ app.get("/friendstatus/:otherUserId", async (req, res) => {
 });
 
 app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
-    console.log("/updatefriendship route hit");
     let buttonText = req.params.buttonText;
     let receiverId = req.params.otherUserId;
     let senderId = req.session.userId;
@@ -426,7 +401,6 @@ app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
     if (buttonText == "send friend request") {
         db.makeFriendRequest(senderId, receiverId)
             .then(results => {
-                console.log("pending id", results.rows[0]);
                 res.json({ buttonText: "cancel friend request" });
             })
             .catch(err => {
@@ -438,7 +412,6 @@ app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
     ) {
         db.cancelFriendship(senderId, receiverId)
             .then(results => {
-                console.log("cancel results", results.rows);
                 res.json({ buttonText: "send friend request" });
             })
             .catch(err => {
@@ -448,7 +421,6 @@ app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
         //senderId is the other user in this case, logged in user is receiver of request
         db.confirmFriendship(receiverId, senderId)
             .then(results => {
-                console.log("AFR confirm results", results.rows);
                 newFriendId = receiverId;
 
                 res.json({
@@ -463,7 +435,6 @@ app.post("/updatefriendship/:otherUserId/:buttonText", (req, res) => {
 });
 
 app.get("/pendingfriends", async (req, res) => {
-    console.log("/pendingfriends route hit");
     let userId = req.session.userId;
     try {
         const results = await db.getFriends(userId);
@@ -475,12 +446,10 @@ app.get("/pendingfriends", async (req, res) => {
 });
 
 app.post("/password/change/step1", (req, res) => {
-    console.log("change password step 1 route hit");
     const current = req.body.current;
     let user_id = req.session.userId;
 
     if (!current) {
-        console.log("change password: missing input");
         res.json({ success: false });
         return;
     }
@@ -491,7 +460,6 @@ app.post("/password/change/step1", (req, res) => {
         compare(current, hashpass)
             .then(matchValue => {
                 if (!matchValue) {
-                    console.log("err in check pass matchValue");
                     res.json({ success: false });
                     return;
                 } else {
@@ -509,12 +477,10 @@ app.post("/password/change/step1", (req, res) => {
 }); //end of change password step one
 
 app.post("/password/change/step2", (req, res) => {
-    console.log("change password step 2 hit");
     const newpass = req.body.newpass;
     let user_id = req.session.userId;
 
     if (!newpass) {
-        console.log("change password: missing input");
         res.json({ success: false });
         return;
     }
@@ -523,7 +489,6 @@ app.post("/password/change/step2", (req, res) => {
         db.changePassword(hashpass, user_id)
             .then(results => {
                 res.json({ success: true });
-                console.log("hashpass", hashpass);
             })
             .catch(err => {
                 console.log("err in changepass 2: ", err);
@@ -533,9 +498,7 @@ app.post("/password/change/step2", (req, res) => {
 }); // end of change password step two
 
 app.post("/deleteaccount", async (req, res) => {
-    console.log("/deleteaccount route hit");
     let userId = req.session.userId;
-    console.log("user id in delete account", userId);
 
     try {
         const getPic = await db.getAllPics(userId);

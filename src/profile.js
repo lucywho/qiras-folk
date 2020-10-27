@@ -22,7 +22,7 @@ export default function Profile({
                         </h2>
                     </div>
                     <div className="bio-pic" onClick={toggleModal}>
-                        <img src={picUrl} />
+                        <img src={picUrl} alt="profile picture" />
 
                         <p>click to change</p>
                     </div>

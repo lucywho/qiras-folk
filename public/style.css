@@ -234,10 +234,12 @@ h2 {
     height: 100%;
 }
 
-.users-container input {
-    bottom: 10px;
-    position: fixed;
+/* .search-users {
     width: 600px;
+} */
+
+.search-users h2 {
+    margin-left: 10px;
 }
 
 .new-users {
@@ -289,7 +291,7 @@ h2 {
     justify-content: space-between;
     margin: 0px 10px 10px 0;
     padding: 0;
-    width: 300px;
+    width: 30vh;
 }
 
 .accepted-friends .names {
@@ -378,10 +380,10 @@ h2 {
     background-color: #f8f7f7;
     border: #658fbd 5px solid;
     border-radius: 10px;
-    height: 150px;
+    height: 60%;
     margin-bottom: 5px;
     object-fit: cover;
-    width: 150px;
+    width: 80%;
 }
 
 .bio-pic p {
@@ -470,7 +472,7 @@ textarea {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    height: 250px;
+    height: 50vh;
     justify-content: space-around;
     margin: auto;
     overflow: auto;

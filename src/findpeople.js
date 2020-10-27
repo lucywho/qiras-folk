@@ -53,7 +53,6 @@ export default function FindPeople() {
 
     return (
         <div className="users-container">
-            <h1 style={{ marginLeft: 10 + "px" }}>Find People</h1>
             <div className="new-users">
                 {recentusers && (
                     <div>
@@ -71,6 +70,13 @@ export default function FindPeople() {
                                                             item.pic_url
                                                                 ? item.pic_url
                                                                 : "/default.jpg"
+                                                        }
+                                                        ref={pic_url =>
+                                                            (item.pic_url = pic_url)
+                                                        }
+                                                        onError={() =>
+                                                            (item.pic_url.src =
+                                                                "/default.jpg")
                                                         }
                                                     />
                                                     <div className="fr-text">
@@ -106,6 +112,13 @@ export default function FindPeople() {
                                                                 ? item.pic_url
                                                                 : "/default.jpg"
                                                         }
+                                                        ref={pic_url =>
+                                                            (item.pic_url = pic_url)
+                                                        }
+                                                        onError={() =>
+                                                            (item.pic_url.src =
+                                                                "/default.jpg")
+                                                        }
                                                     />
                                                     <div className="fr-text">
                                                         {item.first_name}{" "}
@@ -133,17 +146,20 @@ export default function FindPeople() {
                     </div>
                 )}
             </div>
+            <div className="search-users">
+                <h2>Search for another user</h2>
 
-            <input
-                style={{ marginLeft: 10 + "px" }}
-                onChange={e => {
-                    setSearchUsers(e.target.value);
-                    setRecentUsers(null);
-                }}
-                type="text"
-                name="search_users"
-                placeholder="search for another user"
-            />
+                <input
+                    style={{ marginLeft: 10 + "px" }}
+                    onChange={e => {
+                        setSearchUsers(e.target.value);
+                        setRecentUsers(null);
+                    }}
+                    type="text"
+                    name="search_users"
+                    placeholder="search for another user"
+                />
+            </div>
         </div>
     );
 }

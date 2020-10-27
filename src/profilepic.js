@@ -2,7 +2,8 @@ import React from "react";
 
 export default function ProfilePic({ first, last, picUrl, toggleModal }) {
     picUrl = picUrl || "/default.jpg";
-    let userName = first + " " + last;
+
+    let userName = first + " " + last + "profile picture";
 
     return (
         <div>
