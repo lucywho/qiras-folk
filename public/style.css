@@ -282,6 +282,10 @@ h2 {
     width: 50%;
 }
 
+.no-friends {
+    margin-left: 10px;
+}
+
 .names {
     background: linear-gradient(340deg, #a39ec8 30%, #f8f7f7);
     border-radius: 10px;
