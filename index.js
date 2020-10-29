@@ -22,12 +22,6 @@ const config = require("./config");
 //_____MIDDLEWARE______
 app.use(compression());
 
-// app.use(
-//     cookieSession({
-//         secret: "It'll be fiiiine",
-//         maxAge: 1000 * 60 * 60 * 24 * 14
-//     })
-// );
 //====allows socket to access session info===
 const cookieSessionMiddleware = cookieSession({
     secret: `It'll be fiiiine.`,
@@ -83,7 +77,7 @@ const uploader = multer({
         fileSize: 2097152
     }
 });
-//==end of boilerplate==
+//==end of image upload boilerplate==
 
 //_____ROUTES_______
 
@@ -290,6 +284,7 @@ app.post(
 
         db.saveProfilePic(user_id, pic_url)
             .then(results => {
+                console.log(results.rows[0].pic_url);
                 picUrl = results.rows[0].pic_url;
                 res.json({ picUrl: picUrl });
             })

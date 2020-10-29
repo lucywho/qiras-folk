@@ -30,10 +30,7 @@ export default function NewPass() {
     }
 
     function changePass() {
-        console.log("changePass fires");
-
         let newpass = document.getElementById("newpass").value;
-        console.log("newpass", newpass);
 
         let data = {
             newpass: newpass
@@ -77,7 +74,7 @@ export default function NewPass() {
                     <br></br>
                     <br></br>
 
-                    <button onClick={() => checkPass()}>Submit</button>
+                    <button onClick={() => checkPass()}>submit</button>
                 </div>
             )}
             {step == 2 && (
@@ -99,7 +96,7 @@ export default function NewPass() {
                     />
                     <br></br>
                     <button onClick={() => changePass()}>
-                        Change password
+                        change password
                     </button>
                 </div>
             )}
@@ -113,7 +110,7 @@ export default function NewPass() {
 
                     <br></br>
                     <Link to="/">
-                        <button>Return to your profile page</button>
+                        <button>return to your profile page</button>
                     </Link>
                 </div>
             )}

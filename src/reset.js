@@ -97,7 +97,7 @@ export default class ResetPassword extends React.Component {
                         />
                         <br></br>
                         <button onClick={() => this.reqcode()}>
-                            Submit email
+                            submit email
                         </button>
 
                         <h3>
@@ -106,7 +106,7 @@ export default class ResetPassword extends React.Component {
                         </h3>
                         <Link to="/">
                             <button>
-                                Click here to register a new account
+                                click here to register a new account
                             </button>
                         </Link>
                     </div>
@@ -135,7 +135,7 @@ export default class ResetPassword extends React.Component {
                             placeholder="enter a new password"
                         />
                         <button onClick={() => this.reset()}>
-                            Reset password
+                            reset password
                         </button>
                     </div>
                 )}
@@ -145,7 +145,7 @@ export default class ResetPassword extends React.Component {
                         Congratulations! Your password has been successfully
                         reset. Please click below to log in.
                         <Link to="/login">
-                            <button>Click here to Log in!</button>
+                            <button>click here to log in!</button>
                         </Link>
                     </div>
                 )}

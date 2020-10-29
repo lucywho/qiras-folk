@@ -64,13 +64,13 @@ export default class Registration extends React.Component {
                     placeholder="choose a password..."
                 />
                 <button onClick={() => this.submit()}>
-                    Click to Register!
+                    click to register!
                 </button>
                 <div>
                     <br />
                     <h3>Already a member?</h3>
                     <Link to="/login">
-                        <button>Click here to Log in!</button>
+                        <button>click here to log in!</button>
                     </Link>
                 </div>
             </div>

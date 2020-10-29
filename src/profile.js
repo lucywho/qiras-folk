@@ -29,7 +29,7 @@ export default function Profile({
                     <br></br>
                     <div className="profbuttons">
                         <Link to="/newpass">
-                            <button>reset your password</button>
+                            <button>change your password</button>
                         </Link>
 
                         <Link to="/deleteaccount">

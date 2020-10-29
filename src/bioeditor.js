@@ -47,7 +47,7 @@ export default class BioEditor extends React.Component {
                 {!this.props.bio && this.state.textAreaVisible == false && (
                     <div className="no-bio">
                         <button onClick={() => this.toggleText()}>
-                            Tell us about yourself
+                            tell us about yourself
                         </button>
                     </div>
                 )}
@@ -65,7 +65,7 @@ export default class BioEditor extends React.Component {
                         />
 
                         <button className="save" onClick={e => this.saveBio(e)}>
-                            Save your profile
+                            save your profile
                         </button>
                     </div>
                 )}
@@ -94,7 +94,7 @@ export default class BioEditor extends React.Component {
                         />
 
                         <button className="save" onClick={e => this.saveBio(e)}>
-                            Save your profile
+                            save your profile
                         </button>
                     </div>
                 )}

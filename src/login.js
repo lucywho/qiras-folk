@@ -58,19 +58,19 @@ export default class Login extends React.Component {
                     type="password"
                     placeholder="password..."
                 />
-                <button onClick={() => this.login()}>Login Now!</button>
+                <button onClick={() => this.login()}>login now!</button>
                 <div>
                     <br />
                     <h3>New to Qira's Folk?</h3>
                     <Link to="/">
-                        <button>Click here to Register</button>
+                        <button>click here to register</button>
                     </Link>
                 </div>
                 <div>
                     <br />
                     <h3>Forgotten password?</h3>
                     <Link to="/reset">
-                        <button>Click here to reset your password</button>
+                        <button>click here to reset your password</button>
                     </Link>
                 </div>
             </div>

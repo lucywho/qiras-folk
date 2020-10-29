@@ -27,6 +27,17 @@ export default function Friends() {
     }
     return (
         <div className="all-friends">
+            <div className="no-friends">
+                {friends.length == 0 && pending.length == 0 && (
+                    <div>
+                        <h2>You haven't made any connections yet</h2>
+                        <p>
+                            Click on "Find new friends" at the top of the page
+                            to start making friends!
+                        </p>
+                    </div>
+                )}
+            </div>
             <div className="accepted-friends">
                 {friends.length > 0 && (
                     <ul>
@@ -125,17 +136,6 @@ export default function Friends() {
                             ))}
                         </div>
                     </ul>
-                )}
-            </div>
-            <div className="no_friends">
-                {friends.length == 0 && pending.length == 0 && (
-                    <div>
-                        <h2>You haven't made any connections yet</h2>
-                        <p>
-                            Click on "Find new friends" at the top of the page
-                            to start making friends!
-                        </p>
-                    </div>
                 )}
             </div>
         </div>

@@ -29,16 +29,13 @@ export default function DeleteAccount() {
                 </li>
                 <br></br>
                 <li>
-                    <h4>
-                        Sure you want to go? Please click "Delete Account:
-                        Confirm"
-                    </h4>
+                    <h4>Sure you want to go? Please click "DELETE ACCOUNT"</h4>
                 </li>
             </ul>
 
             <a href="/logout">
                 <button className="delete" onClick={submit}>
-                    Delete Account: Confirm
+                    DELETE ACCOUNT
                 </button>
             </a>
         </div>
