@@ -278,9 +278,13 @@ app.post(
             return;
         }
 
-        db.archiveProfilePic(user_id, pic_url).then(results => {
-            console.log("pic archive worked");
-        });
+        db.archiveProfilePic(user_id, pic_url)
+            .then(results => {
+                console.log("pic archive worked");
+            })
+            .catch(err => {
+                console.log("error in pic archive", err);
+            });
 
         db.saveProfilePic(user_id, pic_url)
             .then(results => {
