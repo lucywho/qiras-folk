@@ -7,7 +7,7 @@ body {
     background-color: #f8f7f7;
     color: #120f12;
     font-family: "Roboto", sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
 }
 
@@ -74,8 +74,6 @@ h2 {
     align-items: center;
     display: flex;
     flex-flow: column wrap;
-    justify-content: flex-start;
-    max-height: 100vh;
     min-height: 100vh;
 }
 
@@ -83,11 +81,11 @@ h2 {
     align-items: center;
     display: flex;
     flex-direction: row;
-    height: 25vh;
-    justify-content: space-between;
+    height: 20vh;
+    justify-content: left;
     padding: 5px;
     position: relative;
-    width: 95%;
+    width: 98%;
 }
 
 .welcometext {
@@ -95,7 +93,7 @@ h2 {
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
-    padding: 10px;
+    padding-left: 10px;
     text-align: justify;
 }
 
@@ -114,13 +112,26 @@ h2 {
     margin-top: 10px;
     min-height: 70vh;
     position: relative;
-    width: 95%;
+    width: 98%;
 }
 
 #splashimg {
     border: #658fbd 5px solid;
     border-radius: 10px;
-    height: 20vh;
+    height: 100%;
+    margin-top: 5px;
+}
+
+#nb {
+    background-color: #658fbd;
+    border: #658fbd 2px solid;
+    border-radius: 10px;
+    color: #120f12;
+    font-family: inherit;
+    font-size: inherit;
+    margin: 5px;
+    opacity: 100%;
+    padding: 5px;
 }
 
 /*___registration.js___*/

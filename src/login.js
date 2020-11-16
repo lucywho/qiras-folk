@@ -43,8 +43,10 @@ export default class Login extends React.Component {
             <div className="loggingin" onChange={e => this.handleChange(e)}>
                 {this.state.error && (
                     <div>
-                        I have a bad feeling about this... please check your
-                        email and password
+                        <p id="nb">
+                            I have a bad feeling about this... please check your
+                            email and password
+                        </p>
                     </div>
                 )}
                 <h3>Please enter your email and password</h3>

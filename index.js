@@ -137,27 +137,32 @@ app.post("/login", (req, res) => {
         return;
     }
 
-    db.getPassword(logemail).then(results => {
-        let hashpass = results.rows[0].password;
+    db.getPassword(logemail)
+        .then(results => {
+            let hashpass = results.rows[0].password;
 
-        compare(logpassword, hashpass)
-            .then(matchValue => {
-                if (!matchValue) {
-                    console.log("err in matchValue: ", err);
+            compare(logpassword, hashpass)
+                .then(matchValue => {
+                    if (!matchValue) {
+                        console.log("err in matchValue: ", err);
+                        res.json({ success: false });
+                        return;
+                    } else {
+                        user_id = results.rows[0].id;
+                        req.session.userId = user_id;
+                        res.json({ success: true });
+                    }
+                }) //end of matchvalue
+                .catch(err => {
+                    console.log("err in compare password: ", err);
                     res.json({ success: false });
-                    return;
-                } else {
-                    user_id = results.rows[0].id;
-                    req.session.userId = user_id;
-                    res.json({ success: true });
-                }
-            }) //end of matchvalue
-            .catch(err => {
-                console.log("err in getPassword: ", err);
-                res.json({ success: false });
-            });
-        return;
-    });
+                });
+            return;
+        })
+        .catch(err => {
+            console.log("error in getPassword: ", err);
+            res.json({ success: false });
+        });
 }); //end of login route
 
 app.post("/password/reset/step1", (req, res) => {

@@ -63,8 +63,12 @@ export default class Registration extends React.Component {
                     type="password"
                     placeholder="choose a password..."
                 />
+                <p id="nb">
+                    By signing up, you agree to allow the site to use functional
+                    cookies.
+                </p>
                 <button onClick={() => this.submit()}>
-                    click to register!
+                    click to accept cookies and register!
                 </button>
                 <div>
                     <br />

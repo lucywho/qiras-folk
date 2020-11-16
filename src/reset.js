@@ -71,18 +71,15 @@ export default class ResetPassword extends React.Component {
                     >
                         <h3>Please enter your email address</h3>
                         <br />
-                        <p>
+                        <div>
                             We will send an access code to this email address,
                             <br />
                             which you will need to reset your password
                             <br />
                             <br />
-                            <strong>
-                                Access codes are valid for 10 minutes
-                            </strong>
+                            <p id="nb">access codes are valid for 10 minutes</p>
                             <br />
-                            <br />
-                        </p>
+                        </div>
                         {this.state.error && (
                             <div>
                                 Please check that you have submitted the correct
@@ -96,14 +93,17 @@ export default class ResetPassword extends React.Component {
                             placeholder="email address..."
                         />
                         <br></br>
+                        <br></br>
                         <button onClick={() => this.reqcode()}>
                             submit email
                         </button>
 
                         <h3>
                             <br />
+                            <br />
                             Don't have an account yet?
                         </h3>
+                        <br></br>
                         <Link to="/">
                             <button>
                                 click here to register a new account
