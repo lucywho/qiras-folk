@@ -4,6 +4,10 @@ Qira's Folk: a social network app created in React
 
 Summary: a social network app that allows users to connect and chat with other users.
 
+![Alt text](public/socialnetworkreg.png?raw=true "Title")
+![Alt text](public/socnet-friends.png?raw=true "Title")
+![Alt text](public/socnet-chat.png?raw=true "Title")
+
 Features: registration, log-in, and reset forgotten password functions ||
 edit personal profile: add a photo and biography, change password, and delete account ||
 make friends: search for other users and connect ||
@@ -17,7 +21,3 @@ Credits:
 logo created at LogoMakr.com and used under (cc) licence
 
 colour scheme inspired by Alvin Chang: https://www.vox.com/culture/2015/12/17/10322514/star-wars-colors and finalised using colormind.io
-
-![Alt text](public/socialnetworkreg.png?raw=true "Title")
-![Alt text](public/socnet-friends.png?raw=true "Title")
-![Alt text](public/socnet-chat.png?raw=true "Title")
